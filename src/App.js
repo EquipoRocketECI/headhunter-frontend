@@ -4,6 +4,7 @@ import './App.css';
 import logo from './components/logo.svg';
 import { Login } from './components/Login';
 import { SignIn } from './components/SignIn';
+import { Explore } from './components/ExploreComponent/Explore';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 
 export class App extends Component {
@@ -31,7 +32,12 @@ export class App extends Component {
 
         const SignInView = () => (
             <SignIn/>
-        );       
+        );
+        
+        const ExploreView = () => (
+
+            <Explore/>
+        );
      
 
         return (
@@ -54,6 +60,7 @@ export class App extends Component {
                     <div>
                         <Route exact path="/" component={LoginView} />
                          <Route path="/SignIn" component={SignInView} />
+                         <Route path="/explore" render={ExploreView}/>
                     </div>
 
                 </div>
