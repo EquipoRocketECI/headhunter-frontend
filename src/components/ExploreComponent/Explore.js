@@ -42,9 +42,6 @@ const stubPages = [[{name:"idea 1",description:"Lorem ipsum dolor sit amet, cons
 {name:"idea 9",description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis urna sit amet tortor pulvinar rhoncus at ut odio. Donec risus augue, scelerisque molestie vehicula a, interdum a tellus. Sed dapibus ac dui sed congue. Mauris auctor, turpis vitae sagittis sodales, risus libero hendrerit mi, id tempor urna libero vitae ante.",image:"PLACEHOLDERTHUMBNAIL.jpg"},
 {name:"idea 9",description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis urna sit amet tortor pulvinar rhoncus at ut odio. Donec risus augue, scelerisque molestie vehicula a, interdum a tellus. Sed dapibus ac dui sed congue. Mauris auctor, turpis vitae sagittis sodales, risus libero hendrerit mi, id tempor urna libero vitae ante.",image:"PLACEHOLDERTHUMBNAIL.jpg"},
 {name:"idea 9",description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis urna sit amet tortor pulvinar rhoncus at ut odio. Donec risus augue, scelerisque molestie vehicula a, interdum a tellus. Sed dapibus ac dui sed congue. Mauris auctor, turpis vitae sagittis sodales, risus libero hendrerit mi, id tempor urna libero vitae ante.",image:"PLACEHOLDERTHUMBNAIL.jpg"},
-{name:"idea 9",description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis urna sit amet tortor pulvinar rhoncus at ut odio. Donec risus augue, scelerisque molestie vehicula a, interdum a tellus. Sed dapibus ac dui sed congue. Mauris auctor, turpis vitae sagittis sodales, risus libero hendrerit mi, id tempor urna libero vitae ante.",image:"PLACEHOLDERTHUMBNAIL.jpg"},
-{name:"idea 9",description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis urna sit amet tortor pulvinar rhoncus at ut odio. Donec risus augue, scelerisque molestie vehicula a, interdum a tellus. Sed dapibus ac dui sed congue. Mauris auctor, turpis vitae sagittis sodales, risus libero hendrerit mi, id tempor urna libero vitae ante.",image:"PLACEHOLDERTHUMBNAIL.jpg"},
-{name:"idea 9",description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis urna sit amet tortor pulvinar rhoncus at ut odio. Donec risus augue, scelerisque molestie vehicula a, interdum a tellus. Sed dapibus ac dui sed congue. Mauris auctor, turpis vitae sagittis sodales, risus libero hendrerit mi, id tempor urna libero vitae ante.",image:"PLACEHOLDERTHUMBNAIL.jpg"},
 {name:"idea 9",description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis urna sit amet tortor pulvinar rhoncus at ut odio. Donec risus augue, scelerisque molestie vehicula a, interdum a tellus. Sed dapibus ac dui sed congue. Mauris auctor, turpis vitae sagittis sodales, risus libero hendrerit mi, id tempor urna libero vitae ante.",image:"PLACEHOLDERTHUMBNAIL.jpg"}
 ]];
 
@@ -87,8 +84,9 @@ export class Explore extends React.Component{
 
         return(
             <div className="mainView">
-                
-            {itemList}
+                <div className="searchResults">
+                    {itemList}
+                </div>
             <MemoryRouter initialEntries={['/explore']} initialIndex={0}>
                     <Route>
                         {({location})=>{
