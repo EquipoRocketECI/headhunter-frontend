@@ -4,6 +4,7 @@ import './App.css';
 import logo from './components/logo.svg';
 import { Login } from './components/Login';
 import { SignIn } from './components/SignIn';
+import { Publish } from './publishidea/Publish';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 
 export class App extends Component {
@@ -31,7 +32,11 @@ export class App extends Component {
 
         const SignInView = () => (
             <SignIn/>
-        );       
+        );
+        
+        const PublishView = () => (
+            <Publish/>
+        );
      
 
         return (
@@ -49,11 +54,13 @@ export class App extends Component {
                     <ul>
                         <li><Link to="/">Login</Link></li>
                         <li><Link to="/SignIn">SignIn</Link></li> 
+                        <li><Link to="/publish">Publish</Link></li> 
                         
                     </ul>
                     <div>
                         <Route exact path="/" component={LoginView} />
                          <Route path="/SignIn" component={SignInView} />
+                         <Route path="/publish" component={PublishView} />
                     </div>
 
                 </div>
