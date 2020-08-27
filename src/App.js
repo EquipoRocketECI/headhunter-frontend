@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 
 import './App.css';
-import logo from './components/logo.svg';
+import logo from './components/Logo.png';
 import { Login } from './components/Login';
 import { SignIn } from './components/SignIn';
+import { General } from './general/General';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 
 export class App extends Component {
@@ -31,7 +32,11 @@ export class App extends Component {
 
         const SignInView = () => (
             <SignIn/>
-        );       
+        );
+
+        const GeneralView = () => (
+            <General/>
+        );     
      
 
         return (
@@ -48,12 +53,14 @@ export class App extends Component {
 
                     <ul>
                         <li><Link to="/">Login</Link></li>
-                        <li><Link to="/SignIn">SignIn</Link></li> 
+                        <li><Link to="/SignIn">SignIn</Link></li>
+                        <li><Link to="/General">General</Link></li> 
                         
                     </ul>
                     <div>
                         <Route exact path="/" component={LoginView} />
                          <Route path="/SignIn" component={SignInView} />
+                         <Route path="/General" component={GeneralView} />
                     </div>
 
                 </div>
