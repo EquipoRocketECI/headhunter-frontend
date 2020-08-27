@@ -19,7 +19,7 @@ import {BrowserRouter as Router, Link, Route, Redirect} from 'react-router-dom';
 export class Publish extends React.Component{
     constructor(props) {
         super(props);
-        this.state = { nombre: "", descripcion: "", categoria: "", monto: "", fecha: moment().toDate()};
+        this.state = { nombre: "", descripcion: "", categoria: "", monto: "", fecha: moment(this.props.start)};
         
         this.handleName = this.handleName.bind(this);
         this.handleDescription = this.handleDescription.bind(this);
@@ -64,10 +64,9 @@ export class Publish extends React.Component{
     handleSubmit(e) {
        
         e.preventDefault();
-        if (!this.state.nombre.length || !this.state.descripcion.length || !this.state.categoria.length || !this.state.monto.length || !this.state.fecha.length)
-            return;
         
-        alert("Nombre: "+this.state.nombre+"Descripcion: "+this.state.descripcion+"Categoria: "+this.state.categoria+"Monto: "+this.state.monto+"Fecha: "+this.state.fecha);
+        
+        alert("Nombre: "+this.state.nombre+" Descripcion: "+this.state.descripcion+" Categoria: "+this.state.categoria+" Monto: "+this.state.monto+" Fecha: "+this.state.fecha.toDate());
     }
 
 
@@ -81,7 +80,7 @@ export class Publish extends React.Component{
                         
                         <Typography variant="h4">Publica tu idea/proyecto</Typography>
                      
-                        <form className="form">
+                        <form onSubmit={this.handleSubmit} className="form">
                         <Typography variant="h5">1. Selecciona una categoria para clasificar tu idea</Typography>
                             <FormControl margin="normal" required fullWidth>
                             
