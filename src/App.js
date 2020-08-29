@@ -4,11 +4,10 @@ import './App.css';
 import logo from './components/Logo.png';
 import { Login } from './components/Login';
 import { SignIn } from './components/SignIn';
-<<<<<<< HEAD
 import { Publish } from './publishidea/Publish';
-=======
+
 import { General } from './general/General';
->>>>>>> 8ee8952c9098e17dd50226360a46ba82e5e80966
+
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 
 export class App extends Component {
