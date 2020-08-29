@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 
 import './App.css';
-import logo from './components/logo.svg';
+import logo from './components/Logo.png';
 import { Login } from './components/Login';
 import { SignIn } from './components/SignIn';
+<<<<<<< HEAD
 import { Publish } from './publishidea/Publish';
+=======
+import { General } from './general/General';
+>>>>>>> 8ee8952c9098e17dd50226360a46ba82e5e80966
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 
 export class App extends Component {
@@ -33,10 +37,16 @@ export class App extends Component {
         const SignInView = () => (
             <SignIn/>
         );
+
         
         const PublishView = () => (
             <Publish/>
         );
+
+        const GeneralView = () => (
+            <General/>
+        );     
+
      
 
         return (
@@ -53,14 +63,21 @@ export class App extends Component {
 
                     <ul>
                         <li><Link to="/">Login</Link></li>
-                        <li><Link to="/SignIn">SignIn</Link></li> 
+
+                        
+                    
+                        <li><Link to="/SignIn">SignIn</Link></li>
+                        <li><Link to="/General">General</Link></li> 
                         <li><Link to="/publish">Publish</Link></li> 
+
                         
                     </ul>
                     <div>
                         <Route exact path="/" component={LoginView} />
                          <Route path="/SignIn" component={SignInView} />
-                         <Route path="/publish" component={PublishView} />
+                        <Route path="/publish" component={PublishView} />
+                         <Route path="/General" component={GeneralView} />
+
                     </div>
 
                 </div>
