@@ -1,16 +1,11 @@
 import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-import LockIcon from '@material-ui/icons/LockOutlined';
-import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import './Login.css';
-import { SignIn } from './SignIn';
-import { BrowserRouter as Router, Link, Route, Redirect } from 'react-router-dom';
+import Link from "@material-ui/core/Link";
 
 
 
@@ -30,69 +25,47 @@ export class Login extends React.Component {
     }
 
     render() {
-
-
-        const SignInView = () => {
-            return <SignIn />
-        };
-
-    
-        
+       
         return (
-            <Router>
-            <React.Fragment>
-                <CssBaseline />
-                <main className="layout">
-                    <Paper className="paper">
-                        <Avatar className="avatar">
-                            <LockIcon />
-                        </Avatar>
-                        <Typography variant="h2">HeadHunter</Typography>
-                        <Typography variant="h5">Make your ideas fly</Typography>
-                        <form className="form">
-                            <FormControl margin="normal" required fullWidth>
-                                <InputLabel htmlFor="username">Nombre de usuario</InputLabel>
-                                <Input id="username" name="username" autoComplete="username" autoFocus onChange={this.handleUsername} selected={this.state.userName} />
-                            </FormControl>
-                            <FormControl margin="normal" required fullWidth>
-                                <InputLabel htmlFor="password">Password</InputLabel>
-                                <Input
-                                    name="password"
-                                    type="password"
-                                    id="password"
-                                    autoComplete="current-password"
-                                    onChange={this.handlePassword}
-                                    selected={this.state.password}
-                                />
-                            </FormControl>
-                            <Button
-                                type="submit"
-                                fullWidth
-                                variant="contained"
-                                color="primary"
-                                className="submit"
-                                onClick={this.handleSubmit}
-                            >
-                                Login
-                            </Button>
+                <div>
+                    <Typography variant="h4">Iniciar Sesión</Typography>
+                    <form className="form">
 
-                            <br />
-                            <br />                              
-                                <ul>
-                                <li><Link to="/SignIn">SignIn</Link></li>    </ul>
-                            <div>
-                                <Route path="/SignIn" component={SignInView} />
-                            </div>
-                              
-                        </form>
+                        <FormControl margin="normal" required fullWidth>
+                            <InputLabel htmlFor="username">Nombre de usuario</InputLabel>
+                            <Input id="username" name="username" autoComplete="username" autoFocus onChange={this.handleUsername} selected={this.state.userName} />
+                        </FormControl>
 
-                     
-                    </Paper>
-                </main>
-                </React.Fragment>
-            </Router>
+                        <FormControl margin="normal" required fullWidth>
+                            <InputLabel htmlFor="password">Contraseña</InputLabel>
+                            <Input
+                                name="password"
+                                type="password"
+                                id="password"
+                                autoComplete="current-password"
+                                onChange={this.handlePassword}
+                                selected={this.state.password}
+                            />
+                        </FormControl>
+
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            className="blue"
+                            onClick={this.handleSubmit}>
+                            Ingresar
+                        </Button>
+
+                        <br />
+                        <br />                              
+                                
+                        <div>
+                            <Link href="SignIn" variant="body2">Registrar</Link>
+                        </div>
+                    </form>
+                </div> 
         );
-
     }
 
     handleUsername(e) {
@@ -104,15 +77,10 @@ export class Login extends React.Component {
     }
 
     handleSubmit(e) {  
-
-        localStorage.setItem("recordar", true);
-        
-        
+        localStorage.setItem("recordar", true);   
     }
 
     handleClick(e){
         localStorage.setItem("recordar", true)
-        
-}
-
+    }
 }
