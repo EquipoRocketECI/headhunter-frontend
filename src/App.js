@@ -4,10 +4,14 @@ import './App.css';
 import logo from './components/Logo.png';
 import { Login } from './components/Login';
 import { SignIn } from './components/SignIn';
+<<<<<<< HEAD
 import { Publish } from './publishidea/Publish';
 
 import { General } from './general/General';
 
+=======
+import { Explore } from './components/ExploreComponent/Explore';
+>>>>>>> DCifuentes-ExploreView
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 
 export class App extends Component {
@@ -36,6 +40,7 @@ export class App extends Component {
         const SignInView = () => (
             <SignIn/>
         );
+<<<<<<< HEAD
 
         
         const PublishView = () => (
@@ -46,6 +51,13 @@ export class App extends Component {
             <General/>
         );     
 
+=======
+        
+        const ExploreView = () => (
+
+            <Explore/>
+        );
+>>>>>>> DCifuentes-ExploreView
      
 
         return (
@@ -74,9 +86,13 @@ export class App extends Component {
                     <div>
                         <Route exact path="/" component={LoginView} />
                          <Route path="/SignIn" component={SignInView} />
+<<<<<<< HEAD
                         <Route path="/publish" component={PublishView} />
                          <Route path="/General" component={GeneralView} />
 
+=======
+                         <Route path="/explore" render={ExploreView}/>
+>>>>>>> DCifuentes-ExploreView
                     </div>
 
                 </div>
