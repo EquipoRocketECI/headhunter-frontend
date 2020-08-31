@@ -9,6 +9,7 @@ import Paper from '@material-ui/core/Paper';
 import logo from './img/Logoo.png';
 import './General.css';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import { Explore } from './components/ExploreComponent/Explore';
 
 
 
@@ -38,6 +39,11 @@ export class General extends React.Component {
             <General/>
         );           
         
+        const ExploreView = () => (
+
+            <Explore/>
+        );
+
         return (
             <Router>
                 <header className="App-header">
@@ -76,6 +82,7 @@ export class General extends React.Component {
                 <div>
                     <Route path="/publish" component={PublishView} />
                     <Route path="/General" component={GeneralView} />
+                    <Route path="/explore" render={ExploreView}/>
                 </div>
 
                 <ul>
