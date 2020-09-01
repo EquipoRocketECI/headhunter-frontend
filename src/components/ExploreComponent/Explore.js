@@ -5,6 +5,7 @@ import { Item } from './Item.js';
 import './css/Explore.css';
 import { MemoryRouter, Route, Link } from 'react-router-dom';
 import {Pagination,PaginationItem} from '@material-ui/lab';
+import { AppBar, Typography } from '@material-ui/core';
 
 const stubPages = [[{name:"idea 1",description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis urna sit amet tortor pulvinar rhoncus at ut odio. Donec risus augue, scelerisque molestie vehicula a, interdum a tellus. Sed dapibus ac dui sed congue. Mauris auctor, turpis vitae sagittis sodales, risus libero hendrerit mi, id tempor urna libero vitae ante.",image:"PLACEHOLDERTHUMBNAIL.jpg"},
 {name:"idea 2",description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis urna sit amet tortor pulvinar rhoncus at ut odio. Donec risus augue, scelerisque molestie vehicula a, interdum a tellus. Sed dapibus ac dui sed congue. Mauris auctor, turpis vitae sagittis sodales, risus libero hendrerit mi, id tempor urna libero vitae ante.",image:"PLACEHOLDERTHUMBNAIL.jpg"},
@@ -64,11 +65,32 @@ export class Explore extends React.Component{
     }
 
     getPageData(){
+        //mirar que filtros están seleccionados
+        //de acuerdo con eso invocar métodos adecuados para buscar en el backend
+        //armar arreglo de items con la info obtenida.
+        //fijar estado --> como aparece abajo.
+
         //Eventualmente cargará datos del backend
         this.setState({
             items:stubPages[this.state.page-1],
             totalPages:stubPages.length
         })
+    }
+
+    searchByTitle(title){
+        return(<h1>IN CONSTRUCTION</h1>);
+    }
+
+    searchByInvestmentRange(lowRange,highRange){
+        return(<h1>IN CONSTRUCTION</h1>);
+    }
+
+    searchByInvestor(investorName){
+        return(<h1>IN CONSTRUCTION</h1>);
+    }
+
+    searchByArea(area){
+        return(<h1>IN CONSTRUCTION</h1>);
     }
 
     render(){
