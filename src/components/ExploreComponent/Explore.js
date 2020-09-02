@@ -6,6 +6,7 @@ import './css/Explore.css';
 import { MemoryRouter, Route, Link } from 'react-router-dom';
 import {Pagination,PaginationItem} from '@material-ui/lab';
 import { AppBar, Typography } from '@material-ui/core';
+import { Filters } from '../FiltersComponent/Filters.js';
 
 const stubPages = [[{name:"idea 1",description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis urna sit amet tortor pulvinar rhoncus at ut odio. Donec risus augue, scelerisque molestie vehicula a, interdum a tellus. Sed dapibus ac dui sed congue. Mauris auctor, turpis vitae sagittis sodales, risus libero hendrerit mi, id tempor urna libero vitae ante.",image:"PLACEHOLDERTHUMBNAIL.jpg"},
 {name:"idea 2",description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis urna sit amet tortor pulvinar rhoncus at ut odio. Donec risus augue, scelerisque molestie vehicula a, interdum a tellus. Sed dapibus ac dui sed congue. Mauris auctor, turpis vitae sagittis sodales, risus libero hendrerit mi, id tempor urna libero vitae ante.",image:"PLACEHOLDERTHUMBNAIL.jpg"},
@@ -51,7 +52,8 @@ export class Explore extends React.Component{
         super(props)
         this.state ={
                     items:stubPages[0],
-                    page:1
+                    page:1,
+                    currentSearch:""
                 }
 
         this.handlePageChange=this.handlePageChange.bind(this);
@@ -106,6 +108,7 @@ export class Explore extends React.Component{
 
         return(
             <div className="mainView">
+                <Filters/>
                 <div className="searchResults">
                     {itemList}
                 </div>
