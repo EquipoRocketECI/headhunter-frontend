@@ -54,8 +54,8 @@ export class General extends React.Component {
                     <Typography variant="h4"class="center">Make your ideas fly</Typography>
                 </header>
 
-                <div class="grid-container">
-                    <div class="search">
+                <div className="grid-container">
+                    <div className="search">
                         <ButtonGroup class="ButtonGroup" variant="contained" aria-label="contained button group">
                             <Button className="blue">
                                 Explorar
@@ -68,19 +68,19 @@ export class General extends React.Component {
                
 
                     <Paper className="paper" elevation={20}>
-                        <div class="login">
+                        <div className="login">
                             <Route exact path="/" component={LoginView} />
                             <Route path="/SignIn" component={SignInView} />
                         </div>
                     </Paper>
                     
-                    <div class="main">
-                        
+                    <div className="main">
+                        <Route path="/publish" component={PublishView} />
                     </div>
                 </div>
 
                 <div>
-                    <Route path="/publish" component={PublishView} />
+                    
                     <Route path="/General" component={GeneralView} />
                     <Route path="/explore" render={ExploreView}/>
                 </div>
