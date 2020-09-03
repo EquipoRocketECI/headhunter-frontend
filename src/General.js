@@ -7,6 +7,7 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import logo from './img/Logoo.png';
+import {Sugerencias} from './Sugerencias'
 import './General.css';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import { Explore } from './components/ExploreComponent/Explore';
@@ -34,6 +35,11 @@ export class General extends React.Component {
         const PublishView = () => (
             <Publish/>
         );
+
+        const SugerenciaView = () => (
+            <Sugerencias />
+        );
+
 
         const GeneralView = () => (
             <General/>
@@ -71,6 +77,7 @@ export class General extends React.Component {
                         <div class="login">
                             <Route exact path="/" component={LoginView} />
                             <Route path="/SignIn" component={SignInView} />
+                            <Route path="/Sugerencias" component={SugerenciaView} />
                         </div>
                     </Paper>
                     
@@ -82,13 +89,15 @@ export class General extends React.Component {
                 <div>
                     <Route path="/publish" component={PublishView} />
                     <Route path="/General" component={GeneralView} />
-                    <Route path="/explore" render={ExploreView}/>
+                    <Route path="/explore" render={ExploreView} />
+
                 </div>
 
                 <ul>
                     <li><Link class="link" to="/">Login</Link></li>
                     <li><Link class="link" to="/SignIn">SignIn</Link></li>
                     <li><Link class="link" to="/publish">Publish</Link></li> 
+                    <li><Link class="link" to="/Sugerencias">Sugerencias</Link></li> 
                 </ul>
             </Router>
         );
