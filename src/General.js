@@ -2,6 +2,7 @@ import React from 'react';
 import { Login } from './components/Login';
 import { SignIn } from './components/SignIn';
 import { Publish } from './publishidea/Publish';
+import { Idea } from './publishidea/Idea';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Typography from '@material-ui/core/Typography';
@@ -33,6 +34,10 @@ export class General extends React.Component {
         
         const PublishView = () => (
             <Publish/>
+        );
+
+        const IdeaView = () => (
+            <Idea/>
         );
 
         const GeneralView = () => (
@@ -76,6 +81,7 @@ export class General extends React.Component {
                     
                     <div className="main">
                         <Route path="/publish" component={PublishView} />
+                        <Route path="/idea" component={IdeaView} />
                     </div>
                 </div>
 
@@ -88,7 +94,8 @@ export class General extends React.Component {
                 <ul>
                     <li><Link class="link" to="/">Login</Link></li>
                     <li><Link class="link" to="/SignIn">SignIn</Link></li>
-                    <li><Link class="link" to="/publish">Publish</Link></li> 
+                    <li><Link class="link" to="/publish">Publish</Link></li>
+                    <li><Link class="link" to="/idea">Idea</Link></li>  
                 </ul>
             </Router>
         );

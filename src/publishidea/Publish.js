@@ -22,6 +22,7 @@ import {
     MuiPickersUtilsProvider,
     KeyboardDatePicker
   } from '@material-ui/pickers';
+ 
 
 const theme = createMuiTheme({
     typography: {
@@ -31,7 +32,9 @@ const theme = createMuiTheme({
         fontFamily: 'Verdana'
       },
       h5: {
-          marginTop: 20
+          marginTop: 20,
+          fontStyle: 'normal'
+          
       }
     },
   });
@@ -83,38 +86,47 @@ export class Publish extends React.Component{
         this.setState({
             nombre: e.target.value
         });
+        localStorage.setItem("Nombre",this.state.nombre);
     }
 
     handleDescription(e) {
         this.setState({
             descripcion: e.target.value
         });
+        localStorage.setItem("Descripción",this.state.descripcion);
     }
 
     handleChangeCategoria(e){
         this.setState({
             categoria: e.target.value
         });
+        localStorage.setItem("Categoria",this.state.categoria);
     }
 
     handleChangeMonto(e){
         this.setState({
             monto: e.target.value
         });
+        localStorage.setItem("Monto",this.state.monto);
     }
 
     handleDateChange(date) {
         this.setState({
             fecha: date
         });
+        localStorage.setItem("Fecha",this.state.fecha);
     }
 
     handleSubmit(e) {
        
         e.preventDefault();
+        localStorage.setItem("Nombre",this.state.nombre);
+        localStorage.setItem("Categoria",this.state.categoria);
+        localStorage.setItem("Descripción",this.state.descripcion);
+        localStorage.setItem("Monto",this.state.monto);
+        localStorage.setItem("Fecha",this.state.fecha);
         
-        
-        alert("Nombre: "+this.state.nombre+" Descripcion: "+this.state.descripcion+" Categoria: "+this.state.categoria+" Monto: "+this.state.monto+" Fecha: "+this.state.fecha.toDate());
+        window.location.href = "/idea";
     }
 
 
@@ -198,7 +210,7 @@ export class Publish extends React.Component{
                                 <KeyboardDatePicker
                                         disableToolbar
                                         variant="inline"
-                                        format="dd/MM/yyyy"
+                                        format="MMM dd yyyy"
                                         margin="normal"
                                         id="date-picker-inline"
                                         label="Fecha"
@@ -218,6 +230,7 @@ export class Publish extends React.Component{
                                 variant="contained"
                                 color="primary"
                                 className="submit"
+                                
                             >
                                 Subir Idea
                             </Button>
