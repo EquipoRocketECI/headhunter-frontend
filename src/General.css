@@ -16,7 +16,7 @@
 
 .grid-container {
     display: grid; 
-    grid-template-columns: 0.5fr 1.5fr; 
+    grid-template-columns: 0fr 1.5fr; 
     grid-template-rows: 0.2fr 3.1fr; 
     gap: 1px 1px; 
     grid-template-areas: 
@@ -27,7 +27,7 @@
     grid-area: search;
     height: 46px;
     padding-top: 10px;
-    background-color: rgb(45, 62, 80);
+    background-color: #dddddd;
 }
 
 .login { 
@@ -37,7 +37,8 @@
  
 .main { 
     grid-area: main;
-    padding: 3% 3%;   
+    padding: 3% 3%;
+    text-align: center;
 }
 
 .ButtonGroup {
@@ -52,7 +53,7 @@
 
 .buscadorCentral{
     width: 500px;
-    color: rgb(16, 70, 209);
+    color: rgb(16, 70, 0);
 }
 
 .App {
@@ -88,7 +89,7 @@
 .center {
     text-align: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
 }
 
 .centerSub {
@@ -107,7 +108,7 @@ td, th {
 }
 
 tr:nth-child(even) {
-    background-color: #dddddd;
+    background-color: #FFFFFF;
 }
 
 img.logo {
@@ -124,7 +125,7 @@ img.logo {
 }
 
 Button.blue {
-    background-color: rgb(0, 58, 126);
+    background-color: rgb(63, 81, 181);
     color: rgb(255, 255, 255);
     border: 1px solid #ffffff;
     width: 100%;

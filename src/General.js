@@ -6,6 +6,7 @@ import { Idea } from './publishidea/Idea';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import logo from './img/Logoo.png';
+import {Sugerencias} from './Sugerencias'
 import './General.css';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import { Explore } from './components/ExploreComponent/Explore';
@@ -115,6 +116,10 @@ export default function PersistentDrawerLeft() {
         <Explore/>
     );
 
+    const IdeaView = () => (
+        <Idea/>
+    );
+
     return (
         <Router>
             <div className={classes.root}>
@@ -147,7 +152,7 @@ export default function PersistentDrawerLeft() {
 
                         <header className="App-header-c">
                             <div>
-                                <Typography variant="h2"class="center">HeadHunter</Typography>
+                                <Typography variant="h2"class="center" className="withe">HeadHunter</Typography>
                             </div>
                         </header>
                     </Toolbar>
@@ -172,21 +177,44 @@ export default function PersistentDrawerLeft() {
 
                     <List>
 
-                    <       Button className="blue">
+                        <Button className="blue">
+                            <ListItemIcon >
+                                <FormatListNumberedRoundedIcon />
+                            </ListItemIcon>
+                                <Link class="link" to="/">Ingresar</Link>
+                        </Button>
+
+                        <Button className="blue">
+                            <ListItemIcon >
+                                <FormatListNumberedRoundedIcon />
+                            </ListItemIcon>
+                                <Link class="link" to="/SignIn">Crear Cuenta</Link>
+                        </Button>
+
+                        <Divider /><Divider />
+
+                        <Button className="blue">
+                            <ListItemIcon >
+                                <FormatListNumberedRoundedIcon />
+                            </ListItemIcon>
+                                <Link class="link" to="/idea">Idea</Link>
+                        </Button>
+
+                        <Button className="blue">
                             <ListItemIcon >
                                 <FormatListNumberedRoundedIcon />
                             </ListItemIcon>
                                 <Link class="link" to="/explore">Explorar</Link>
-                            </Button>
+                        </Button>
 
-                            <br></br>
 
-                            <Button className="blue">
+                        <Button className="blue">
                             <ListItemIcon >
                                 <FormatListNumberedRoundedIcon />
                             </ListItemIcon>
                                 <Link class="link" to="/publish">Publicar</Link>
-                            </Button>
+                        </Button>
+
                     </List>
                 </Drawer>
 
@@ -200,14 +228,16 @@ export default function PersistentDrawerLeft() {
 
                         
                             <div className="login">
-                                <Route exact path="/" component={LoginView} />
-                                <Route path="/SignIn" component={SignInView} />
+                                
                             </div>
                         
                         
                         <div className="main">
+                            <Route exact path="/" component={LoginView} />
+                            <Route path="/SignIn" component={SignInView} />
                             <Route path="/publish" component={PublishView} />
                             <Route path="/explore" component={ExploreView} />
+                            <Route path="/idea" component={IdeaView} />
                         </div>
                     </div>
                       
