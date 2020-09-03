@@ -4,6 +4,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
 import './Login.css';
 import Link from "@material-ui/core/Link";
 
@@ -27,6 +28,7 @@ export class Login extends React.Component {
     render() {
        
         return (
+            <Paper className="paper" elevation={20}>
                 <div>
                     <Typography variant="h4">Iniciar Sesión</Typography>
                     <form className="form">
@@ -65,6 +67,7 @@ export class Login extends React.Component {
                         </div>
                     </form>
                 </div> 
+            </Paper>
         );
     }
 

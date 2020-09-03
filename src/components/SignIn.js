@@ -4,6 +4,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
 import './SingIn.css'
 
 
@@ -23,47 +24,49 @@ export class SignIn extends React.Component {
 
     render() {
         return (
-            <div>
-                <Typography variant="h4">Registrarse</Typography>
-                <form className="form">
-                    <FormControl margin="normal" required fullWidth>
-                        <InputLabel htmlFor="nombres">Nombres</InputLabel>
-                        <Input id="nombres" name="nombres" autoComplete="nombres" autoFocus  />
-                    </FormControl>
+            <Paper className="paper" elevation={20}>
+                <div>
+                    <Typography variant="h4">Registrarse</Typography>
+                    <form className="form">
+                        <FormControl margin="normal" required fullWidth>
+                            <InputLabel htmlFor="nombres">Nombres</InputLabel>
+                            <Input id="nombres" name="nombres" autoComplete="nombres" autoFocus  />
+                        </FormControl>
 
-                    <FormControl margin="normal" required fullWidth>
-                        <InputLabel htmlFor="apellidos">Apellidos</InputLabel>
-                        <Input id="apellidos" name="apellidos" autoComplete="apellidos" autoFocus />
-                    </FormControl>
+                        <FormControl margin="normal" required fullWidth>
+                            <InputLabel htmlFor="apellidos">Apellidos</InputLabel>
+                            <Input id="apellidos" name="apellidos" autoComplete="apellidos" autoFocus />
+                        </FormControl>
 
-                    <FormControl margin="normal" required fullWidth>
-                        <InputLabel htmlFor="email">Correo Electrónico</InputLabel>
-                        <Input id="email" name="email" autoComplete="email" autoFocus />
-                    </FormControl>
+                        <FormControl margin="normal" required fullWidth>
+                            <InputLabel htmlFor="email">Correo Electrónico</InputLabel>
+                            <Input id="email" name="email" autoComplete="email" autoFocus />
+                        </FormControl>
 
-                    <FormControl margin="normal" required fullWidth>
-                        <InputLabel htmlFor="password">Contraseña</InputLabel>
-                        <Input
-                            name="password"
-                            type="password"
-                            id="password"
-                            autoComplete="current-password"/>
-                    </FormControl>
-                            
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        className="blue"
-                        onClick={this.handleSubmit}>
-                        Registrar
-                    </Button>
+                        <FormControl margin="normal" required fullWidth>
+                            <InputLabel htmlFor="password">Contraseña</InputLabel>
+                            <Input
+                                name="password"
+                                type="password"
+                                id="password"
+                                autoComplete="current-password"/>
+                        </FormControl>
+                                
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            className="blue"
+                            onClick={this.handleSubmit}>
+                            Registrar
+                        </Button>
 
-                    <br />
-                    <br />
+                        <br />
+                        <br />
 
-                </form>
-            </div>
+                    </form>
+                </div>
+            </Paper>
         );
     }
 
