@@ -91,6 +91,7 @@ export default function PersistentDrawerLeft() {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
+    const [currentLoginView,setCurrentLoginView] = React.useState("Login");
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -177,18 +178,20 @@ export default function PersistentDrawerLeft() {
 
                     <List>
 
-                        <Button className="blue">
+                        <Button className="blue"
+                                onClick={()=>{setCurrentLoginView("Login")}}>
                             <ListItemIcon >
                                 <FormatListNumberedRoundedIcon />
                             </ListItemIcon>
-                                <Link class="link" to="/">Ingresar</Link>
+                            Inscribirse
                         </Button>
 
-                        <Button className="blue">
+                        <Button className="blue"
+                                onClick={()=>{setCurrentLoginView("SignIn")}}>
                             <ListItemIcon >
                                 <FormatListNumberedRoundedIcon />
                             </ListItemIcon>
-                                <Link class="link" to="/SignIn">Crear Cuenta</Link>
+                            Registrarse
                         </Button>
 
                         <Divider /><Divider />
@@ -228,7 +231,12 @@ export default function PersistentDrawerLeft() {
 
                         
                             <div className="login">
-                                
+                                {
+                                currentLoginView =="Login" ?
+                                LoginView():
+                                SignInView()
+                            }
+                            
                             </div>
                         
                         
