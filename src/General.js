@@ -6,11 +6,9 @@ import { Idea } from './publishidea/Idea';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import logo from './img/Logoo.png';
-import {Sugerencias} from './Sugerencias'
 import './General.css';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import { Explore } from './components/ExploreComponent/Explore';
-
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -102,11 +100,23 @@ export default function PersistentDrawerLeft() {
     };
 
     const LoginView = () => (
-        <Login/>
+        <div>
+            <Login/>
+            <Button className="sing"
+                onClick={()=>{setCurrentLoginView("SignIn")}}>
+                Registrarse
+            </Button>
+        </div>
     );
 
     const SignInView = () => (
-        <SignIn/>
+        <div>
+            <SignIn/>
+            <Button className="sing"
+                onClick={()=>{setCurrentLoginView("Login")}}>
+                Inscribirse
+            </Button>
+        </div>
     );
     
     const PublishView = () => (
@@ -147,7 +157,7 @@ export default function PersistentDrawerLeft() {
 
                         <header className="App-header">
                             <div>
-                                <img src={logo} class="logo" className="logoo"/>
+                                <a href="/"><img src={logo} class="logo" className="logoo"/></a>
                             </div>
                         </header>
 
@@ -177,23 +187,6 @@ export default function PersistentDrawerLeft() {
                     <Divider /><Divider />
 
                     <List>
-
-                        <Button className="blue"
-                                onClick={()=>{setCurrentLoginView("Login")}}>
-                            <ListItemIcon >
-                                <FormatListNumberedRoundedIcon />
-                            </ListItemIcon>
-                            Inscribirse
-                        </Button>
-
-                        <Button className="blue"
-                                onClick={()=>{setCurrentLoginView("SignIn")}}>
-                            <ListItemIcon >
-                                <FormatListNumberedRoundedIcon />
-                            </ListItemIcon>
-                            Registrarse
-                        </Button>
-
                         <Divider /><Divider />
 
                         <Button className="blue">
@@ -230,19 +223,16 @@ export default function PersistentDrawerLeft() {
                     <div className="grid-container">               
 
                         
-                            <div className="login">
-                                {
-                                currentLoginView =="Login" ?
-                                LoginView():
-                                SignInView()
-                            }
+                        <div className="login"> {
+                            currentLoginView =="Login" ?
+                            LoginView():
+                            SignInView()
+                        }
                             
-                            </div>
+                        </div>
                         
                         
                         <div className="main">
-                            <Route exact path="/" component={LoginView} />
-                            <Route path="/SignIn" component={SignInView} />
                             <Route path="/publish" component={PublishView} />
                             <Route path="/explore" component={ExploreView} />
                             <Route path="/idea" component={IdeaView} />

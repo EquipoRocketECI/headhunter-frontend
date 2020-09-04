@@ -4,7 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import Chip from '@material-ui/core/Chip';
+import {Sugerencias} from './Sugerencias'
 import Divider from '@material-ui/core/Divider';
 import moment from "moment";
 import LinearProgress from '@material-ui/core/LinearProgress';
@@ -130,10 +130,6 @@ export class Idea extends React.Component {
                 <Typography variant="body1" gutterBottom>
                         {localStorage.getItem("Descripción")} <br/>
                 </Typography>
-                
-                
-                 
-                
 
                 <Divider variant="middle" />
 
@@ -148,6 +144,10 @@ export class Idea extends React.Component {
                 <br/>
                 
                 </Typography>
+
+                <Divider variant="middle" />
+
+                <Sugerencias/>
                 
 
             </ThemeProvider>

@@ -58,13 +58,6 @@ export class Login extends React.Component {
                             onClick={this.handleSubmit}>
                             Ingresar
                         </Button>
-
-                        <br />
-                        <br />                              
-                                
-                        <div>
-                            <Link href="SignIn" variant="body2">Registrar</Link>
-                        </div>
                     </form>
                 </div> 
             </Paper>
