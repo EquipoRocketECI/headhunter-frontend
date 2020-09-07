@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, ListItem, Divider, FormGroup, FormControlLabel, Checkbox, RadioGroup, Radio } from '@material-ui/core';
+import { List, ListItem, Divider, FormGroup, FormControlLabel, Checkbox, RadioGroup, Radio, TextField } from '@material-ui/core';
 import './css/filters.css';
 
 export class Filters extends React.Component{
@@ -12,14 +12,17 @@ export class Filters extends React.Component{
                 salud:false,
                 comida:false,
                 viaje:false
-            }
+            },
+            highRange:-1,
+            lowRange:-1
         }
         this.handleInvestmentChange=this.handleInvestmentChange.bind(this);
         this.handleAreaChange=this.handleAreaChange.bind(this);
     }
 
     handleInvestmentChange(e){
-        this.setState({rangeRadioValue:e.target.value});//use useState for each filter section
+        this.setState({rangeRadioValue:e.target.value,lowRange:-1,highRange:-1});
+        
     }
 
     handleAreaChange(e){
@@ -29,10 +32,23 @@ export class Filters extends React.Component{
 
     render(){
         return(
-            <List className="filters">
+            <List onChange={this.props.getSelectedFilters(this.state)} className="filters">
                 <ListItem className="investmentFilter">
                     <FormGroup>
-                        
+                        <TextField id="lowRange" onChange={(e)=>{
+                            this.setState({
+                                rangeRadioValue:"none",
+                                lowRange: parseInt(e.target.value)
+                            })
+                        }} label="Low bound" variant="outlined"/>
+                        <TextField id="highRange" onChange={
+                            (e)=>{
+                                this.setState({
+                                    rangeRadioValue:"none",
+                                    highRange: parseInt(e.target.value)
+                                })
+                            }
+                        } label="High bound" variant="outlined"/>
                     </FormGroup>
                     <RadioGroup value={this.state.rangeRadioValue} onChange={this.handleInvestmentChange}>
                         <FormControlLabel value="low" control={<Radio/>} label="LOW RANGE"/>

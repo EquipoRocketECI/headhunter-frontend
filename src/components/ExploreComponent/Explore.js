@@ -53,10 +53,12 @@ export class Explore extends React.Component {
         this.state = {
             items: stubPages[0],
             page: 1,
-            currentSearch: ""
+            currentSearch: "",
+            selectedFilters:{}
         }
 
         this.handlePageChange = this.handlePageChange.bind(this);
+        this.getSelectedFilters = this.getSelectedFilters.bind(this);
     }
 
     handlePageChange(event, newPage) {
@@ -71,6 +73,7 @@ export class Explore extends React.Component {
         //de acuerdo con eso invocar métodos adecuados para buscar en el backend
         //armar arreglo de items con la info obtenida.
         //fijar estado --> como aparece abajo.
+        
 
         //Eventualmente cargará datos del backend
         this.setState({
@@ -79,20 +82,25 @@ export class Explore extends React.Component {
         })
     }
 
+    //gets filter component state and calls search methods accordingly
+    getSelectedFilters(selectedFilters){
+        console.log(selectedFilters);
+    }
+
     searchByTitle(title) {
-        return (<h1>IN CONSTRUCTION</h1>);
+        return (<h1>IN CONSTRUCTION</h1>); //crear servicios en backend -> debe mapear a un json de la forma name: <nombre>, description: <desc>, image:<ruta imagen>}
     }
 
     searchByInvestmentRange(lowRange, highRange) {
-        return (<h1>IN CONSTRUCTION</h1>);
+        return (<h1>IN CONSTRUCTION</h1>); //crear servicios en backend -> debe mapear a un json de la forma name: <nombre>, description: <desc>, image:<ruta imagen>}
     }
 
     searchByInvestor(investorName) {
-        return (<h1>IN CONSTRUCTION</h1>);
+        return (<h1>IN CONSTRUCTION</h1>); //crear servicios en backend -> debe mapear a un json de la forma name: <nombre>, description: <desc>, image:<ruta imagen>}
     }
 
     searchByArea(area) {
-        return (<h1>IN CONSTRUCTION</h1>);
+        return (<h1>IN CONSTRUCTION</h1>);//crear servicios en backend -> debe mapear a un json de la forma name: <nombre>, description: <desc>, image:<ruta imagen>} 
     }
 
     render() {
@@ -108,7 +116,7 @@ export class Explore extends React.Component {
 
         return (
             <div className="mainView">
-                <Filters />
+                <Filters getSelectedFilters={this.getSelectedFilters}/>
                 <div className="searchResults">
                     <div className="itemArea">
                         {itemList}
