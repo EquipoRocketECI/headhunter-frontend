@@ -1,12 +1,19 @@
 .mainView{
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     align-items: center;
 }
 
 .searchResults{
     display: flex;
+    flex-direction: column;
+    text-align: left;
+    align-items: center;
+}
+.itemArea{
+    display: flex;
+    
     flex-wrap: wrap;
     justify-content: center;
-    text-align: left;
 }
+
