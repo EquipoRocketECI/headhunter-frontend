@@ -1,7 +1,6 @@
 .filters{
     display: flex;
     flex-direction: column;
-    width: 18%;
     justify-content: center;
 }
 .investmentFilter{
