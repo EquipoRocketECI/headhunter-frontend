@@ -5,17 +5,12 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
-import moment from "moment";
 import LinearProgress from '@material-ui/core/LinearProgress';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import { format,parse } from 'date-fns';
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import { withStyles } from '@material-ui/core/styles';
+import { format } from 'date-fns';
+import { BrowserRouter as Router} from 'react-router-dom';
 import './Idea.css';
-import {Comentar} from './Interactuar/Comentar';
-import {Donar} from './Interactuar/Donar';
-import {Invertir} from './Interactuar/Invertir';
+import TabPanelInteractuar from './Interactuar/TabPanelInteractuar';
 
 const BorderLinearProgress = withStyles((theme) => ({
     root: {
@@ -103,23 +98,10 @@ export class Idea extends React.Component {
 
     render() {
 
-        const ComentarView = () => (
-            <Comentar/>
-        );
-    
-        const DonarView = () => (
-            <Donar/>
-        );
-    
-        const InvertirView = () => (
-            <Invertir/>
-        );
-
         startItems();
         
         return (
-            <Router>
-                <Paper className="paperIdea" elevation={20}>
+            <Paper className="paperIdea" elevation={20}>
                 <ThemeProvider theme={theme}>
                     <Grid container alignItems="center">
                         <Grid item xs>
@@ -163,32 +145,11 @@ export class Idea extends React.Component {
                     </Typography>
 
                     <Divider variant="middle" /><br></br>
-                    
-                    <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
-                        
-                        <Button className="person">
-                            <Link class="link" to="/comentar">Comentar</Link>
-                        </Button>
 
-                        <Button className="person">
-                            <Link class="link" to="/donar">Donar</Link>
-                        </Button>
-
-                        <Button className="person">
-                            <Link class="link" to="/invertir">Invertir</Link>
-                        </Button>
-
-                    </ButtonGroup>
-
-                    <div>
-                        <Route path="/comentar" component={ComentarView} />
-                        <Route path="/donar" component={DonarView} />
-                        <Route path="/invertir" component={InvertirView} />
-                    </div>    
+                    <TabPanelInteractuar/>  
 
                 </ThemeProvider>
-                </Paper>
-            </Router>
+            </Paper>
         );
     }
 
