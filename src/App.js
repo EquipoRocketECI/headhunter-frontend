@@ -6,7 +6,7 @@ import { Login } from './components/Login';
 import { SignIn } from './components/SignIn';
 import { Publish } from './publishidea/Publish';
 
-import { General } from './general/General';
+import { General } from './General';
 
 import { Explore } from './components/ExploreComponent/Explore';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
