@@ -15,10 +15,10 @@ export class Login extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { username: "", password: "", recordar: false };
-        localStorage.setItem('username', "Mateo");
-        localStorage.setItem('password', "IETI1234");
-        localStorage.setItem('recordar', false);
+        this.state = { username: "", password: "", recordar: false, logout:"no"};
+        
+        
+        localStorage.setItem('logout', 'no');
         this.handleUsername = this.handleUsername.bind(this);
         this.handlePassword = this.handlePassword.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -55,6 +55,7 @@ export class Login extends React.Component {
                             fullWidth
                             variant="contained"
                             className="blue"
+                            
                             onClick={this.handleSubmit}>
                             Ingresar
                         </Button>
@@ -66,6 +67,7 @@ export class Login extends React.Component {
 
     handleUsername(e) {
         this.setState({ username: e.target.value });
+        localStorage.setItem('username', e.target.value);
     }
 
     handlePassword(e) {
@@ -73,7 +75,7 @@ export class Login extends React.Component {
     }
 
     handleSubmit(e) {  
-        localStorage.setItem("recordar", true);   
+        localStorage.setItem('logout', 'si');   
     }
 
     handleClick(e){
