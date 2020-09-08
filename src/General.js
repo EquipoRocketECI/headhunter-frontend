@@ -1,5 +1,6 @@
 import React from 'react';
 import { Login } from './components/Login';
+import { Logueado } from './components/Logueado';
 import { SignIn } from './components/SignIn';
 import { Publish } from './publishidea/Publish';
 import { Idea } from './publishidea/Idea';
@@ -8,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import logo from './img/Logoo.png';
 import './General.css';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+
 import { Explore } from './components/ExploreComponent/Explore';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -17,12 +19,15 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
+
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import FormatListNumberedRoundedIcon from '@material-ui/icons/FormatListNumberedRounded';
+
+
 
 
 
@@ -86,10 +91,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function PersistentDrawerLeft() {
+
+    
     const classes = useStyles();
     const theme = useTheme();
+    const logout = false;
     const [open, setOpen] = React.useState(false);
-    const [currentLoginView,setCurrentLoginView] = React.useState("Login");
+    const [currentLoginView, setCurrentLoginView] = React.useState("Login");
+    
+
+    
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -98,6 +109,7 @@ export default function PersistentDrawerLeft() {
     const handleDrawerClose = () => {
         setOpen(false);
     };
+
 
     const LoginView = () => (
         <div>
@@ -118,7 +130,21 @@ export default function PersistentDrawerLeft() {
             </Button>
         </div>
     );
-    
+
+    const LogueadoView = () => (
+        <div>
+            <Logueado/>
+            <Button className="sing"
+                onClick={() => { setCurrentLoginView("Login") }}>
+                
+            </Button>
+        </div>
+    );
+    /*
+    const LogueadoView = () => (
+        <Logueado/>
+    );*/
+
     const PublishView = () => (
         <Publish/>
     );
@@ -130,6 +156,8 @@ export default function PersistentDrawerLeft() {
     const IdeaView = () => (
         <Idea/>
     );
+
+
 
     return (
         <Router>
@@ -182,11 +210,14 @@ export default function PersistentDrawerLeft() {
                     <IconButton onClick={handleDrawerClose}>
                         {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
                     </IconButton>
-                    </div>
-
+                    </div>                
+                    
+                    
                     <Divider /><Divider />
 
                     <List>
+
+                        
                         <Divider /><Divider />
 
                         <Button className="blue">
@@ -224,9 +255,12 @@ export default function PersistentDrawerLeft() {
 
                         
                         <div className="login"> {
+                            localStorage.getItem('logout') === 'si' ?
+                                LogueadoView() :
                             currentLoginView =="Login" ?
-                            LoginView():
-                            SignInView()
+                                LoginView() :                                
+                                    SignInView() 
+                                    
                         }
                             
                         </div>
@@ -236,6 +270,8 @@ export default function PersistentDrawerLeft() {
                             <Route path="/publish" component={PublishView} />
                             <Route path="/explore" component={ExploreView} />
                             <Route path="/idea" component={IdeaView} />
+                           
+
                         </div>
                     </div>
                       
@@ -243,4 +279,5 @@ export default function PersistentDrawerLeft() {
             </div>
         </Router>
     );
+  
 }

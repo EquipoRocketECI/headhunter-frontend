@@ -14,8 +14,7 @@ export class SignIn extends React.Component {
     constructor(props) {
         super(props);
         this.state = { username: "", password: "", recordar: false };
-        localStorage.setItem('username', "Mateo");
-        localStorage.setItem('password', "IETI1234");
+        
         localStorage.setItem('recordar', false);
         this.handleUsername = this.handleUsername.bind(this);
         this.handlePassword = this.handlePassword.bind(this);
