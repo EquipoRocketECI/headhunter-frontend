@@ -1,15 +1,13 @@
 ﻿import React from 'react';
 import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
-import ReactDOM from 'react-dom';
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
 import './Calificacion';
+import './Comentar.css';
 
 
-
-
-export class Sugerencias extends React.Component {
+export class Comentar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -23,29 +21,30 @@ export class Sugerencias extends React.Component {
         this.setState({ sugerencia: event.target.value });
     }
 
-
-
     render() {
         return (
             <form className="form">
 
+                <Typography variant="h5" >Comentar</Typography>
+
                 <FormControl margin="normal" required fullWidth>
-                    <label htmlFor="sugerencia">Escriba su retroalimentacion al proyecto aqui:</label>
-                    <br>
-                    </br>
-                    <textarea rows ="5" cols="10" id="sugerencia" type="text" value={this.state.sugerencia} onChange={this.handleChange} fullWidth />
-                    <br>
-                    </br>
-                    <Button
-                        type="submit"
-                        size = "small"
-                        variant="contained"
-                        className="blue"
-                        onClick={this.handleChange}>
-                        Enviar
-                        </Button>
-                    <br>
-                    </br>
+                    <Typography variant="h6" >¿Desea contribuir al proyecto con su experiencia?</Typography>
+
+                    <br></br>
+                    <TextField
+                        id="sugerencia"
+                        label="Comentario"
+                        multiline
+                        rows={5}
+                        cols={10}
+                        value={this.state.sugerencia}
+                        onChange={this.handleChange}
+                        variant="outlined"
+                        />
+
+
+                    <br></br>
+                    <Typography variant="h6" >Calificación</Typography>
                     <p class="clasificacion">
                         <input id="radio1" type="radio" name="estrellas" value="5" ></input>
                         <label for="radio1">1</label>
@@ -59,6 +58,15 @@ export class Sugerencias extends React.Component {
                             <label for="radio5">5</label>
                      </p>
 
+                     <br></br>
+                    <Button
+                        type="submit"
+                        size = "small"
+                        variant="contained"
+                        className="blue"
+                        onClick={this.handleChange}>
+                        Enviar
+                    </Button>
 
                 </FormControl>
 

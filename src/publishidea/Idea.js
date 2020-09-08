@@ -4,12 +4,13 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import {Sugerencias} from './Sugerencias'
 import Divider from '@material-ui/core/Divider';
-import moment from "moment";
 import LinearProgress from '@material-ui/core/LinearProgress';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import { format,parse } from 'date-fns';
+import { withStyles } from '@material-ui/core/styles';
+import { format } from 'date-fns';
+import { BrowserRouter as Router} from 'react-router-dom';
+import './Idea.css';
+import TabPanelInteractuar from './Interactuar/TabPanelInteractuar';
 
 const BorderLinearProgress = withStyles((theme) => ({
     root: {
@@ -94,8 +95,6 @@ export class Idea extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
-        
-        
     }
 
     render() {
@@ -104,54 +103,53 @@ export class Idea extends React.Component {
         
         return (
             <Paper className="paperIdea" elevation={20}>
-            <ThemeProvider theme={theme}>
-                <Grid container alignItems="center">
-                    <Grid item xs>
-                    
-                            <Typography gutterBottom variant="h3">
-                            
-                            {localStorage.getItem("Nombre")}
+                <ThemeProvider theme={theme}>
+                    <Grid container alignItems="center">
+                        <Grid item xs>
+                        
+                                <Typography gutterBottom variant="h4">
+                                
+                                {localStorage.getItem("Nombre")}
+                                </Typography>
+                        
+                        </Grid>
+                        <Grid item >
+                            <Typography gutterBottom variant="h6">
+                                {/*<Chip label={localStorage.getItem("Categoria")} /> */}
+                                {localStorage.getItem("Categoria")}
                             </Typography>
+                        </Grid>
+                    </Grid>
                     
-                    </Grid>
-                    <Grid item >
-                        <Typography gutterBottom variant="h6">
-                            {/*<Chip label={localStorage.getItem("Categoria")} /> */}
-                            {localStorage.getItem("Categoria")}
-                        </Typography>
-                    </Grid>
-                </Grid>
-                
-                <Typography gutterBottom variant="h5">
-                           
-                         de  {localStorage.getItem("User")}
-                </Typography>
+                    <Typography gutterBottom variant="h5">
+                            
+                            de  {localStorage.getItem("User")}
+                    </Typography>
 
 
-                <Typography variant="body1" gutterBottom>
-                        {localStorage.getItem("Descripción")} <br/>
-                </Typography>
+                    <Typography variant="body1" gutterBottom>
+                            {localStorage.getItem("Descripción")} <br/>
+                    </Typography>
 
-                <Divider variant="middle" />
+                    <Divider variant="middle" />
 
-                <Typography variant="body2" gutterBottom>
-                    Recaudado ${localStorage.getItem("MontoDonado")} de  ${localStorage.getItem("Monto")} ({porcentaje}%)
-                <br/>
-                
-                </Typography>
-                <BorderLinearProgress variant="determinate" value={porcentaje} />
-                <Typography variant="body2" gutterBottom>
-                    Dona antes de {localStorage.getItem("Fecha")} <br/>
-                <br/>
-                
-                </Typography>
+                    <Typography variant="body2" gutterBottom>
+                        Recaudado ${localStorage.getItem("MontoDonado")} de  ${localStorage.getItem("Monto")} ({porcentaje}%)
+                    <br/>
+                    
+                    </Typography>
+                    <BorderLinearProgress variant="determinate" value={porcentaje} />
+                    <Typography variant="body2" gutterBottom>
+                        Dona antes de {localStorage.getItem("Fecha")} <br/>
+                    <br/>
+                    
+                    </Typography>
 
-                <Divider variant="middle" />
+                    <Divider variant="middle" /><br></br>
 
-                <Sugerencias/>
-                
+                    <TabPanelInteractuar/>  
 
-            </ThemeProvider>
+                </ThemeProvider>
             </Paper>
         );
     }
