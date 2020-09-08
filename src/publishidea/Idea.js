@@ -28,10 +28,11 @@ const BorderLinearProgress = withStyles((theme) => ({
 const theme = createMuiTheme({
     typography: {
       
-        h4: {
-        fontWeight: 1000,
-        fontFamily: 'Verdana',
-        textAlign: 'left'
+        h3: {
+            fontSize: 30,
+            fontFamily: 'Verdana',
+            fontWeight: 600,
+            textAlign: 'left'
       },
       h5: {
           fontStyle: 'italic'
@@ -107,7 +108,7 @@ export class Idea extends React.Component {
                 <Grid container alignItems="center">
                     <Grid item xs>
                     
-                            <Typography gutterBottom variant="h4">
+                            <Typography gutterBottom variant="h3">
                             
                             {localStorage.getItem("Nombre")}
                             </Typography>

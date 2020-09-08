@@ -12,9 +12,17 @@ import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import NumberFormat from 'react-number-format';
 import PropTypes from 'prop-types';
+import { green } from '@material-ui/core/colors';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import InfoIcon from '@material-ui/icons/Info';
+import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
 import './Publish.css';
 import Paper from '@material-ui/core/Paper';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createMuiTheme, ThemeProvider,withStyles  } from '@material-ui/core/styles';
+import FormLabel from '@material-ui/core/FormLabel'
 import {BrowserRouter as Router} from 'react-router-dom';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
@@ -24,12 +32,23 @@ import {
   } from '@material-ui/pickers';
  
 
+  const GreenCheckbox = withStyles({
+    root: {
+      color: green[400],
+      '&$checked': {
+        color: green[600],
+      },
+    },
+    checked: {},
+  })((props) => <Checkbox color="default" {...props} />);
+
 const theme = createMuiTheme({
     typography: {
       
-      h4: {
-        fontWeight: 1000,
-        fontFamily: 'Verdana'
+      h3: {
+        fontSize: 40,
+        fontFamily: 'Verdana',
+        fontWeight: 600
       },
       h5: {
           marginTop: 20,
@@ -70,7 +89,9 @@ const theme = createMuiTheme({
 export class Publish extends React.Component{
     constructor(props) {
         super(props);
-        this.state = { nombre: "", descripcion: "", categoria: "", monto: 0, fecha: moment(this.props.start)};
+        this.state = { nombre: "", descripcion: "", categoria: "", monto: 0
+                    , fecha: moment(this.props.start)
+                    , donaciones: false, inversiones:false, expertos: false} ;
         
         this.handleName = this.handleName.bind(this);
         this.handleDescription = this.handleDescription.bind(this);
@@ -78,10 +99,18 @@ export class Publish extends React.Component{
         this.handleChangeMonto = this.handleChangeMonto.bind(this);
         this.handleDateChange = this.handleDateChange.bind(this);
 
+        this.handleChangeDonaciones = this.handleChangeDonaciones.bind(this);
+        this.handleChangeInversiones = this.handleChangeInversiones.bind(this);
+        this.handleChangeExpertos = this.handleChangeExpertos.bind(this);
+
         this.handleSubmit = this.handleSubmit.bind(this);
+
+       
         
     }
     
+    
+
     handleName(e) {
         this.setState({
             nombre: e.target.value
@@ -117,6 +146,31 @@ export class Publish extends React.Component{
         localStorage.setItem("Fecha",this.state.fecha);
     }
 
+    handleChangeDonaciones(e){
+        this.setState({
+            donaciones: e.target.checked
+        });
+        
+        localStorage.setItem("Donaciones",this.state.donaciones);
+        
+    }
+
+    handleChangeInversiones(e){
+        this.setState({
+            inversiones: e.target.checked
+        });
+        
+        localStorage.setItem("Inversiones",this.state.inversiones);
+    }
+
+    handleChangeExpertos(e){
+        this.setState({
+            expertos: e.target.checked
+        });
+        
+        localStorage.setItem("Expertos",this.state.expertos);
+    }
+
     handleSubmit(e) {
        
         e.preventDefault();
@@ -135,11 +189,11 @@ export class Publish extends React.Component{
             <Router>
             <Paper className="paperPublish" elevation={20}>
             <ThemeProvider theme={theme}>
-                <Typography variant="h4" >Publica tu idea/proyecto</Typography>
+                <Typography variant="h3" >Publica tu idea/proyecto</Typography>
                 </ThemeProvider>
                         <br/>
                         <form onSubmit={this.handleSubmit} className="form">
-                        <Typography variant="h5" >1. Selecciona una categoria para clasificar tu idea:</Typography>
+                        <Typography variant="h5" >Selecciona una categoria para clasificar tu idea:</Typography>
                             <FormControl  margin="dense" required fullWidth>
                             
                             
@@ -162,7 +216,7 @@ export class Publish extends React.Component{
                 
                             </FormControl>
                             <br/>
-                            <Typography variant="h5">2. Dale un nombre para identificarla: </Typography>
+                            <Typography variant="h5">Dale un nombre para identificarla: </Typography>
                             <FormControl margin="dense" required fullWidth>
                             
                             <InputLabel htmlFor="nombre">Nombre</InputLabel>
@@ -174,7 +228,7 @@ export class Publish extends React.Component{
                                 />
                             </FormControl>
                             <br/>
-                            <Typography variant="h5">3. Descríbela:  </Typography>
+                            <Typography variant="h5">Descríbela:  </Typography>
                             <FormControl margin="dense" required fullWidth>
                             <InputLabel htmlFor="descripcion">Descripción</InputLabel>
                                 <Input
@@ -185,7 +239,35 @@ export class Publish extends React.Component{
                                 />
                             </FormControl>
                             
-                            <Typography variant="h5">4. Define un monto limite: </Typography>
+                            <FormControl component="fieldset" >
+                            <Typography variant="h5">¿Que estas buscando para tu proyecto?</Typography>
+                               
+                                <FormGroup>
+                                <FormControlLabel
+                                    control={<GreenCheckbox  checked={this.state.donaciones} onChange={this.handleChangeDonaciones} name="gilad" />}
+                                    label="Pequeñas Donaciones"
+                                />
+                                <Tooltip title="Recibe pequeñas donaciones de cualquier persona. Puedes definir incentivos para que más personas donen a tu proyecto"
+                                        placement="right-start" >
+                                    <IconButton aria-label="info">
+                                        <InfoIcon />
+                                    </IconButton>
+                                </Tooltip>
+
+                                <FormControlLabel
+                                    control={<GreenCheckbox  checked={this.state.inversiones} onChange={this.handleChangeInversiones} name="jason" />}
+                                    label="Grandes Inversiones"
+                                />
+                                <FormControlLabel
+                                    control={<GreenCheckbox  checked={this.state.expertos} onChange={this.handleChangeExpertos} name="antoine" />}
+                                    label="Expertos"
+                                />
+                                </FormGroup>
+                                
+                            </FormControl>
+
+                        <div style={{display: this.state.donaciones || this.state.inversiones ? 'block' : 'none' }}>
+                            <Typography variant="h5">Define un monto limite: </Typography>
                             <FormControl margin="dense" required fullWidth>
                             
                                 <TextField
@@ -199,10 +281,10 @@ export class Publish extends React.Component{
                                     }}
                                 />
                             </FormControl>
-
+                        </div>                
                             
 
-                            <Typography variant="h5">5. Define una fecha para alcanzar el monto:</Typography>
+                            <Typography variant="h5">Define una fecha limite para reunir lo que necesitas:</Typography>
                             <FormControl margin="dense" required fullWidth>
                             
                             <MuiPickersUtilsProvider utils={DateFnsUtils}>
