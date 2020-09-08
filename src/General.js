@@ -189,14 +189,14 @@ export default function PersistentDrawerLeft() {
                     <List>
                         <Divider /><Divider />
 
-                        <Button className="blue" href="/idea">
+                        <Button className="blue" href="/idea" variant="contained" color="primary" fullWidth>
                             <ListItemIcon >
                                 <FormatListNumberedRoundedIcon />
                             </ListItemIcon>
                                Idea
                         </Button>
 
-                        <Button className="blue" href="/explore" >
+                        <Button className="blue" href="/explore" variant="contained" color="primary" fullWidth>
                             <ListItemIcon >
                                 <FormatListNumberedRoundedIcon />
                             </ListItemIcon>
@@ -204,7 +204,7 @@ export default function PersistentDrawerLeft() {
                         </Button>
 
 
-                        <Button className="blue" href="/publish">
+                        <Button   className="blue" href="/publish" variant="contained" color="primary" fullWidth>
                             <ListItemIcon >
                                 <FormatListNumberedRoundedIcon />
                             </ListItemIcon>

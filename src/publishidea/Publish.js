@@ -54,6 +54,11 @@ const theme = createMuiTheme({
           marginTop: 20,
           fontStyle: 'normal'
           
+      },
+      body2: {
+        textAlign: 'center',
+        fontSize: 18
+
       }
     },
   });
@@ -91,7 +96,8 @@ export class Publish extends React.Component{
         super(props);
         this.state = { nombre: "", descripcion: "", categoria: "", monto: 0
                     , fecha: moment(this.props.start)
-                    , donaciones: false, inversiones:false, expertos: false} ;
+                    , donaciones: false, inversiones:false, expertos: false,
+                        areas: ""} ;
         
         this.handleName = this.handleName.bind(this);
         this.handleDescription = this.handleDescription.bind(this);
@@ -102,6 +108,8 @@ export class Publish extends React.Component{
         this.handleChangeDonaciones = this.handleChangeDonaciones.bind(this);
         this.handleChangeInversiones = this.handleChangeInversiones.bind(this);
         this.handleChangeExpertos = this.handleChangeExpertos.bind(this);
+
+        this.handleChangeAreas = this.handleChangeAreas.bind(this);
 
         this.handleSubmit = this.handleSubmit.bind(this);
 
@@ -171,6 +179,14 @@ export class Publish extends React.Component{
         localStorage.setItem("Expertos",this.state.expertos);
     }
 
+    handleChangeAreas(e){
+        this.setState({
+            areas: e.target.checked
+        });
+        
+        localStorage.setItem("Areas",this.state.areas);
+    }
+
     handleSubmit(e) {
        
         e.preventDefault();
@@ -193,7 +209,7 @@ export class Publish extends React.Component{
                 </ThemeProvider>
                         <br/>
                         <form onSubmit={this.handleSubmit} className="form">
-                        <Typography variant="h5" >Selecciona una categoria para clasificar tu idea:</Typography>
+                        <Typography variant="h5" >Selecciona una categoria para clasificar tu proyecto:</Typography>
                             <FormControl  margin="dense" required fullWidth>
                             
                             
@@ -245,22 +261,54 @@ export class Publish extends React.Component{
                                 <FormGroup>
                                 <FormControlLabel
                                     control={<GreenCheckbox  checked={this.state.donaciones} onChange={this.handleChangeDonaciones} name="gilad" />}
-                                    label="Pequeñas Donaciones"
-                                />
-                                <Tooltip title="Recibe pequeñas donaciones de cualquier persona. Puedes definir incentivos para que más personas donen a tu proyecto"
-                                        placement="right-start" >
-                                    <IconButton aria-label="info">
-                                        <InfoIcon />
-                                    </IconButton>
-                                </Tooltip>
+                                    label={  
+                                        <div>
+                                            <Typography variant="body2" >
+                                                Pequeñas Donaciones
+                                                <Tooltip title="Recibe pequeñas donaciones de cualquier persona. Puedes definir incentivos para que más personas donen a tu proyecto"
+                                                placement="right-start" arrow>  
+                                                    <IconButton aria-label="info">
+                                                        <InfoIcon fontSize="small" />
+                                                    </IconButton>
+                                                </Tooltip>
+                                            </Typography>
+                                        </div>    
+                                    }>
+                                    
+                                </FormControlLabel>
+                               
 
                                 <FormControlLabel
                                     control={<GreenCheckbox  checked={this.state.inversiones} onChange={this.handleChangeInversiones} name="jason" />}
-                                    label="Grandes Inversiones"
+                                    label={  
+                                        <div>
+                                            <Typography variant="body2" >
+                                                Grandes Inversiones
+                                                <Tooltip title="Recibe grandes donaciones de inversores. Estas serian recompensadas con un porcentaje de las ganancias que reciba tu proyecto en un futuro"
+                                                placement="right-start" arrow>  
+                                                    <IconButton aria-label="info">
+                                                        <InfoIcon fontSize="small" />
+                                                    </IconButton>
+                                                </Tooltip>
+                                            </Typography>
+                                        </div>    
+                                    }
                                 />
                                 <FormControlLabel
                                     control={<GreenCheckbox  checked={this.state.expertos} onChange={this.handleChangeExpertos} name="antoine" />}
-                                    label="Expertos"
+                                    label={  
+                                        <div>
+                                            <Typography variant="body2" >
+                                                Expertos o Personal
+                                                <Tooltip title="¿Te hace falta expertos o personal en ciertas areas que ayuden en tu proyecto? Estos pueden ser recompensados con una parte de las ganancias o bien podrias contratarlos como empleados cuando tu proyecto salga a la luz"
+                                                placement="right-start" arrow>  
+                                                    <IconButton aria-label="info">
+                                                        <InfoIcon fontSize="small" />
+                                                    </IconButton>
+                                                </Tooltip>
+                                            </Typography>
+                                        </div>    
+                                    }
                                 />
                                 </FormGroup>
                                 
@@ -281,7 +329,31 @@ export class Publish extends React.Component{
                                     }}
                                 />
                             </FormControl>
-                        </div>                
+                        </div> 
+
+                        <div style={{display: this.state.expertos ? 'block' : 'none' }}>
+                            <Typography variant="h5" >¿En que areas necesitas expertos o personal?</Typography>
+                                <FormControl  margin="dense" required fullWidth>
+                                
+                                
+                                    <InputLabel id="Categoria">Areas</InputLabel>
+                                    <Select
+                                    labelId="Categoria"
+                                    id="Categoria"
+                                    value={this.state.areas}
+                                    onChange={this.handleChangeAreas}
+                                    >
+                                    <MenuItem value={'Derecho y Leyes'}>Derecho y Leyes</MenuItem>
+                                    <MenuItem value={'Economia'}>Economia</MenuItem>
+                                    <MenuItem value={'Ingenieria'}>Ingenieria</MenuItem>
+                                    <MenuItem value={'Manufactura'}>Manufactura</MenuItem>
+                                
+                                    </Select>
+        
+                    
+                                </FormControl>
+                           
+                        </div>               
                             
 
                             <Typography variant="h5">Define una fecha limite para reunir lo que necesitas:</Typography>
