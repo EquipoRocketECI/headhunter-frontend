@@ -1,16 +1,18 @@
 import React from 'react';
+
 import './Publish.css';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
+import './Idea.css';
+
+import {Paper,Typography,LinearProgress,Grid,Divider,CardMedia} from '@material-ui/core';
+
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import Divider from '@material-ui/core/Divider';
-import LinearProgress from '@material-ui/core/LinearProgress';
+
 import { withStyles } from '@material-ui/core/styles';
 import { format } from 'date-fns';
-import { BrowserRouter as Router} from 'react-router-dom';
-import './Idea.css';
+
 import TabPanelInteractuar from './Interactuar/TabPanelInteractuar';
+
+import img from "./img/PLACEHOLDERTHUMBNAIL.jpg";
 
 const BorderLinearProgress = withStyles((theme) => ({
     root: {
@@ -107,7 +109,7 @@ export class Idea extends React.Component {
                     <Grid container alignItems="center">
                         <Grid item xs>
                         
-                                <Typography gutterBottom variant="h4">
+                                <Typography gutterBottom variant="h3">
                                 
                                 {localStorage.getItem("Nombre")}
                                 </Typography>
@@ -121,11 +123,22 @@ export class Idea extends React.Component {
                         </Grid>
                     </Grid>
                     
+                   
+
                     <Typography gutterBottom variant="h5">
                             
                             de  {localStorage.getItem("User")}
                     </Typography>
 
+                    <CardMedia
+                        component="img"
+                        alt="Contemplative Reptile"
+                        height="280"
+                        image={img}
+                        title="img"
+                        />
+
+                    <br/>
 
                     <Typography variant="body1" gutterBottom>
                             {localStorage.getItem("Descripción")} <br/>
@@ -140,7 +153,7 @@ export class Idea extends React.Component {
                     </Typography>
                     <BorderLinearProgress variant="determinate" value={porcentaje} />
                     <Typography variant="body2" gutterBottom>
-                        Dona antes de {localStorage.getItem("Fecha")} <br/>
+                        Aporta antes de {localStorage.getItem("Fecha")} <br/>
                     <br/>
                     
                     </Typography>
