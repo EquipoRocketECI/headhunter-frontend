@@ -32,7 +32,7 @@ import { Filters } from './components/FiltersComponent/Filters';
 
 
 
-const drawerWidth = 240;
+const drawerWidth = 260;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -306,13 +306,6 @@ export default function PersistentDrawerLeft() {
 
                         
                         <Divider /><Divider />
-
-                        <Button className="blue" href="/idea" variant="contained" color="primary" fullWidth>
-                            <ListItemIcon >
-                                <FormatListNumberedRoundedIcon />
-                            </ListItemIcon>
-                               Idea
-                        </Button>
 
                         <Button className="blue" href="/explore" variant="contained" color="primary" fullWidth>
                             <ListItemIcon >

@@ -12,14 +12,21 @@
 .investmentFilter .customRangeForm{
     display: flex;
     flex-direction: row;
+    margin-top: 20px;
 }
 
 .customRangeForm .customRangeInput{
-    width: 85px;
+    width: 110px;
     padding: 0 5px;
+}
+
+.areaFilterForm{
+    margin-top: 20px;
 }
 
 .areaFilter {
     justify-content: center !important;
+    display: flex;
+    flex-direction: column;
 }
 

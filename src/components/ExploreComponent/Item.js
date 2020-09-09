@@ -12,7 +12,7 @@ export class Item extends React.Component {
 
         const img = require.context('./img', true);
         return (
-            <Card className="cardRoot">
+            <Card color="primary" className="cardRoot">
                 <CardMedia className="cardMedia" image={img(`./${this.props.image}`)} title="placeholder" />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
@@ -24,7 +24,7 @@ export class Item extends React.Component {
 
                 </CardContent>
                 <CardActions>
-                    <Button>VER MÁS</Button>
+                    <Button href="/idea">VER MÁS</Button>
                 </CardActions>
             </Card>
 

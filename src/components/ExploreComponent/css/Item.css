@@ -1,5 +1,4 @@
 .cardRoot{
-    background-color: #0092df !important; /*revisar si es mejor ponerle el important o hacerlo con mui*/ 
     width: 300px;
     margin: 5px;
 }
