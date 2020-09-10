@@ -2,6 +2,10 @@
   "name": "headhunter-frontend",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "npm": "6.14.7",
+    "node": "14.8.0"
+  },
   "dependencies": {
     "@date-io/date-fns": "^1.3.13",
     "@date-io/moment": "^2.1.0",
