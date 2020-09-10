@@ -25,26 +25,25 @@
 }
 
 .grid-container {
-    display: grid; 
-    grid-template-columns: 0.5fr 1.5fr; 
-    gap: 1px 1px; 
-    grid-template-areas: 
-    "login main";
+    display: grid;
+    grid-template-columns: 0.5fr 1.5fr;
+    gap: 1px 1px;
+    grid-template-areas: "login main";
 }
   
-.search { 
+.search {
     grid-area: search;
     height: 46px;
     padding-top: 10px;
     background-color: #dddddd;
 }
 
-.login { 
+.login {
     grid-area: login;
     text-align: center;
 }
  
-.main { 
+.main {
     grid-area: main;
     padding: 3% 3%;
     text-align: center;
@@ -84,11 +83,11 @@
 }
 
 .todo-form {
+    padding: 1px;
+    text-align: center;
     border: 1px solid lightsteelblue;
     margin: auto;
     width: 20%;
-    padding: 1px;
-    text-align: center;
 }
 
 .left {
