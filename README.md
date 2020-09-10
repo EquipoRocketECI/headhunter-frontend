@@ -4,6 +4,10 @@
 
 [![Heroku](https://camo.githubusercontent.com/be46aee4f8d55e322c3e7db60ea23a4deb5427c9/68747470733a2f2f6865726f6b752d62616467652e6865726f6b756170702e636f6d2f3f6170703d6865726f6b752d6261646765)](https://fierce-plateau-09902.herokuapp.com/)
 
+[![CircleCI](https://circleci.com/gh/ARSW-Project-2020-think/modeler.svg?style=svg)](https://app.circleci.com/pipelines/github/EquipoRocketECI)
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b0345040f09d4a62b18c1560633bdee3)](https://app.codacy.com/gh/EquipoRocketECI/headhunter-frontend/dashboard)
+
 ## Resumen
 
 La actualidad que se ha venido forjando en estos meses de confinamiento y pandemia, reflejan y muestran la creatividad de un gran porcentaje de individuos emprendedores en busca de mejorar las condiciones financieras que el actual modelo de trabajo propone, sin embargo, iniciar cualquier modelo de negocio no solo conlleva un esfuerzo técnico, sino que de igual manera necesita experiencia y un capital considerable, es aquí donde HeadHunter aparece, una plataforma donde se pueden publicar todos los proyectos en busca de opiniones, puntos de vista, posibles inversores o socios con las condiciones necesarias para llevar el proyecto a cabo o en su lugar hacerlo crecer. De igual manera, la plataforma servirá como medidor de aceptación por parte del grupo de usuarios, que no solo pueden mostrar su interés sino que también podrán dar retroalimentaciones para mejorar el emprendimiento cada vez más.
