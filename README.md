@@ -8,6 +8,8 @@ In the project directory, you can run:
 
 [![CircleCI](https://circleci.com/gh/ARSW-Project-2020-think/modeler.svg?style=svg)](https://app.circleci.com/pipelines/github/EquipoRocketECI)
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b0345040f09d4a62b18c1560633bdee3)](https://app.codacy.com/gh/EquipoRocketECI/headhunter-frontend/dashboard)
+
 ### `npm start`
 
 Runs the app in the development mode.<br />
