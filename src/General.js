@@ -4,8 +4,8 @@ import { Logueado } from './components/Logueado';
 import { SignIn } from './components/SignIn';
 import { Publish } from './publishidea/Publish';
 import { Idea } from './publishidea/Idea';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import {Button,Paper,Typography} from '@material-ui/core';
+
 import logo from './img/Logoo.png';
 import './General.css';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
@@ -239,6 +239,21 @@ export default function PersistentDrawerLeft() {
         <Idea/>
     );
 
+    const GeneralView = () => (
+        <div>
+            <Paper  className="paperGeneral" elevation={20}>
+                <Typography variant="h3" >¡Bienvenido a HeadHunter!</Typography>
+                <Typography variant="body1" gutterBottom>
+                    <br/>
+                    HeadHunter es una plataforma para emprendedores que buscan ayuda financiera y logística para convertir sus ideas en realidad.     
+                        <br/>
+                    Aquí puedes publicar tus ideas que requieran fondos y/o personal o tambien puedes buscar y apoyar ideas que te parezcan merecedoras en cualquiera de las categorias que tenemos disponibles.
+                        
+                </Typography>
+            </Paper >
+        </div>
+    );
+
 
 
     return (
@@ -352,8 +367,8 @@ export default function PersistentDrawerLeft() {
                             <Route path="/publish" component={PublishView} />
                             <Route path="/explore" component={ExploreView} />
                             <Route path="/idea" component={IdeaView} />
-                           
-
+                            <Route exact path="/" component={GeneralView} />
+  
                         </div>
                     </div>
                       
