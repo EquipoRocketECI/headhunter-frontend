@@ -1,4 +1,4 @@
-<p align="center"> <img src="https://user-images.githubusercontent.com/48091593/75041796-48653100-548b-11ea-8450-0f920ea54f67.jpg"> </p>
+<p align="center"> <img src="https://github.com/EquipoRocketECI/headhunter-frontend/blob/master/src/img/Logo2.png"> </p>
 
 ## **Heroku:**
 
