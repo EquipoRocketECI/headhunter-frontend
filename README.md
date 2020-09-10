@@ -39,6 +39,10 @@ Uno de los factores que diferencia a las grandes empresas de las pequeñas, es l
 
 HeadHunter será un servicio para que otros ofrezcan o muestren sus emprendimientos, por lo que su principal mecanismo para entregar este servicio será a través de la publicidad. HeadHunter le dará a las personas o grupos de personas que quieran financiar o simplemente mostrar sus proyectos una plataforma donde pueden encontrarse con una comunidad que les puede aportar nuevas ideas y se pueden dar a conocer entre pequeños y grandes inversionistas. Esta plataforma estará disponible en una página web y en una app.
 
+## Arquitectura
+
+![](/src/img/Arquitectura.jpg)
+
 ## Modelo de negocio
 
 HeadHunter es una plataforma compatible con cualquier dispositivo que busca apoyar de manera logística y financiera a los emprendimientos que necesiten una mano para salir adelante, el valor agregado que se busca ofrecer en comparación con plataformas como kick starter o vaki son las opciones de brindar retroalimentaciones o feedbacks que el CEO pueda considerar útiles para mejorar su producto, esto a cambio de pequeñas recompensas como un porcentaje minoritario en las acciones de la empresa, la versión premium del producto o un descuento en el mismo, de igual manera, se aceptarán pequeñas donaciones o contribuciones de manera técnica según los requerimientos que  considere pertinentes el emprendedor.
