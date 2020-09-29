@@ -23,6 +23,7 @@
     "react-dom": "^16.13.1",
     "react-moment": "^0.7.9",
     "react-number-format": "^4.4.1",
+    "react-paypal-express-checkout": "^1.0.5",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "reactstrap": "^8.5.1"

@@ -259,15 +259,20 @@ export class Publish extends React.Component{
     }
 
     handleSubmit(e) {
-       
-        e.preventDefault();
-        localStorage.setItem("Nombre",this.state.nombre);
-        localStorage.setItem("Categoria",this.state.categoria);
-        localStorage.setItem("Descripción",this.state.descripcion);
-        localStorage.setItem("Monto",this.state.monto);
-        localStorage.setItem("Fecha",this.state.fecha);
-        
-        window.location.href = "/idea";
+
+        if (localStorage.getItem('logout' === 'si')){
+            e.preventDefault();
+            localStorage.setItem("Nombre", this.state.nombre);
+            localStorage.setItem("Categoria", this.state.categoria);
+            localStorage.setItem("Descripción", this.state.descripcion);
+            localStorage.setItem("Monto", this.state.monto);
+            localStorage.setItem("Fecha", this.state.fecha);
+
+            window.location.href = "/idea";
+        }
+        else {
+            alert('Debe estar logueado para poder publicar')
+        }
     }
 
 
@@ -535,11 +540,12 @@ export class Publish extends React.Component{
                                 </MuiPickersUtilsProvider>
                             </FormControl>
                             <Button
-                                type="submit"
-                                fullWidth
-                                variant="contained"
-                                color="primary"
-                                className="submit"
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            className="submit"
+                            onClick={this.handleSubmit}
                             >
                                 Publicar Idea
                             </Button>

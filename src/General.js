@@ -1,5 +1,6 @@
 import React from 'react';
 import { Login } from './components/Login';
+import { Payments } from './components/Payments';
 import { Logueado } from './components/Logueado';
 import { SignIn } from './components/SignIn';
 import { Publish } from './publishidea/Publish';
@@ -227,6 +228,9 @@ export default function PersistentDrawerLeft() {
         <Logueado/>
     );*/
 
+    const PaymentView = () => (
+        <Payments />
+    );
     const PublishView = () => (
         <Publish/>
     );
@@ -330,13 +334,19 @@ export default function PersistentDrawerLeft() {
                         </Button>
 
 
-                        <Button   className="blue" href="/publish" variant="contained" color="primary" fullWidth>
+                        <Button className="blue"  href="/publish" variant="contained" color="primary" fullWidth>
                             <ListItemIcon >
                                 <FormatListNumberedRoundedIcon />
                             </ListItemIcon>
                                 Publicar
                         </Button>
 
+                        <Button className="blue" href="/payment" variant="contained" color="primary" fullWidth>
+                            <ListItemIcon >
+                                <FormatListNumberedRoundedIcon />
+                            </ListItemIcon>
+                                Pago
+                        </Button>
                         <Filters getSelectedFilters={getSelectedFilters}/>
 
                     </List>
@@ -364,8 +374,11 @@ export default function PersistentDrawerLeft() {
                         
                         
                         <div className="main">
-                            <Route path="/publish" component={PublishView} />
+                          <Route path="/publish" component={PublishView} /> :
+                                
+                        
                             <Route path="/explore" component={ExploreView} />
+                            <Route path="/payment" component={PaymentView} />
                             <Route path="/idea" component={IdeaView} />
                             <Route exact path="/" component={GeneralView} />
   
