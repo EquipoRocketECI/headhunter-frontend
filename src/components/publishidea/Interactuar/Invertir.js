@@ -1,34 +1,50 @@
 ﻿import React from 'react';
 import FormControl from '@material-ui/core/FormControl';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import './Calificacion';
-import './Comentar.css';
+
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 
 
-export class Comentar extends React.Component {
+export class Invertir extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            sugerencia: ''
+            sugerencia: '',
+            monto: 0
         };
 
         this.handleChange = this.handleChange.bind(this);
+        this.handleChangeMonto = this.handleChangeMonto.bind(this);
+        this.handleChangeRedirect = this.handleChangeRedirect.bind(this);
     }
 
     handleChange(event) {
         this.setState({ sugerencia: event.target.value });
     }
 
+    handleChangeMonto(event) {
+        this.setState({ monto: event.target.value });
+    }
+
+
+    handleChangeRedirect(event) {
+        event.preventDefault();
+        window.location.href = "/payment";
+    }
+
     render() {
         return (
             <form className="form">
 
-                <Typography variant="h5" >Comentar</Typography>
+                <Typography variant="h5" >Invertir</Typography>
 
                 <FormControl margin="normal" required fullWidth>
-                    <Typography variant="h6" >¿Desea contribuir al proyecto con su experiencia?</Typography>
+                    <Typography variant="h6" >¿Desea invertir en el proyecto y ser parte de él?</Typography>
 
                     <br></br>
                     <TextField
@@ -40,9 +56,8 @@ export class Comentar extends React.Component {
                         value={this.state.sugerencia}
                         onChange={this.handleChange}
                         variant="outlined"
-                        />
-
-
+                    />
+                    
                     <br></br>
                     <Typography variant="h6" >Calificación</Typography>
                     <p class="clasificacion">
@@ -58,13 +73,28 @@ export class Comentar extends React.Component {
                             <label for="radio5">5</label>
                      </p>
 
+                     <FormControl>
+                        <InputLabel >Monto</InputLabel>
+                            <Select labelId="monto" 
+                                    id="monto" 
+                                    value={this.state.monto}
+                                    onChange={this.handleChangeMonto}
+                                >
+                                <MenuItem value={100000}>100.000</MenuItem>
+                                <MenuItem value={200000}>200.000</MenuItem>
+                                <MenuItem value={300000}>300.000</MenuItem>
+                                <MenuItem value={400000}>400.000</MenuItem>
+                                <MenuItem value={500000}>500.000</MenuItem>
+                            </Select>
+                    </FormControl>
+
                      <br></br>
                     <Button
                         type="submit"
                         size = "small"
                         variant="contained"
                         className="blue"
-                        onClick={this.handleChange}>
+                        onClick={this.handleChangeRedirect}>
                         Enviar
                     </Button>
 

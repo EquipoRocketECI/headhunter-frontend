@@ -1,10 +1,10 @@
 import React from 'react';
 import { Login } from './components/Login';
-import { Payments } from './components/Payments';
+import { Payments } from './components/publishidea/Interactuar/Pago/Payments';
 import { Logueado } from './components/Logueado';
 import { SignIn } from './components/SignIn';
-import { Publish } from './publishidea/Publish';
-import { Idea } from './publishidea/Idea';
+import { Publish } from './components/publishidea/Publish';
+import { Idea } from './components/publishidea/Idea';
 import {Button,Paper,Typography} from '@material-ui/core';
 
 import logo from './img/Logoo.png';
@@ -341,12 +341,7 @@ export default function PersistentDrawerLeft() {
                                 Publicar
                         </Button>
 
-                        <Button className="blue" href="/payment" variant="contained" color="primary" fullWidth>
-                            <ListItemIcon >
-                                <FormatListNumberedRoundedIcon />
-                            </ListItemIcon>
-                                Pago
-                        </Button>
+                        
                         <Filters getSelectedFilters={getSelectedFilters}/>
 
                     </List>

@@ -10,7 +10,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
 
-export class Invertir extends React.Component {
+export class Donar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -18,11 +18,12 @@ export class Invertir extends React.Component {
             monto: 0
         };
 
-        this.handleChange = this.handleChange.bind(this);
+        this.handleChangeSugerencia = this.handleChangeSugerencia.bind(this);
         this.handleChangeMonto = this.handleChangeMonto.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChange(event) {
+    handleChangeSugerencia(event) {
         this.setState({ sugerencia: event.target.value });
     }
 
@@ -30,14 +31,19 @@ export class Invertir extends React.Component {
         this.setState({ monto: event.target.value });
     }
 
+    handleChange(event) {
+        event.preventDefault();
+        window.location.href = "/payment";
+    }
+
     render() {
         return (
             <form className="form">
 
-                <Typography variant="h5" >Invertir</Typography>
+                <Typography variant="h5" >Donar</Typography>
 
                 <FormControl margin="normal" required fullWidth>
-                    <Typography variant="h6" >¿Desea invertir en el proyecto y ser parte de él?</Typography>
+                    <Typography variant="h6" >¿Desea donar al proyecto y recibir beneficios?</Typography>
 
                     <br></br>
                     <TextField
@@ -47,10 +53,10 @@ export class Invertir extends React.Component {
                         rows={5}
                         cols={10}
                         value={this.state.sugerencia}
-                        onChange={this.handleChange}
+                        onChange={this.handleChangeSugerencia}
                         variant="outlined"
                     />
-                    
+
                     <br></br>
                     <Typography variant="h6" >Calificación</Typography>
                     <p class="clasificacion">
@@ -64,20 +70,20 @@ export class Invertir extends React.Component {
                             <label for="radio4">4</label>
                         <input id="radio5" type="radio" name="estrellas" value="1"></input>
                             <label for="radio5">5</label>
-                     </p>
+                    </p>
 
-                     <FormControl>
+                    <FormControl>
                         <InputLabel >Monto</InputLabel>
                             <Select labelId="monto" 
                                     id="monto" 
                                     value={this.state.monto}
                                     onChange={this.handleChangeMonto}
                                 >
-                                <MenuItem value={100000}>100.000</MenuItem>
-                                <MenuItem value={200000}>200.000</MenuItem>
-                                <MenuItem value={300000}>300.000</MenuItem>
-                                <MenuItem value={400000}>400.000</MenuItem>
-                                <MenuItem value={500000}>500.000</MenuItem>
+                                <MenuItem value={10000}>10.000</MenuItem>
+                                <MenuItem value={20000}>20.000</MenuItem>
+                                <MenuItem value={30000}>30.000</MenuItem>
+                                <MenuItem value={40000}>40.000</MenuItem>
+                                <MenuItem value={50000}>50.000</MenuItem>
                             </Select>
                     </FormControl>
 

@@ -1,43 +1,38 @@
 ﻿import React from 'react';
 import FormControl from '@material-ui/core/FormControl';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import './Calificacion';
-
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
+import './Comentar.css';
 
 
-export class Donar extends React.Component {
+export class Comentar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            sugerencia: '',
-            monto: 0
+            sugerencia: ''
         };
 
-        this.handleChangeSugerencia = this.handleChangeSugerencia.bind(this);
-        this.handleChangeMonto = this.handleChangeMonto.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+       
     }
 
-    handleChangeSugerencia(event) {
+    handleChange(event) {
         this.setState({ sugerencia: event.target.value });
+        
     }
 
-    handleChangeMonto(event) {
-        this.setState({ monto: event.target.value });
-    }
+   
 
     render() {
         return (
             <form className="form">
 
-                <Typography variant="h5" >Donar</Typography>
+                <Typography variant="h5" >Comentar</Typography>
 
                 <FormControl margin="normal" required fullWidth>
-                    <Typography variant="h6" >¿Desea donar al proyecto y recibir beneficios?</Typography>
+                    <Typography variant="h6" >¿Desea contribuir al proyecto con su experiencia?</Typography>
 
                     <br></br>
                     <TextField
@@ -47,9 +42,10 @@ export class Donar extends React.Component {
                         rows={5}
                         cols={10}
                         value={this.state.sugerencia}
-                        onChange={this.handleChangeSugerencia}
+                        onChange={this.handleChange}
                         variant="outlined"
-                    />
+                        />
+
 
                     <br></br>
                     <Typography variant="h6" >Calificación</Typography>
@@ -64,22 +60,7 @@ export class Donar extends React.Component {
                             <label for="radio4">4</label>
                         <input id="radio5" type="radio" name="estrellas" value="1"></input>
                             <label for="radio5">5</label>
-                    </p>
-
-                    <FormControl>
-                        <InputLabel >Monto</InputLabel>
-                            <Select labelId="monto" 
-                                    id="monto" 
-                                    value={this.state.monto}
-                                    onChange={this.handleChangeMonto}
-                                >
-                                <MenuItem value={10000}>10.000</MenuItem>
-                                <MenuItem value={20000}>20.000</MenuItem>
-                                <MenuItem value={30000}>30.000</MenuItem>
-                                <MenuItem value={40000}>40.000</MenuItem>
-                                <MenuItem value={50000}>50.000</MenuItem>
-                            </Select>
-                    </FormControl>
+                     </p>
 
                      <br></br>
                     <Button
@@ -87,7 +68,7 @@ export class Donar extends React.Component {
                         size = "small"
                         variant="contained"
                         className="blue"
-                        onClick={this.handleChange}>
+                        >
                         Enviar
                     </Button>
 
