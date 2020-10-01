@@ -43,7 +43,7 @@ export class Donar extends React.Component {
                 <Typography variant="h5" >Donar</Typography>
 
                 <FormControl margin="normal" required fullWidth>
-                    <Typography variant="h6" >¿Desea donar al proyecto y recibir beneficios?</Typography>
+                    <Typography variant="h6" >¿Deseas donar al proyecto y recibir beneficios?</Typography>
 
                     <br></br>
                     <TextField

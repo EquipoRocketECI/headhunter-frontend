@@ -44,7 +44,7 @@ export class Invertir extends React.Component {
                 <Typography variant="h5" >Invertir</Typography>
 
                 <FormControl margin="normal" required fullWidth>
-                    <Typography variant="h6" >¿Desea invertir en el proyecto y ser parte de él?</Typography>
+                    <Typography variant="h6" >¿Deseas invertir en el proyecto y ser parte de él?</Typography>
 
                     <br></br>
                     <TextField

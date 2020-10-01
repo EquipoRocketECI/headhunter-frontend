@@ -32,7 +32,7 @@ export class Comentar extends React.Component {
                 <Typography variant="h5" >Comentar</Typography>
 
                 <FormControl margin="normal" required fullWidth>
-                    <Typography variant="h6" >¿Desea contribuir al proyecto con su experiencia?</Typography>
+                    <Typography variant="h6" >¿Deseas contribuir al proyecto con tu experiencia?</Typography>
 
                     <br></br>
                     <TextField

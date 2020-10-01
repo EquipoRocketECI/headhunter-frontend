@@ -6,9 +6,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import {Comentar} from './Comentar';
-import {Donar} from './Donar';
-import {Invertir} from './Invertir';
+import InteractionList from './InteractionList'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -50,32 +48,70 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function TabPanelInteractuar() {
+export default function TabPanelInteracHechas() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const [interac, setInterac] = React.useState([
+    {
+      "comentario":"Cambien el color de producto",
+      "usuario":"Jose15.com",
+      "calificacion":4
+    }
+  ]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    componentDidMount(newValue);
   };
+
+  const componentDidMount = (newValue) => {
+    var path = "http://localhost:8080/interaccion/byIdeaAndTipo/1";
+    if (newValue === 0){
+      path = path+"/comentario"
+    } else if (newValue === 1){
+      path = path+"/donacion"
+    } else if (newValue === 2){
+      path = path+"/inversion"
+    }
+
+    fetch(path)
+      .then(response => response.json())
+      .then(data => {
+
+        let usersList = [];
+          data.map((interaction,i) => {
+            usersList.push({
+            "comentario":interaction.comentario,
+            "usuario":interaction.usuario,
+            "calificacion": interaction.calificacion
+          })
+        });
+        setInterac(usersList)
+      })
+      
+      ;
+  }
 
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Tabs value={value} onChange={handleChange} aria-label="simple tabs example"  variant="fullWidth">
-          <Tab label="Comenta" {...a11yProps(0)} />
-          <Tab label="Dona" {...a11yProps(1)} />
-          <Tab label="Invierte" {...a11yProps(2)} />
+          <Tab label="Comentarios" {...a11yProps(0)} />
+          <Tab label="Donaciones" {...a11yProps(1)} />
+          <Tab label="Inversiones" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
 
       <TabPanel value={value} index={0}>
-        <Comentar/>
+        <InteractionList interactionList={interac}/>
       </TabPanel>
+
       <TabPanel value={value} index={1}>
-        <Donar/>
+        <InteractionList interactionList={interac}/>
       </TabPanel>
+
       <TabPanel value={value} index={2}>
-        <Invertir/>
+        <InteractionList interactionList={interac}/>
       </TabPanel>
     </div>
   );

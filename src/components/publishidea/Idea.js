@@ -22,6 +22,7 @@ import { createMuiTheme, ThemeProvider,withStyles ,makeStyles} from '@material-u
 import { format } from 'date-fns';
 
 import TabPanelInteractuar from './Interactuar/TabPanelInteractuar';
+import TabPanelInteracHechas from './Interactuar/TabPanelInteracHechas';
 
 import img from "./img/PLACEHOLDERTHUMBNAIL.jpg";
 
@@ -221,7 +222,8 @@ export class Idea extends React.Component {
         startItems();
         
         return (
-            <Paper className="paperIdea" elevation={20}>
+          <div>
+            <Paper className="paperIdea" elevation={10}>
                 <ThemeProvider theme={theme}>
                     <Grid container alignItems="center">
                         <Grid item xs>
@@ -317,12 +319,19 @@ export class Idea extends React.Component {
                     
                     </Typography>
 
-                    <Divider variant="middle" /><br></br>
-
-                    <TabPanelInteractuar/>  
-
                 </ThemeProvider>
+            </Paper><br/>
+
+            <Paper className="paperIdea" elevation={10}>
+                <h1 > Interactúa con el Proyecto </h1>
+              <TabPanelInteractuar/>
+            </Paper><br/>
+
+            <Paper className="paperIdea" elevation={10}>
+                <h1 className="blue"> Interacciones </h1>
+              <TabPanelInteracHechas/>
             </Paper>
+          </div>
         );
     }
 
