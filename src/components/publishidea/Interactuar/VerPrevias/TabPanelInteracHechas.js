@@ -87,9 +87,7 @@ export default function TabPanelInteracHechas() {
           })
         });
         setInterac(usersList)
-      })
-      
-      ;
+      });
   }
 
   return (

@@ -22,7 +22,7 @@ import { createMuiTheme, ThemeProvider,withStyles ,makeStyles} from '@material-u
 import { format } from 'date-fns';
 
 import TabPanelInteractuar from './Interactuar/TabPanelInteractuar';
-import TabPanelInteracHechas from './Interactuar/TabPanelInteracHechas';
+import TabPanelInteracHechas from './Interactuar/VerPrevias/TabPanelInteracHechas';
 
 import img from "./img/PLACEHOLDERTHUMBNAIL.jpg";
 

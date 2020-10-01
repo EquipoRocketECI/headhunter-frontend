@@ -6,24 +6,75 @@ import TextField from '@material-ui/core/TextField';
 import './Calificacion';
 import './Comentar.css';
 
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Radio from '@material-ui/core/Radio';
+
+
 
 export class Comentar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            sugerencia: ''
+            comentario: '',
+            calificacion: ''
+
         };
 
         this.handleChange = this.handleChange.bind(this);
+        this.handleChangeCalificacion = this.handleChangeCalificacion.bind(this);
+        this.sendJSON = this.sendJSON.bind(this);
        
     }
 
     handleChange(event) {
-        this.setState({ sugerencia: event.target.value });
+        this.setState({ comentario: event.target.value });
         
     }
 
-   
+    handleChangeCalificacion(event) {
+        this.setState({ calificacion: event.target.value });
+    }
+
+
+    sendJSON(event) {
+        
+
+        var tipo = "";
+
+        if (this.props.tipo == "0"){
+            tipo = "comentario"
+        } else if (this.props.tipo == "1"){
+            tipo = "donacion"
+        } else if (this.props.tipo == "2"){
+            tipo = "inversion"
+        }
+
+        var dataa = {
+            tipo: tipo,
+            monto: "0",
+            comentario: this.state.comentario,
+            calificacion: this.state.calificacion,
+            idea: this.props.idea,
+            usuario: "diego.com"
+        };
+
+
+
+        fetch('http://localhost:8080/interaccion', {
+            method: 'POST',
+            body: JSON.stringify(dataa),
+            headers:{
+              'Content-Type': 'application/json'
+            }
+          }
+        )
+        .then(response => alert(response.json()))
+        .then(data => {
+            alert(data)
+        });
+
+    }   
 
     render() {
         return (
@@ -36,31 +87,31 @@ export class Comentar extends React.Component {
 
                     <br></br>
                     <TextField
-                        id="sugerencia"
+                        id="comentario"
                         label="Comentario"
                         multiline
                         rows={5}
                         cols={10}
-                        value={this.state.sugerencia}
+                        value={this.state.comentario}
                         onChange={this.handleChange}
                         variant="outlined"
                         />
 
 
                     <br></br>
+
                     <Typography variant="h6" >Calificación</Typography>
-                    <p class="clasificacion">
-                        <input id="radio1" type="radio" name="estrellas" value="5" ></input>
-                        <label for="radio1">1</label>
-                        <input id="radio2" type="radio" name="estrellas" value="4"></input>
-                            <label for="radio2">2</label>
-                        <input id="radio3" type="radio" name="estrellas" value="3"></input>
-                            <label for="radio3">3</label>
-                        <input id="radio4" type="radio" name="estrellas" value="2"></input>
-                            <label for="radio4">4</label>
-                        <input id="radio5" type="radio" name="estrellas" value="1"></input>
-                            <label for="radio5">5</label>
-                     </p>
+                    <FormControl component="fieldset" onChange={this.handleChangeCalificacion} component="fieldset">
+
+                        <RadioGroup row id="calificacion" aria-label="position" name="quiz" value={this.state.calificacion}>
+                            <FormControlLabel value="1" control={<Radio />} label="1" />
+                            <FormControlLabel value="2" control={<Radio />} label="2" />
+                            <FormControlLabel value="3" control={<Radio />} label="3" />
+                            <FormControlLabel value="4" control={<Radio />} label="4" />
+                            <FormControlLabel value="5" control={<Radio />} label="5" />
+                        </RadioGroup>
+
+                    </FormControl>
 
                      <br></br>
                     <Button
@@ -68,6 +119,7 @@ export class Comentar extends React.Component {
                         size = "small"
                         variant="contained"
                         className="blue"
+                        onClick={this.sendJSON}
                         >
                         Enviar
                     </Button>

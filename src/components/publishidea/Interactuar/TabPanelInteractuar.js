@@ -69,13 +69,13 @@ export default function TabPanelInteractuar() {
       </AppBar>
 
       <TabPanel value={value} index={0}>
-        <Comentar/>
+        <Comentar idea="1" tipo={value}/>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Donar/>
+        <Donar idea="1" tipo={value}/>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <Invertir/>
+        <Invertir idea="1" tipo={value}/>
       </TabPanel>
     </div>
   );
