@@ -69,18 +69,12 @@ export class Invertir extends React.Component {
 
 
 
-        fetch('http://localhost:8080/interaccion', {
+        fetch('https://mysterious-refuge-36454.herokuapp.com/interaccion', {
             method: 'POST',
-            body: JSON.stringify(dataa),
-            headers:{
-              'Content-Type': 'application/json'
-            }
-          }
-        )
-        .then(response => alert(response.json()))
-        .then(data => {
-            alert(data)
-        });
+			headers: {'Content-Type': 'application/json' },
+            body: JSON.stringify(dataa)
+        })
+        .then(response => response.json())
 
         this.handleChange(event);
     }
@@ -89,10 +83,10 @@ export class Invertir extends React.Component {
         return (
             <form className="form">
 
-                <Typography variant="h5" >Donar</Typography>
+                <Typography variant="h5" >Invertir</Typography>
 
                 <FormControl margin="normal" required fullWidth>
-                    <Typography variant="h6" >¿Deseas donar al proyecto y recibir beneficios?</Typography>
+                    <Typography variant="h6" >¿Deseas invertir y ser parte de este proyecto?</Typography>
 
                     <br></br>
                     <TextField

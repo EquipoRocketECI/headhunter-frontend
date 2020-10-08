@@ -65,7 +65,7 @@ export default function TabPanelInteracHechas() {
   };
 
   const componentDidMount = (newValue) => {
-    var path = "http://localhost:8080/interaccion/byIdeaAndTipo/1";
+    var path = "https://mysterious-refuge-36454.herokuapp.com/interaccion/byIdeaAndTipo/1";
     if (newValue === 0){
       path = path+"/comentario"
     } else if (newValue === 1){
@@ -83,7 +83,8 @@ export default function TabPanelInteracHechas() {
             usersList.push({
             "comentario":interaction.comentario,
             "usuario":interaction.usuario,
-            "calificacion": interaction.calificacion
+            "calificacion": interaction.calificacion,
+            "monto": interaction.monto
           })
         });
         setInterac(usersList)

@@ -70,18 +70,12 @@ export class Donar extends React.Component {
 
 
 
-        fetch('http://localhost:8080/interaccion', {
+        fetch('https://mysterious-refuge-36454.herokuapp.com/interaccion', {
             method: 'POST',
-            body: JSON.stringify(dataa),
-            headers:{
-              'Content-Type': 'application/json'
-            }
-          }
-        )
-        .then(response => alert(response.json()))
-        .then(data => {
-            alert(data)
-        });
+			headers: {'Content-Type': 'application/json' },
+            body: JSON.stringify(dataa)
+        })
+        .then(response => response.json())
 
         this.handleChange(event);
     }

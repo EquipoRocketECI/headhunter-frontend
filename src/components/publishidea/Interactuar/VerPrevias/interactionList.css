@@ -1,5 +1,8 @@
 div.color{
     background-color: rgb(219, 239, 243);
+    border-style: solid;
+    border-color: rgb(63, 81, 181);
+    
 }
 
 h3.e {
@@ -12,7 +15,9 @@ h4.comentario{
     text-align: left;
     font-weight: lighter;
     padding: 3px 10px;
-    border-bottom: rgb(0, 0, 0) 1px solid;
+    border: rgb(0, 0, 0) 1px solid;
+    border-color: rgb(63, 81, 181);
+    border-radius: 5px;
     
 }
 

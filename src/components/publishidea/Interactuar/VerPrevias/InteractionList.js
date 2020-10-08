@@ -1,6 +1,5 @@
 ﻿import React from 'react';
 import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 
 import './interactionList.css'
@@ -29,6 +28,10 @@ export class InteractionList extends React.Component {
 
               <h4 className="calificacion">
                 Calificación: {interaction.calificacion}
+              </h4>
+
+              <h4 className="calificacion">
+                Monto: {interaction.monto}
               </h4>
             </CardContent>
             </div> 
