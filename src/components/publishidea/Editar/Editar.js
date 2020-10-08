@@ -11,7 +11,7 @@ import { green } from '@material-ui/core/colors';
 import InfoIcon from '@material-ui/icons/Info';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 
-import './Publish.css';
+import './Editar.css';
 
 import { createMuiTheme, ThemeProvider,withStyles,makeStyles } from '@material-ui/core/styles';
 
@@ -93,11 +93,23 @@ const theme = createMuiTheme({
   }
   
 
-  
+  function getQueryVariable(variable)
+  {
+        var query = window.location.search.substring(1);
+        console.log(query)
+        var vars = query.split("&");
+        console.log(vars) 
+        for (var i=0;i<vars.length;i++) {
+                    var pair = vars[i].split("=");
+                    console.log(pair)
+        if(pair[0] == variable){return pair[1];}
+         }
+         return(false);
+  }
   
 
 
-export class Publish extends React.Component{
+export class Editar extends React.Component{
     constructor(props) {
         super(props);
         this.state = { idea:{id:"",nombre:"",descripcion:"",fechaLimite:moment(this.props.start),
@@ -107,7 +119,7 @@ export class Publish extends React.Component{
                         expertos:{derecho: false, ingenieria: false, manufactura:false, economia:false}
                     } ;
 
-                        
+        this.startItems();
         
         this.handleName = this.handleName.bind(this);
         this.handleDescription = this.handleDescription.bind(this);
@@ -219,22 +231,43 @@ export class Publish extends React.Component{
         this.setState({ expertos : newIdea });
     }
 
+    startItems() {
+   
+        const id = getQueryVariable('id');
+        var path = "http://mysterious-refuge-36454.herokuapp.com/ideas/"+id;
+    
+        fetch(path)
+          .then(response => response.json())
+          .then(newidea => {
+            const ChangeIdea = {id: newidea.id ,nombre: newidea.nombre,descripcion:newidea.descripcion,
+                                fechaLimite:newidea.fechaLimite,montoLimite:newidea.montoLimite,
+                                montoRecolectado:newidea.montoRecolectado,categoria:newidea.categoria,
+                                calificacion:newidea.calificacion ,adquisiciontemprana:newidea.adquisiciontemprana ,
+                                descuento:newidea.descuento ,versionpremium:newidea.versionpremium ,
+                                pequenasdonaciones:newidea.pequenasdonaciones ,grandesinversiones:newidea.grandesinversiones ,
+                                expertospersonal:newidea.expertospersonal ,imagen:newidea.imagen ,fechapublicacion:newidea.fechapublicacion ,
+                                propietario:newidea.propietario ,fase: newidea.fase };
+        
+            this.setState({ idea : ChangeIdea });
+          }).catch(error => console.error('Error:', error));;
+      }
+
     handleSubmit(e) {
 
         if (localStorage.getItem('logout') === 'si'){
-            
+            const id = getQueryVariable('id');
             e.preventDefault();
             const requestOptions = {
-                method: 'POST',
+                method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(this.state.idea)
             };
-            fetch('http://mysterious-refuge-36454.herokuapp.com/ideas', requestOptions)
+            fetch('http://mysterious-refuge-36454.herokuapp.com/ideas/'+id, requestOptions)
                 .then(response => response.json())
                 .catch(error => console.error('Error:', error))
                 .then(response => console.log('Success:', response));;
 
-            /*window.location.href = "/idea";*/
+            window.location.href = "/idea?id="+getQueryVariable('id');
         }
         else {
             alert('Debe estar logueado para poder publicar')
@@ -247,11 +280,11 @@ export class Publish extends React.Component{
             <Router>
             <Paper className="paperPublish" elevation={20}>
                 <ThemeProvider theme={theme}>
-                    <Typography variant="h3" >Publica tu idea/proyecto</Typography>
+                    <Typography variant="h3" >Edita tu idea/proyecto</Typography>
                 </ThemeProvider>
                     <br/>
                     <form onSubmit={this.handleSubmit} className="form">
-                            <Typography variant="h5" >Selecciona una categoría para clasificar tu proyecto:</Typography>
+                            <Typography variant="h5" >Categoría:</Typography>
                             <FormControl  margin="dense" required fullWidth>                                                       
                                 <InputLabel id="Categoria">Categoría</InputLabel>
                                 <Select
@@ -272,7 +305,7 @@ export class Publish extends React.Component{
                 
                             </FormControl>
                             <br/>
-                            <Typography variant="h5">Dale un nombre para identificarla: </Typography>
+                            <Typography variant="h5">Nombre: </Typography>
                             <FormControl margin="dense" required fullWidth>
                             
                                 <InputLabel htmlFor="nombre">Nombre</InputLabel>
@@ -281,10 +314,11 @@ export class Publish extends React.Component{
                                         id="nombre"
                                         onChange={this.handleName}
                                         selected={this.state.idea.nombre}
+                                        value={this.state.idea.nombre}
                                     />
                             </FormControl>
                             <br/>
-                            <Typography variant="h5">Descríbela:  </Typography>
+                            <Typography variant="h5">Descripción:  </Typography>
                             <FormControl margin="dense" required fullWidth>
                                 <InputLabel htmlFor="descripcion">Descripción</InputLabel>
                                     <Input
@@ -292,34 +326,35 @@ export class Publish extends React.Component{
                                         id="descripcion"
                                         onChange={this.handleDescription}
                                         selected={this.state.idea.descripcion}
+                                        value={this.state.idea.descripcion}
                                     />
                             </FormControl>
-
-                            <Typography variant="h5">¿Tienes alguna imagen o logo que represente tu idea? ¡Súbela!  </Typography>
-                            <FormControl margin="dense" required fullWidth>
-                                <div className={classes.root}>
-                                    <input
-                                        accept="image/*"
-                                        className={classes.input}
-                                        id="contained-button-file"
-                                        multiple
-                                        type="file"
-                                        style={{display:'none'}}
-                                    />
-                                    <label htmlFor="contained-button-file">
-                                        <Button variant="contained" color="primary" component="span">
-                                            Subir Imagen
-                                        </Button>
-                                    </label>
-                                    <input accept="image/*" className={classes.input} id="icon-button-file" type="file" style={{display:'none'}}/>
-                                    <label htmlFor="icon-button-file">
-                                        <IconButton color="primary" aria-label="upload picture" component="span">
-                                        <PhotoCamera />
-                                        </IconButton>
-                                    </label>
-                                </div>
-                            </FormControl>
-                            
+                            {/*
+                                    <Typography variant="h5">¿Tienes alguna imagen o logo que represente tu idea? ¡Súbela!  </Typography>
+                                    <FormControl margin="dense" required fullWidth>
+                                        <div className={classes.root}>
+                                            <input
+                                                accept="image/*"
+                                                className={classes.input}
+                                                id="contained-button-file"
+                                                multiple
+                                                type="file"
+                                                style={{display:'none'}}
+                                            />
+                                            <label htmlFor="contained-button-file">
+                                                <Button variant="contained" color="primary" component="span">
+                                                    Subir Imagen
+                                                </Button>
+                                            </label>
+                                            <input accept="image/*" className={classes.input} id="icon-button-file" type="file" style={{display:'none'}}/>
+                                            <label htmlFor="icon-button-file">
+                                                <IconButton color="primary" aria-label="upload picture" component="span">
+                                                <PhotoCamera />
+                                                </IconButton>
+                                            </label>
+                                        </div>
+                                    </FormControl>
+                            */}
                             <FormControl component="fieldset" >
                             <Typography variant="h5">¿Qué estas buscando para tu proyecto?</Typography>
                                
@@ -380,7 +415,7 @@ export class Publish extends React.Component{
                             </FormControl>
                         
                         <div style={{display: this.state.idea.pequenasdonaciones? 'block' : 'none' }}>
-                            <Typography variant="h5">¿Qué incentivos le quieres dar a las personas que te donen? </Typography>
+                            <Typography variant="h5">Incentivos que le quieres dar a las personas que te donen: </Typography>
                             <FormControl  component="fieldset"> 
                                 <FormGroup>
                                     <FormControlLabel
@@ -469,7 +504,7 @@ export class Publish extends React.Component{
                         </div> 
 
                         <div style={{display: this.state.idea.pequenasdonaciones || this.state.idea.grandesinversiones ? 'block' : 'none' }}>
-                            <Typography variant="h5">Define un monto limite: </Typography>
+                            <Typography variant="h5">Monto limite: </Typography>
                             <FormControl margin="dense" required fullWidth>
                             
                                 <TextField
@@ -485,7 +520,7 @@ export class Publish extends React.Component{
                             </FormControl>
                         </div> 
 
-                            <Typography variant="h5">Define una fecha limite para reunir lo que necesitas:</Typography>
+                            <Typography variant="h5">Fecha limite para reunir lo que necesitas:</Typography>
                             <FormControl margin="dense" required fullWidth>
                             
                                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -513,7 +548,7 @@ export class Publish extends React.Component{
                             className="submit"
                             onClick={this.handleSubmit}
                             >
-                                Publicar Idea
+                                Editar Idea
                             </Button>
                     </form> 
             </Paper>      

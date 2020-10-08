@@ -5,6 +5,7 @@ import { Logueado } from './components/Logueado';
 import { SignIn } from './components/SignIn';
 import { Publish } from './components/publishidea/Publish';
 import { Idea } from './components/publishidea/Idea';
+import { Editar } from './components/publishidea/Editar/Editar';
 import {Button,Paper,Typography} from '@material-ui/core';
 
 import logo from './img/Logoo.png';
@@ -243,6 +244,10 @@ export default function PersistentDrawerLeft() {
         <Idea/>
     );
 
+    const EditarView = () => (
+        <Editar/>
+    );
+
     const GeneralView = () => (
         <div>
             <Paper  className="paperGeneral" elevation={20}>
@@ -376,7 +381,7 @@ export default function PersistentDrawerLeft() {
                             <Route path="/payment" component={PaymentView} />
                             <Route path="/idea" component={IdeaView} />
                             <Route exact path="/" component={GeneralView} />
-  
+                            <Route path="/editar" component={EditarView} />
                         </div>
                     </div>
                       

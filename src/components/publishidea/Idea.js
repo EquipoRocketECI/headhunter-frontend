@@ -5,22 +5,25 @@ import './Idea.css';
 
 import {Paper,Typography,LinearProgress,Grid,Divider,CardMedia,
     Accordion,AccordionSummary,AccordionDetails, GridList,GridListTile,
-    Stepper, Step, StepLabel, StepConnector } from '@material-ui/core';
+    Stepper, Step, StepLabel, StepConnector, IconButton  } from '@material-ui/core';
+import { yellow } from '@material-ui/core/colors';
 
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import moment from 'moment'
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
-import CommentIcon from '@material-ui/icons/Comment';
+import ImportantDevicesIcon from '@material-ui/icons/ImportantDevices';
+import ChildFriendlyIcon from '@material-ui/icons/ChildFriendly';
 import EditIcon from '@material-ui/icons/Edit';
+import StarIcon from '@material-ui/icons/Star';
 
 import { createMuiTheme, ThemeProvider,withStyles ,makeStyles} from '@material-ui/core/styles';
 
 
-import { format } from 'date-fns';
 
+import {format, parseISO} from "date-fns";
 import TabPanelInteractuar from './Interactuar/TabPanelInteractuar';
 import TabPanelInteracHechas from './Interactuar/VerPrevias/TabPanelInteracHechas';
 
@@ -28,7 +31,7 @@ import img from "./img/PLACEHOLDERTHUMBNAIL.jpg";
 
 
 function getSteps() {
-    return ['Fase 1', 'Fase 2', 'Fase 3'];
+    return ['En Gestación', 'Destacada', 'Consolidada'];
   }
 
 const useColorlibStepIconStyles = makeStyles({
@@ -59,8 +62,8 @@ const useColorlibStepIconStyles = makeStyles({
     const { active, completed } = props;
   
     const icons = {
-      1: <CommentIcon />,
-      2: <AttachMoneyIcon />,
+      1: <ChildFriendlyIcon />,
+      2: <ImportantDevicesIcon />,
       3: <CheckCircleIcon />,
     };
   
@@ -123,7 +126,7 @@ const classes = makeStyles((theme) => ({
     },
     gridList: {
     
-      width: 500,
+      width: 1000,
       height: 100,
     }
   }));
@@ -164,86 +167,115 @@ const theme = createMuiTheme({
 
   var porcentaje=0;
 
-  function startItems() {
-     
-    const name=localStorage.getItem("Nombre");
-    const categ=localStorage.getItem("Categoria");
-    const desc=localStorage.getItem("Descripción");
-    var money=localStorage.getItem("Monto");
-    const date=localStorage.getItem("Fecha");
-    const user=localStorage.getItem("User");
-    var moneyDonated=localStorage.getItem("MontoDonado");
-    if (name===null || name ===""){
-        localStorage.setItem("Nombre","Nombre de idea de prueba");
-    }
-    if (categ===null || categ===""){
-        localStorage.setItem("Categoria","Categoria");
-    }
-    if (desc===null || desc===""){
-        localStorage.setItem("Descripción","Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.");
-    }
-    if (money===null || money===""){
-        localStorage.setItem("Monto",100000);
-        var money=100000;
-    }
-    if (date===null || date===""){
-        localStorage.setItem("Fecha",format(new Date(),"MMM dd yyyy"));
-    }
-    if (user===null || user===""){
-        localStorage.setItem("User","UsuarioDePrueba");
-    }
-    if (moneyDonated===null || moneyDonated===""){
-        if (money===null || money===""){
-            localStorage.setItem("MontoDonado",50000);
-        }else {
-            moneyDonated=money/2;
-            localStorage.setItem("MontoDonado",money/2);
-        }
-        
-    }
-    porcentaje= (100/money)*moneyDonated;
-    
+
+  function getQueryVariable(variable)
+  {
+        var query = window.location.search.substring(1);
+        console.log(query)
+        var vars = query.split("&");
+        console.log(vars) 
+        for (var i=0;i<vars.length;i++) {
+                    var pair = vars[i].split("=");
+                    console.log(pair)
+        if(pair[0] == variable){return pair[1];}
+         }
+         return(false);
   }
+
+
 
 
 export class Idea extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {expertos:[{id:1,area:"Ingeniería",idea:1},{id:2,area:"Manufactura",idea:1}
-                                ,{id:3,area:"Derecho y Leyes",idea:1},
-                                {id:4,area:"Economia y Finanzas",idea:1}]};
-        this.activeStep=1;
+        this.state = {idea:{id:"",nombre:"",descripcion:"",fechaLimite:"",montoLimite:"",
+                    montoRecolectado:0,"categoria":"",calificacion:0,adquisiciontemprana:false,
+                    descuento:true,versionpremium:false,pequenasdonaciones:true,grandesinversiones:false,
+                    expertospersonal:false,imagen:"",fechapublicacion:"",propietario:"",fase:""}
+                      ,expertos:[]};
+        this.activeStep=0;
         this.steps = getSteps();
+        this.startItems();
+        this.startAreas();
+    }
+
+    startItems() {
+   
+      const id = getQueryVariable('id');
+      var path = "http://mysterious-refuge-36454.herokuapp.com/ideas/"+id;
+  
+      fetch(path)
+        .then(response => response.json())
+        .then(newidea => {
+          const ChangeIdea = {id: newidea.id ,nombre: newidea.nombre,descripcion:newidea.descripcion,
+                              fechaLimite:newidea.fechaLimite,montoLimite:newidea.montoLimite,
+                              montoRecolectado:newidea.montoRecolectado,categoria:newidea.categoria,
+                              calificacion:newidea.calificacion ,adquisiciontemprana:newidea.adquisiciontemprana ,
+                              descuento:newidea.descuento ,versionpremium:newidea.versionpremium ,
+                              pequenasdonaciones:newidea.pequenasdonaciones ,grandesinversiones:newidea.grandesinversiones ,
+                              expertospersonal:newidea.expertospersonal ,imagen:newidea.imagen ,fechapublicacion:newidea.fechapublicacion ,
+                              propietario:newidea.propietario ,fase: newidea.fase };
+          if ( newidea.fase ==="gestacion"){
+            this.activeStep=0;
+          }else if ( newidea.fase ==="destacada"){
+            this.activeStep=1;
+          }else if( newidea.fase ==="consolidada"){
+            this.activeStep=2;
+          }
+          this.setState({ idea : ChangeIdea });
+          porcentaje= (100/newidea.montoLimite)*newidea.montoRecolectado;
+        }).catch(error => console.error('Error:', error));;
+    }
+
+    startAreas(){
+      const id = getQueryVariable('id');
+      var path = "http://mysterious-refuge-36454.herokuapp.com/ideas/"+id+"/expertos";
+  
+      fetch(path)
+        .then(response => response.json())
+        .then(nuevosexpertos => {
+          let expertosList = [];
+          nuevosexpertos.map((experto) => {
+            expertosList.push({
+                id: experto.id,
+                area: experto.area,
+                idea: experto.idea
+              })
+          });
+          this.setState({ expertos : expertosList });
+      })
+      .catch(error => console.error('Error:', error));
+
     }
 
     render() {
 
-        startItems();
         
         return (
-          <div>
+          <div >
             <Paper className="paperIdea" elevation={10}>
                 <ThemeProvider theme={theme}>
                     <Grid container alignItems="center">
-                        <Grid item xs>
-                        
-                                <Typography gutterBottom variant="h3">
-                                
-                                {localStorage.getItem("Nombre")} 
-                                </Typography>
-                                
-                                
-                        
+                        <Grid item xs>        
+                            <Typography gutterBottom variant="h3">
+                                  {this.state.idea.nombre} 
+                            </Typography>
                         </Grid>
                         <Grid item >
                             <Typography gutterBottom variant="h6">
                              
-                                {localStorage.getItem("Categoria")}
-                                <br/>
+                                {this.state.idea.categoria}
                                 
+                                <br/>
+                                {this.state.idea.calificacion==0?"(Sin calificaciones)":this.state.idea.calificacion.toFixed(1)}
+                                <StarIcon  style={{ color: yellow[500] }} />
+                                
+                                <br/>
                                 Editar
-                                <EditIcon/>
+                                <IconButton href={"/editar?id="+this.state.idea.id} >
+                                  <EditIcon/>
+                                </IconButton>
                                 
                             </Typography>
                         </Grid>
@@ -253,7 +285,7 @@ export class Idea extends React.Component {
 
                     <Typography gutterBottom variant="h5">
                             
-                            de  {localStorage.getItem("User")}
+                            de  {this.state.idea.propietario}
                     </Typography>
 
                     <Stepper alternativeLabel activeStep={this.activeStep} connector={<ColorlibConnector />}>
@@ -275,50 +307,55 @@ export class Idea extends React.Component {
                     <br/>
 
                     <Typography variant="body1" gutterBottom>
-                            {localStorage.getItem("Descripción")} <br/>
+                            {this.state.idea.descripcion} <br/>
                     </Typography>
 
                     <Divider variant="middle" />
 
                     <br/>
-                    <Accordion>
-                        <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls="panel1a-content"
-                            id="panel1a-header"
-                        >
-                            <Typography variant="body2" gutterBottom >Áreas en las que se busca expertos y/o personal </Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <Typography>
-                            <GridList className={classes.gridList} cols={3} >
-                                {this.state.expertos.map((experto)=>(
-                                <GridListTile key={experto.id}  style={{ height: 'auto' }}>
+                    <div style={{display: this.state.idea.expertospersonal ? 'block' : 'none' }}>
+                      <Accordion>
+                          <AccordionSummary
+                              expandIcon={<ExpandMoreIcon />}
+                              aria-controls="panel1a-content"
+                              id="panel1a-header"
+                          >
+                      
+                      <Typography variant="body2" gutterBottom >Áreas en las que se busca expertos y/o personal </Typography>
+                          </AccordionSummary>
+                          <AccordionDetails>
+                              <Typography>
+                              <GridList className={classes.gridList} cols={3} >
+                                  {this.state.expertos.map((experto)=>(
+                                  <GridListTile key={experto.id}  style={{ height: 'auto' }}>
 
-                                    <Typography variant="body1" gutterBottom>
-                                        {experto.area}
-                                    </Typography>
-                                   
-                                </GridListTile>
-                                ))}
-                            </GridList>
+                                      <Typography variant="body1" gutterBottom>
+                                          {experto.area}
+                                      </Typography>
+                                    
+                                  </GridListTile> 
+                                  ))}
+                              </GridList>
 
-                            </Typography>
-                        </AccordionDetails>
-                    </Accordion>
+                              </Typography>
+                          </AccordionDetails>
+                      </Accordion>
+                    </div>
                     <br/>
-                    <Typography variant="body2" gutterBottom>
-                        Recaudado ${localStorage.getItem("MontoDonado")} de  ${localStorage.getItem("Monto")} ({porcentaje}%)
-                    <br/>
+                    <div style={{display: this.state.idea.pequenasdonaciones || this.state.idea.grandesinversiones ? 'block' : 'none' }}>
+                        <Typography variant="body2" gutterBottom>
+                            Recaudado ${this.state.idea.montoRecolectado} de  ${this.state.idea.montoLimite} ({porcentaje.toFixed(2)}%)
+                        <br/>
+                        
+                        </Typography>
+                        <BorderLinearProgress variant="determinate" value={porcentaje} />
+                        </div> 
+                        <Typography variant="body2" gutterBottom>
+                            Aporta antes de {moment(this.state.idea.fechaLimite).format('MMM DD YYYY')} <br/>
+                          <br/>
                     
-                    </Typography>
-                    <BorderLinearProgress variant="determinate" value={porcentaje} />
-                    <Typography variant="body2" gutterBottom>
-                        Aporta antes de {localStorage.getItem("Fecha")} <br/>
-                    <br/>
-                    
-                    </Typography>
-
+                         </Typography>
+                                  
                 </ThemeProvider>
             </Paper><br/>
 
