@@ -21,7 +21,19 @@ export class Logueado extends React.Component {
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
-        
+        this.state = { username: { "correo": "", "contrasena": "", "nombrecompleto": "" } };
+        this.getDatosUsuario();
+    }
+
+    getDatosUsuario() {
+
+        var path = "https://mysterious-refuge-36454.herokuapp.com/usuario/" + localStorage.getItem("username");
+
+        fetch(path)
+            .then(response => response.json())
+            .then(usuario => {
+                this.setState({ username: usuario })
+            }).catch(error => alert('Usuario no econtrado'));;
     }
 
     render() {
@@ -29,10 +41,14 @@ export class Logueado extends React.Component {
         return (
             <Paper className="paper" elevation={20}>
                 <div>
-                    <Typography variant="h4">Bienvenido</Typography>
+                    <Typography variant="h4">Bienvenido </Typography>
                     <form className="form">
 
                         <List>
+
+                            <ListItem>
+                                <ListItemText primary={this.state.username.nombrecompleto}/>
+                            </ListItem>
                             <ListItem>
                                 <AccountCircleIcon />
                                 <ListItemText primary={localStorage.getItem('username')} />

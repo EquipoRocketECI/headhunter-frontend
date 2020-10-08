@@ -143,7 +143,7 @@ export default function PersistentDrawerLeft() {
     const logout = false;
     const [open, setOpen] = React.useState(false);
 
-    const [currentLoginView,setCurrentLoginView] = React.useState("Login");
+    const [currentLoginView, setCurrentLoginView] = React.useState(localStorage.getItem('currentLoginView'));
     const [loadedItems,setLoadedItems] = React.useState(stubPages);
 
     //---------------------------------------------------------------------------------------
@@ -364,7 +364,7 @@ export default function PersistentDrawerLeft() {
                         <div className="login"> {
                             localStorage.getItem('logout') === 'si' ?
                                 LogueadoView() :
-                            currentLoginView =="Login" ?
+                            currentLoginView ==="Login" ?
                                 LoginView() :                                
                                     SignInView() 
                                     
@@ -374,7 +374,7 @@ export default function PersistentDrawerLeft() {
                         
                         
                         <div className="main">
-                          <Route path="/publish" component={PublishView} /> :
+                          <Route path="/publish" component={PublishView} /> 
                                 
                         
                             <Route path="/explore" component={ExploreView} />
