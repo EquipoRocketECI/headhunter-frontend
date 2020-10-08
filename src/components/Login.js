@@ -23,7 +23,10 @@ export class Login extends React.Component {
         this.handlePassword = this.handlePassword.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        
     }
+
+    
 
     render() {
        
@@ -31,11 +34,12 @@ export class Login extends React.Component {
             <Paper className="paper" elevation={20}>
                 <div>
                     <Typography variant="h4">Iniciar Sesión</Typography>
-                    <form className="form">
+                    <form className="form" onSubmit={this.handleSubmit}>
 
                         <FormControl margin="normal" required fullWidth>
                             <InputLabel htmlFor="username">Nombre de usuario</InputLabel>
-                            <Input id="username" name="username" autoComplete="username" autoFocus onChange={this.handleUsername} selected={this.state.userName} />
+                            <Input id="username" name="username" autoComplete="username" autoFocus onChange={this.handleUsername}
+                                value={this.state.userName}  selected={this.state.userName} />
                         </FormControl>
 
                         <FormControl margin="normal" required fullWidth>
@@ -46,6 +50,7 @@ export class Login extends React.Component {
                                 id="password"
                                 autoComplete="current-password"
                                 onChange={this.handlePassword}
+                                value={this.state.userName}
                                 selected={this.state.password}
                             />
                         </FormControl>
@@ -56,7 +61,7 @@ export class Login extends React.Component {
                             variant="contained"
                             className="blue"
                             
-                            onClick={this.handleSubmit}>
+                            >
                             Ingresar
                         </Button>
                     </form>
@@ -75,7 +80,23 @@ export class Login extends React.Component {
     }
 
     handleSubmit(e) {  
-        localStorage.setItem('logout', 'si');   
+
+        e.preventDefault();
+
+        var path = "https://mysterious-refuge-36454.herokuapp.com/usuario/" + this.state.username;
+        
+
+
+        fetch(path)
+            .then(response => response.json())
+            .then(usuario => {
+                if (usuario.contrasena == this.state.password) {
+                    localStorage.setItem('logout', 'si');
+                }
+                else {
+                    alert("Contraseña incorrecta");
+                }
+            }).catch(error => alert('Usuario no econtrado'));;
     }
 
     handleClick(e){

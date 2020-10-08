@@ -1,8 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\src"
+    "\\src",
+    "\\src\\components",
+    "\\src\\components\\publishidea",
+    "\\src\\components\\publishidea\\Interactuar"
   ],
-  "SelectedNode": "\\src\\General.js",
+  "SelectedNode": "\\src\\components\\publishidea\\Interactuar\\Comentar.js",
   "PreviewInSolutionExplorer": false
 }
