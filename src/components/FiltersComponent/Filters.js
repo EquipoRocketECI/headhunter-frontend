@@ -7,11 +7,13 @@ export class Filters extends React.Component {
         super(props);
         this.state = {
             rangeRadioValue: "none",
-            selectedAreas: {
-                educacion: false,
-                salud: false,
-                comida: false,
-                viaje: false
+            selectedCategories: {
+                Moda: false,
+                Tecnología: false,
+                Entretenimiento: false,
+                Educación: false,
+                Cultura:false,
+                Salúd:false
             },
             highRange: -1,
             lowRange: -1
@@ -26,11 +28,25 @@ export class Filters extends React.Component {
     }
 
     handleAreaChange(e) {
-        const areas = this.state.selectedAreas;
-        this.setState({ selectedAreas: { ...areas, [e.target.name]: e.target.checked } });
+        const categories = this.state.selectedCategories;
+        this.setState({ selectedCategories: { ...categories, [e.target.name]: e.target.checked } });
     }
 
     render() {
+        const categories = Object.keys(this.state.selectedCategories);
+        const categoryCheckboxes = categories.map((category,i)=>
+            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        checked={this.state.selectedCategories.category}
+                                        onChange={this.handleAreaChange}
+                                        name={category}
+                                        color="primary"
+                                    />
+                                }
+                                label={category}
+                            />
+        );
         return (
             <React.Fragment>
                 <Typography variant="h4" align="center">Filtros</Typography>
@@ -75,50 +91,7 @@ export class Filters extends React.Component {
                     <ListItem className="areaFilter">
                         <Typography variant="h5">Categoría</Typography>
                         <FormGroup className="areaFilterForm">
-                            <FormControlLabel
-                                control={
-                                    <Checkbox
-                                        checked={this.state.selectedAreas.educacion}
-                                        onChange={this.handleAreaChange}
-                                        name="educacion"
-                                        color="primary"
-                                    />
-                                }
-                                label="Educación"
-                            />
-                            <FormControlLabel
-                                control={
-                                    <Checkbox
-                                        checked={this.state.selectedAreas.salud}
-                                        onChange={this.handleAreaChange}
-                                        name="salud"
-                                        color="primary"
-                                    />
-                                }
-                                label="Salud"
-                            />
-                            <FormControlLabel
-                                control={
-                                    <Checkbox
-                                        checked={this.state.selectedAreas.comida}
-                                        onChange={this.handleAreaChange}
-                                        name="comida"
-                                        color="primary"
-                                    />
-                                }
-                                label="Gastronomía"
-                            />
-                            <FormControlLabel
-                                control={
-                                    <Checkbox
-                                        checked={this.state.selectedAreas.viaje}
-                                        onChange={this.handleAreaChange}
-                                        name="viaje"
-                                        color="primary"
-                                    />
-                                }
-                                label="Cultura"
-                            />
+                            {categoryCheckboxes}
                         </FormGroup>
                     </ListItem>
                 </List>
