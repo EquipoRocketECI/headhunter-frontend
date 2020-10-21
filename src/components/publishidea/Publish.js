@@ -103,7 +103,7 @@ export class Publish extends React.Component{
         this.state = { idea:{id:"",nombre:"",descripcion:"",fechaLimite:moment(this.props.start),
                             montoLimite:0,montoRecolectado:0,categoria:"",calificacion:0,adquisiciontemprana:false,
                             descuento:false,versionpremium:false,pequenasdonaciones:false,grandesinversiones:false,
-                            expertospersonal:false,fechapublicacion:"",imagen:"",propietario:"diego.com"},
+                            expertospersonal:false,fechapublicacion:"",imagen:"",propietario:localStorage.getItem("username")},
                         expertos:{derecho: false, ingenieria: false, manufactura:false, economia:false}
                     } ;
 
@@ -131,6 +131,7 @@ export class Publish extends React.Component{
         this.handleChangeEconomia = this.handleChangeEconomia.bind(this);
 
         this.handleSubmit = this.handleSubmit.bind(this);  
+        this.handleSubmitAreas = this.handleSubmitAreas.bind(this);  
     }
 
     handleName(e) {
@@ -231,6 +232,28 @@ export class Publish extends React.Component{
             };
             fetch('http://mysterious-refuge-36454.herokuapp.com/ideas', requestOptions)
                 .then(response => response.json())
+                .then(newIdea=>{
+                    let experto;        
+                    if (this.state.expertos.derecho){                  
+                        experto = {"id":"","area":"Derecho y Leyes","idea":newIdea.id}
+                        this.handleSubmitAreas(experto);
+                    }
+                    if (this.state.expertos.economia){
+                        experto = {"id":"","area":"Economia y Finanzas","idea":newIdea.id}
+                        this.handleSubmitAreas(experto);
+                    }
+                    if (this.state.expertos.ingenieria){
+                        experto = {"id":"","area":"Ingeniería","idea":newIdea.id}
+                        this.handleSubmitAreas(experto);   
+                    }
+                    if (this.state.expertos.manufactura){
+                        experto = {"id":"","area":"Manufactura","idea":newIdea.id}
+                        this.handleSubmitAreas(experto);
+                    }
+
+
+                    window.location.href = "/idea?id="+newIdea.id;
+                })
                 .catch(error => console.error('Error:', error))
                 .then(response => console.log('Success:', response));;
 
@@ -239,6 +262,19 @@ export class Publish extends React.Component{
         else {
             alert('Debe estar logueado para poder publicar')
         }
+    }
+
+    handleSubmitAreas(experto){
+        
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(experto)
+        };
+        fetch('http://mysterious-refuge-36454.herokuapp.com/ideas/expertos', requestOptions)
+        .then(response => response.json())
+        .catch(error => console.error('Error:', error))
+        .then(response => console.log('Success:', response));;
     }
 
 

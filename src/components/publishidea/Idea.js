@@ -272,11 +272,12 @@ export class Idea extends React.Component {
                                 <StarIcon  style={{ color: yellow[500] }} />
                                 
                                 <br/>
-                                Editar
-                                <IconButton href={"/editar?id="+this.state.idea.id} >
-                                  <EditIcon/>
-                                </IconButton>
-                                
+                                <div style={{display: this.state.idea.propietario===localStorage.getItem("username") ? 'block' : 'none' }}>
+                                    Editar
+                                    <IconButton href={"/editar?id="+this.state.idea.id} >
+                                      <EditIcon/>
+                                    </IconButton>
+                                </div> 
                             </Typography>
                         </Grid>
                     </Grid>
