@@ -12,18 +12,27 @@ export class Filters extends React.Component {
                 Tecnología: false,
                 Entretenimiento: false,
                 Educación: false,
-                Cultura:false,
-                Salúd:false
+                Cultura: false,
+                Salúd: false
             },
-            highRange: -1,
-            lowRange: -1
+            investmentRange: {
+                highBound: -1,
+                lowBound: -1
+            }
+
         }
         this.handleInvestmentChange = this.handleInvestmentChange.bind(this);
         this.handleAreaChange = this.handleAreaChange.bind(this);
     }
 
     handleInvestmentChange(e) {
-        this.setState({ rangeRadioValue: e.target.value, lowRange: -1, highRange: -1 });
+        this.setState({
+            rangeRadioValue: e.target.value,
+            investmentRange: {
+                highBound: -1,
+                lowBound: -1
+            }
+        });
 
     }
 
@@ -34,18 +43,18 @@ export class Filters extends React.Component {
 
     render() {
         const categories = Object.keys(this.state.selectedCategories);
-        const categoryCheckboxes = categories.map((category,i)=>
+        const categoryCheckboxes = categories.map((category, i) =>
             <FormControlLabel
-                                control={
-                                    <Checkbox
-                                        checked={this.state.selectedCategories.category}
-                                        onChange={this.handleAreaChange}
-                                        name={category}
-                                        color="primary"
-                                    />
-                                }
-                                label={category}
-                            />
+                control={
+                    <Checkbox
+                        checked={this.state.selectedCategories.category}
+                        onChange={this.handleAreaChange}
+                        name={category}
+                        color="primary"
+                    />
+                }
+                label={category}
+            />
         );
         return (
             <React.Fragment>
@@ -63,9 +72,13 @@ export class Filters extends React.Component {
                                 onChange={(e) => {
                                     this.setState({
                                         rangeRadioValue: "none",
-                                        lowRange: parseInt(e.target.value)
+                                        investmentRange: {
+                                            highBound:this.state.investmentRange.highBound,
+                                            lowBound: parseInt(e.target.value) || 0
+                                        }
+
                                     })
-                                }} margin="Low bound" label="límite inferior" variant="outlined" defaultValue="0"/>
+                                }} margin="Low bound" label="límite inferior" variant="outlined" defaultValue="0" />
                             <TextField className="customRangeInput"
                                 id="highRange"
                                 size="small"
@@ -76,7 +89,10 @@ export class Filters extends React.Component {
                                     (e) => {
                                         this.setState({
                                             rangeRadioValue: "none",
-                                            highRange: parseInt(e.target.value)
+                                            investmentRange: {
+                                                highBound: parseInt(e.target.value) || 0,
+                                                lowBound:this.state.investmentRange.lowBound
+                                            }
                                         })
                                     }
                                 } defaultValue="20.000" label="límite superior" variant="outlined" />
