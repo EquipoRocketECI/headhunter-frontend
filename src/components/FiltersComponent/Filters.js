@@ -1,10 +1,14 @@
 import React from 'react';
 import { List, ListItem, Divider, FormGroup, FormControlLabel, Checkbox, RadioGroup, Radio, TextField, InputAdornment, Typography } from '@material-ui/core';
 import './css/filters.css';
+import NumberFormat from 'react-number-format';
 
 export class Filters extends React.Component {
+    
     constructor(props) {
         super(props);
+        const INFINITY=Number.MAX_SAFE_INTEGER;//wanted to use JavaScript's Number.POSITIVE_INFINITY, but JSON doesn´t allow it
+        const NEGATIVE_INFINITY=Number.NEGATIVE_INFINITY;
         this.state = {
             rangeRadioValue: "none",
             selectedCategories: {
@@ -16,8 +20,8 @@ export class Filters extends React.Component {
                 Salúd: false
             },
             investmentRange: {
-                highBound: -1,
-                lowBound: -1
+                lowBound: 0,
+                highBound: INFINITY
             }
 
         }
@@ -26,13 +30,45 @@ export class Filters extends React.Component {
     }
 
     handleInvestmentChange(e) {
+        const INFINITY=Number.MAX_SAFE_INTEGER;
+        const NEGATIVE_INFINITY=Number.NEGATIVE_INFINITY;
         this.setState({
-            rangeRadioValue: e.target.value,
-            investmentRange: {
-                highBound: -1,
-                lowBound: -1
-            }
+            rangeRadioValue: e.target.value
         });
+        switch (this.state.rangeRadioValue) {
+            case "low":
+                this.setState({
+                    investmentRange: {
+                        lowBound: 0,
+                        highBound: 100000
+                    }
+                });
+                break;
+            case "mid":
+                this.setState({
+                    investmentRange: {
+                        lowBound: 100000,
+                        highBound: 250000000
+                    }
+                });
+                break;
+            case "high":
+                this.setState({
+                    investmentRange: {
+                        lowBound: 250000000,
+                        highBound: INFINITY
+                    }
+                });
+                break;
+            default:
+                this.setState({
+                    investmentRange: {
+                        lowBound: 0,
+                        highBound: INFINITY
+                    }
+                });
+                break;
+        }
 
     }
 
@@ -73,7 +109,7 @@ export class Filters extends React.Component {
                                     this.setState({
                                         rangeRadioValue: "none",
                                         investmentRange: {
-                                            highBound:this.state.investmentRange.highBound,
+                                            highBound: this.state.investmentRange.highBound,
                                             lowBound: parseInt(e.target.value) || 0
                                         }
 
@@ -91,7 +127,7 @@ export class Filters extends React.Component {
                                             rangeRadioValue: "none",
                                             investmentRange: {
                                                 highBound: parseInt(e.target.value) || 0,
-                                                lowBound:this.state.investmentRange.lowBound
+                                                lowBound: this.state.investmentRange.lowBound
                                             }
                                         })
                                     }
