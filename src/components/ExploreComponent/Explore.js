@@ -6,6 +6,9 @@ import './css/Explore.css';
 import { MemoryRouter, Route, Link } from 'react-router-dom';
 import { Pagination, PaginationItem } from '@material-ui/lab';
 
+import { orange } from '@material-ui/core/colors';
+import SearchIcon from '@material-ui/icons/Search';
+
 export class Explore extends React.Component {
     constructor(props) {
         super(props)
@@ -54,6 +57,10 @@ export class Explore extends React.Component {
         return (
             <div className="mainView">
                 <div className="searchResults">
+                <SearchIcon style={{ color: orange[900],  fontSize: 60}} />
+                <h4 className="titulo">
+                    Explorar
+                </h4><br/><br/><br/>
                     <div className="itemArea">
                         {itemList}
                     </div>

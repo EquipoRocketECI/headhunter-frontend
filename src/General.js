@@ -29,6 +29,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import FormatListNumberedRoundedIcon from '@material-ui/icons/FormatListNumberedRounded';
 import { Filters } from './components/FiltersComponent/Filters';
+import {IdeasDestacadas} from './components/destacadas/IdeasDestacadas';
 
 
 
@@ -145,6 +146,13 @@ export default function PersistentDrawerLeft() {
 
     const [currentLoginView, setCurrentLoginView] = React.useState(localStorage.getItem('currentLoginView'));
     const [loadedItems,setLoadedItems] = React.useState(stubPages);
+    const [ideas, setIdeas] = React.useState([
+        {
+          "comentario":"Cambien el color de producto",
+          "usuario":"Jose15.com",
+          "calificacion":4
+        }
+      ]);
 
     //---------------------------------------------------------------------------------------
     // SERVICE ACCESS
@@ -249,18 +257,7 @@ export default function PersistentDrawerLeft() {
     );
 
     const GeneralView = () => (
-        <div>
-            <Paper  className="paperGeneral" elevation={20}>
-                <Typography variant="h3" >¡Bienvenido a HeadHunter!</Typography>
-                <Typography variant="body1" gutterBottom>
-                    <br/>
-                    HeadHunter es una plataforma para emprendedores que buscan ayuda financiera y logística para convertir sus ideas en realidad.     
-                        <br/>
-                    Aquí puedes publicar tus ideas que requieran fondos y/o personal o tambien puedes buscar y apoyar ideas que te parezcan merecedoras en cualquiera de las categorias que tenemos disponibles.
-                        
-                </Typography>
-            </Paper >
-        </div>
+        <IdeasDestacadas/>
     );
 
 

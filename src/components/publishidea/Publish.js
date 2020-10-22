@@ -20,11 +20,14 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 
+import { orange } from '@material-ui/core/colors';
+
 import {
     MuiPickersUtilsProvider,
     KeyboardDatePicker
   } from '@material-ui/pickers';
  
+import PublishIcon from '@material-ui/icons/Publish';
 
 
   const classes = makeStyles((theme) => ({
@@ -281,10 +284,11 @@ export class Publish extends React.Component{
     render(){
         return (
             <Router>
+                <PublishIcon style={{ color: orange[900],  fontSize: 60}} />
+                <h4 className="titulo">
+                    Publica tu idea/proyecto
+                </h4><br/><br/><br/>
             <Paper className="paperPublish" elevation={20}>
-                <ThemeProvider theme={theme}>
-                    <Typography variant="h3" >Publica tu idea/proyecto</Typography>
-                </ThemeProvider>
                     <br/>
                     <form onSubmit={this.handleSubmit} className="form">
                             <Typography variant="h5" >Selecciona una categoría para clasificar tu proyecto:</Typography>
