@@ -2,6 +2,8 @@ import React from 'react';
 import { List, ListItem, Divider, FormGroup, FormControlLabel, Checkbox, RadioGroup, Radio, TextField, InputAdornment, Typography } from '@material-ui/core';
 import './css/filters.css';
 
+import { orange } from '@material-ui/core/colors';
+
 export class Filters extends React.Component {
     constructor(props) {
         super(props);
@@ -33,7 +35,8 @@ export class Filters extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <Typography variant="h4" align="center">Filtros</Typography>
+                <br/><br/>
+                <Typography variant="h4" align="center"  style={{ color: orange[900] }}>Filtros</Typography>
                 <List onChange={this.props.getSelectedFilters(this.state)} className="filters">
                     <ListItem className="investmentFilter">
                         <Typography variant="h5">Inversión deseada</Typography>

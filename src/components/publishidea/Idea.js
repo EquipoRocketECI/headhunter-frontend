@@ -20,7 +20,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import StarIcon from '@material-ui/icons/Star';
 
 import { createMuiTheme, ThemeProvider,withStyles ,makeStyles} from '@material-ui/core/styles';
-
+import { orange } from '@material-ui/core/colors';
 
 
 import {format, parseISO} from "date-fns";
@@ -28,6 +28,8 @@ import TabPanelInteractuar from './Interactuar/TabPanelInteractuar';
 import TabPanelInteracHechas from './Interactuar/VerPrevias/TabPanelInteracHechas';
 
 import img from "./img/PLACEHOLDERTHUMBNAIL.jpg";
+
+import WbIncandescentOutlinedIcon from '@material-ui/icons/WbIncandescentOutlined';
 
 
 function getSteps() {
@@ -254,13 +256,16 @@ export class Idea extends React.Component {
         
         return (
           <div >
+            <WbIncandescentOutlinedIcon gutterBottom variant="h3" style={{ color: orange[900],  fontSize: 60}} />
+            <h4 className="titulo">
+              {this.state.idea.nombre} 
+            </h4>
+            <br/><br/>
             <Paper className="paperIdea" elevation={10}>
                 <ThemeProvider theme={theme}>
                     <Grid container alignItems="center">
                         <Grid item xs>        
-                            <Typography gutterBottom variant="h3">
-                                  {this.state.idea.nombre} 
-                            </Typography>
+                            
                         </Grid>
                         <Grid item >
                             <Typography gutterBottom variant="h6">
@@ -286,7 +291,7 @@ export class Idea extends React.Component {
 
                     <Typography gutterBottom variant="h5">
                             
-                            de  {this.state.idea.propietario}
+                            De:  {this.state.idea.propietario}
                     </Typography>
 
                     <Stepper alternativeLabel activeStep={this.activeStep} connector={<ColorlibConnector />}>
