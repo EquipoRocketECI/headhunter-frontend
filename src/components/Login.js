@@ -6,6 +6,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import './Login.css';
+//import { SHA256 } from './sha256';
 import Link from "@material-ui/core/Link";
 
 
@@ -56,11 +57,12 @@ export class Login extends React.Component {
                         </FormControl>
 
                         <Button
+                            
                             type="submit"
                             fullWidth
                             variant="contained"
                             className="blue"
-                            
+                                                
                             >
                             Ingresar
                         </Button>
@@ -79,22 +81,24 @@ export class Login extends React.Component {
         this.setState({ password: e.target.value })
     }
 
+
     handleSubmit(e) {  
 
         e.preventDefault();
-
+        var sha256 = require('js-sha256');
         var path = "https://mysterious-refuge-36454.herokuapp.com/usuario/" + this.state.username;
-        
 
+        var hash = sha256(this.state.password);
 
         fetch(path)
             .then(response => response.json())
             .then(usuario => {
-                if (usuario.contrasena == this.state.password) {
+                if (usuario.contrasena == hash) {
                     localStorage.setItem('logout', 'si');
+                    window.location.reload();
                 }
                 else {
-                    alert("Contraseña incorrecta");
+                    alert("Usuario o contraseña incorrectos");
                 }
             }).catch(error => alert('Usuario no econtrado'));;
     }
@@ -102,4 +106,6 @@ export class Login extends React.Component {
     handleClick(e){
         localStorage.setItem("recordar", true)
     }
+
+    
 }
