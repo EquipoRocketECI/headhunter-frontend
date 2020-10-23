@@ -29,11 +29,12 @@ export class SignIn extends React.Component {
     sendJSON(event) {
 
         event.preventDefault();
-
+        var sha256 = require('js-sha256');
+        var hash = sha256(this.state.password);
         var data = {
             "correo": this.state.username,
-            "contrasena": this.state.password,
-            "nombrecompleto": this.state.nombres +" "+ this.state.apellidos 
+            "contrasena": hash.toString(),
+            "nombrecompleto": this.state.nombres + " " + this.state.apellidos
         };
 
         fetch('https://mysterious-refuge-36454.herokuapp.com/usuario', {
@@ -41,18 +42,25 @@ export class SignIn extends React.Component {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
         })
-            .then(response => response.json())
 
-            .catch(error => alert("nombre de usuario ya tomado"))
-            .then(response => { localStorage.setItem('currentLoginView', 'Login') });
+            .then(function (response) {
+                if (response.ok) {
+                    alert("Usuario creado correctamemnte")
+                    window.location.reload();
+                } else {
+                    alert("Nombre de usuario ya existente")
+                    window.location.reload();
+                }
+            })
     }
 
     render() {
+        
         return (
             <Paper className="paper" elevation={20}>
                 <div>
                     <Typography variant="h4">Registrarse</Typography>
-                    <form className="form">
+                    <form className="form" >
                         <FormControl margin="normal" required fullWidth>
                             <InputLabel htmlFor="nombres">Nombres</InputLabel>
                             <Input id="nombres" name="nombres" autoComplete="nombres" value={this.state.nombres}
