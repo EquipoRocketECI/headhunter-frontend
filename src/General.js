@@ -174,8 +174,14 @@ export default function PersistentDrawerLeft() {
             var R = [];
             for (var i = 0; i < data.length; i += size)
               R.push(data.slice(i, i + size));
-            
-              exploreRef.current.loadItems(R);
+
+                if(exploreRef.current!=null){
+                    if(R.length===0)
+                        R.push([]);
+                    exploreRef.current.loadItems(R);
+                }
+                    
+                
             });
         //preparar categorías, request debería ser categoria:[<lista de categorias seleccionadas>]
     }
