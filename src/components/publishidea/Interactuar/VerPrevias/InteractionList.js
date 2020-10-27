@@ -30,9 +30,12 @@ export class InteractionList extends React.Component {
                 Calificación: {interaction.calificacion}
               </h4>
 
-              <h4 className="calificacion">
-                Monto: {interaction.monto}
-              </h4>
+              <div style={{display: interaction.monto != 0 ? 'block' : 'none' }}>
+                <h4 className="calificacion">
+                  Monto: {interaction.monto}
+                </h4>
+              </div>
+              
             </CardContent>
             </div> 
 

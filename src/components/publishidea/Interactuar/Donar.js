@@ -49,35 +49,43 @@ export class Donar extends React.Component {
 
     sendJSON(event) {
 
-        var tipo = "";
+        event.preventDefault();
 
-        if (this.props.tipo == "0"){
-            tipo = "comentario"
-        } else if (this.props.tipo == "1"){
-            tipo = "donacion"
-        } else if (this.props.tipo == "2"){
-            tipo = "inversion"
+        if (localStorage.getItem('logout') === 'si'){
+
+            var tipo = "";
+
+            if (this.props.tipo == "0"){
+                tipo = "comentario"
+            } else if (this.props.tipo == "1"){
+                tipo = "donacion"
+            } else if (this.props.tipo == "2"){
+                tipo = "inversion"
+            }
+
+            var dataa = {
+                tipo: tipo,
+                monto: this.state.monto,
+                comentario: this.state.comentario,
+                calificacion: this.state.calificacion,
+                idea: this.props.idea,
+                usuario: localStorage.getItem("username")
+            };
+
+
+
+            fetch('https://mysterious-refuge-36454.herokuapp.com/interaccion', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json' },
+                body: JSON.stringify(dataa)
+            })
+            .then(response => response.json())
+
+            this.handleChange(event);
         }
-
-        var dataa = {
-            tipo: tipo,
-            monto: this.state.monto,
-            comentario: this.state.comentario,
-            calificacion: this.state.calificacion,
-            idea: this.props.idea,
-            usuario: "diego.com"
-        };
-
-
-
-        fetch('https://mysterious-refuge-36454.herokuapp.com/interaccion', {
-            method: 'POST',
-			headers: {'Content-Type': 'application/json' },
-            body: JSON.stringify(dataa)
-        })
-        .then(response => response.json())
-
-        this.handleChange(event);
+        else {
+            alert('Debe estar logueado para poder donar')
+        }
     }
 
     render() {
@@ -101,11 +109,12 @@ export class Donar extends React.Component {
                         variant="outlined"
                     />
 
+                </FormControl>
+
                     <br></br>
                     <Typography variant="h6" >Calificación</Typography>
-                    <FormControl component="fieldset" onChange={this.handleChangeCalificacion} component="fieldset">
 
-                        <RadioGroup row id="calificacion" aria-label="position" name="quiz" value={this.state.calificacion}>
+                    <RadioGroup row id="calificacion" aria-label="position" value={this.state.calificacion} onChange={this.handleChangeCalificacion}>
                             <FormControlLabel value="1" control={<Radio />} label="1" />
                             <FormControlLabel value="2" control={<Radio />} label="2" />
                             <FormControlLabel value="3" control={<Radio />} label="3" />
@@ -113,9 +122,7 @@ export class Donar extends React.Component {
                             <FormControlLabel value="5" control={<Radio />} label="5" />
                         </RadioGroup>
 
-                    </FormControl>
-
-                    <FormControl>
+                    <FormControl required fullWidth>
                         <InputLabel >Monto</InputLabel>
                             <Select labelId="monto" 
                                     id="monto" 
@@ -130,7 +137,7 @@ export class Donar extends React.Component {
                             </Select>
                     </FormControl>
 
-                     <br></br>
+                    <br/><br/>
                     <Button
                         type="submit"
                         size = "small"
@@ -140,7 +147,7 @@ export class Donar extends React.Component {
                         Enviar
                     </Button>
 
-                </FormControl>
+                
 
             </form>
             
