@@ -6,14 +6,12 @@ import './css/Explore.css';
 import { MemoryRouter, Route, Link } from 'react-router-dom';
 import { Pagination, PaginationItem } from '@material-ui/lab';
 
-import { orange } from '@material-ui/core/colors';
-import SearchIcon from '@material-ui/icons/Search';
-
 export class Explore extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            items: this.props.pages[0],
+            allItems:[[]],
+            items: [],
             page: 1,
             currentSearch: "",
             selectedFilters: {}
@@ -29,6 +27,15 @@ export class Explore extends React.Component {
 
     }
 
+    loadItems(items){
+        console.log(items);
+        this.setState({
+            allItems:items,
+            items:items[0],
+            page:1
+        })
+    }
+
     getPageData() {
         //mirar que filtros están seleccionados
         //de acuerdo con eso invocar métodos adecuados para buscar en el backend -->ahora se hace en general.js
@@ -36,10 +43,11 @@ export class Explore extends React.Component {
         //fijar estado --> como aparece abajo.
 
 
+
         //Eventualmente cargará datos del backend
         this.setState({
-            items: this.props.pages[this.state.page - 1],
-            totalPages: this.props.pages.length
+            items: this.state.allItems[this.state.page - 1],
+            totalPages: this.state.allItems.length
         })
     }
 
@@ -57,10 +65,6 @@ export class Explore extends React.Component {
         return (
             <div className="mainView">
                 <div className="searchResults">
-                <SearchIcon style={{ color: orange[900],  fontSize: 60}} />
-                <h4 className="titulo">
-                    Explorar
-                </h4><br/><br/><br/>
                     <div className="itemArea">
                         {itemList}
                     </div>
