@@ -6,6 +6,9 @@ import { SignIn } from './components/SignIn';
 import { Publish } from './components/publishidea/Publish';
 import { Idea } from './components/publishidea/Idea';
 import { Editar } from './components/publishidea/Editar/Editar';
+import { Perfil} from './components/Perfil/Perfil';
+import { EditarPerfil} from './components/Perfil/EditarPerfil';
+
 import { Button, Paper, Typography } from '@material-ui/core';
 
 import logo from './img/Logoo.png';
@@ -280,6 +283,13 @@ export default function PersistentDrawerLeft() {
         <IdeasDestacadas />
     );
 
+    const PerfilView = () => (
+        <Perfil />
+    );
+
+    const EditarPerfilView = () => (
+        <EditarPerfil />
+    );
 
 
     return (
@@ -384,13 +394,14 @@ export default function PersistentDrawerLeft() {
 
                         <div className="main">
                             <Route path="/publish" component={PublishView} />
-
-
                             <Route path="/explore" component={ExploreView} />
                             <Route path="/payment" component={PaymentView} />
                             <Route path="/idea" component={IdeaView} />
                             <Route exact path="/" component={GeneralView} />
                             <Route path="/editar" component={EditarView} />
+                            <Route path="/perfil" component={PerfilView} />
+                            <Route path="/editarPerfil" component={EditarPerfilView} />
+                            
                         </div>
                     </div>
 

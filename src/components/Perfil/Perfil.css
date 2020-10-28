@@ -1,0 +1,19 @@
+.paperPerfil {
+    
+    align-items: left;
+    padding: 20px 15px;
+    margin-right: 0%;
+    margin-left: 0%;
+    text-align: left;
+}
+
+.main {
+    grid-area: main;
+    padding: 3% 3%;
+    text-align: left;
+}
+
+.calificacion {
+
+    text-align: right;
+}
