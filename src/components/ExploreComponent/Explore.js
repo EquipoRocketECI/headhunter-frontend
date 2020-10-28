@@ -56,8 +56,8 @@ export class Explore extends React.Component {
             return (<Item
                 key={i}
                 image={item.image}
-                name={item.name}
-                description={item.description}
+                name={item.nombre}
+                description={item.descripcion}
             />);
 
         });
