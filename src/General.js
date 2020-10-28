@@ -228,7 +228,6 @@ export default function PersistentDrawerLeft() {
             <Logueado/>
             <Button className="sing"
                 onClick={() => { setCurrentLoginView("Login") }}>
-                location.reload();
             </Button>
         </div>
     );

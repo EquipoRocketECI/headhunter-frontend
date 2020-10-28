@@ -39,33 +39,45 @@ export class Comentar extends React.Component {
 
     sendJSON(event) {
         
+        event.preventDefault();
 
-        var tipo = "";
+        if (localStorage.getItem('logout') === 'si'){
 
-        if (this.props.tipo == "0"){
-            tipo = "comentario"
-        } else if (this.props.tipo == "1"){
-            tipo = "donacion"
-        } else if (this.props.tipo == "2"){
-            tipo = "inversion"
+            var tipo = "";
+
+            if (this.props.tipo == "0"){
+                tipo = "comentario"
+            } else if (this.props.tipo == "1"){
+                tipo = "donacion"
+            } else if (this.props.tipo == "2"){
+                tipo = "inversion"
+            }
+
+            var dataa = {
+                "tipo": tipo,
+                "monto": "0",
+                "comentario": this.state.comentario,
+                "calificacion": this.state.calificacion,
+                "idea": this.props.idea,
+                "usuario": localStorage.getItem("username")
+            };
+
+
+            fetch('https://mysterious-refuge-36454.herokuapp.com/interaccion', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json' },
+                body: JSON.stringify(dataa)
+            })
+            .then(response => {
+                response.json()
+                window.location.reload()
+            })
+
+        }
+        else {
+            alert('Debe estar logueado para poder comentar')
         }
 
-        var dataa = {
-            "tipo": tipo,
-            "monto": "0",
-            "comentario": this.state.comentario,
-            "calificacion": this.state.calificacion,
-            "idea": this.props.idea,
-            "usuario": "diego.com"
-        };
-
-
-        fetch('https://mysterious-refuge-36454.herokuapp.com/interaccion', {
-            method: 'POST',
-			headers: {'Content-Type': 'application/json' },
-            body: JSON.stringify(dataa)
-        })
-        .then(response => response.json())
 
     }
 
@@ -90,13 +102,14 @@ export class Comentar extends React.Component {
                         variant="outlined"
                         />
 
+                    </FormControl>
 
                     <br></br>
 
                     <Typography variant="h6" >Calificación</Typography>
-                    <FormControl component="fieldset" onChange={this.handleChangeCalificacion} component="fieldset">
+                    
 
-                        <RadioGroup row id="calificacion" aria-label="position" name="quiz" value={this.state.calificacion}>
+                        <RadioGroup row id="calificacion" aria-label="position" value={this.state.calificacion} onChange={this.handleChangeCalificacion}>
                             <FormControlLabel value="1" control={<Radio />} label="1" />
                             <FormControlLabel value="2" control={<Radio />} label="2" />
                             <FormControlLabel value="3" control={<Radio />} label="3" />
@@ -104,7 +117,7 @@ export class Comentar extends React.Component {
                             <FormControlLabel value="5" control={<Radio />} label="5" />
                         </RadioGroup>
 
-                    </FormControl>
+                    
 
                      <br></br>
                     <Button
@@ -116,8 +129,6 @@ export class Comentar extends React.Component {
                         >
                         Enviar
                     </Button>
-
-                </FormControl>
 
             </form>
             

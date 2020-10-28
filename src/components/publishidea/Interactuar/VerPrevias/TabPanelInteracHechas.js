@@ -48,24 +48,48 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+function getQueryVariable(variable)
+  {
+        var query = window.location.search.substring(1);
+        console.log(query)
+        var vars = query.split("&");
+        console.log(vars) 
+        for (var i=0;i<vars.length;i++) {
+                    var pair = vars[i].split("=");
+                    console.log(pair)
+        if(pair[0] == variable){return pair[1];}
+         }
+         return(false);
+  }
+
+let idea = {};
+
+const startItems = () => {
+   
+  const id = getQueryVariable('id');
+  var path = "http://mysterious-refuge-36454.herokuapp.com/ideas/"+id;
+
+  fetch(path)
+    .then(response => response.json())
+    .then(newidea => {
+      idea=newidea;
+    }).catch(error => console.error('Error:', error));;
+}
+
 export default function TabPanelInteracHechas() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-  const [interac, setInterac] = React.useState([
-    {
-      "comentario":"Cambien el color de producto",
-      "usuario":"Jose15.com",
-      "calificacion":4
-    }
-  ]);
+  const [interac, setInterac] = React.useState([]);
+
+  startItems();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-    componentDidMount(newValue);
+    componentDidMount(event, newValue);
   };
 
-  const componentDidMount = (newValue) => {
-    var path = "https://mysterious-refuge-36454.herokuapp.com/interaccion/byIdeaAndTipo/1";
+  const componentDidMount = (event, newValue) => {
+    var path = "https://mysterious-refuge-36454.herokuapp.com/interaccion/byIdeaAndTipo/"+getQueryVariable('id');
     if (newValue === 0){
       path = path+"/comentario"
     } else if (newValue === 1){
@@ -74,11 +98,12 @@ export default function TabPanelInteracHechas() {
       path = path+"/inversion"
     }
 
+    let usersList = [];
+
     fetch(path)
       .then(response => response.json())
       .then(data => {
 
-        let usersList = [];
           data.map((interaction,i) => {
             usersList.push({
             "comentario":interaction.comentario,
@@ -105,13 +130,30 @@ export default function TabPanelInteracHechas() {
         <InteractionList interactionList={interac}/>
       </TabPanel>
 
+      <div style={{display: idea.pequenasdonaciones ? 'block' : 'none' }}>
       <TabPanel value={value} index={1}>
         <InteractionList interactionList={interac}/>
       </TabPanel>
+      </div>
 
-      <TabPanel value={value} index={2}>
-        <InteractionList interactionList={interac}/>
-      </TabPanel>
+      <div style={{display: !idea.pequenasdonaciones ? 'block' : 'none' }}>
+        <TabPanel value={value} index={1}>
+          Este proyecto no tiene Donaciones
+        </TabPanel>
+      </div>
+
+      <div style={{display: idea.grandesinversiones ? 'block' : 'none' }}>
+        <TabPanel value={value} index={2}>
+          <InteractionList interactionList={interac}/>
+        </TabPanel>
+      </div>
+
+      <div style={{display: !idea.grandesinversiones ? 'block' : 'none' }}>
+        <TabPanel value={value} index={2}>
+          Este proyecto no tiene Inversiones
+        </TabPanel>
+      </div>
+
     </div>
   );
 }

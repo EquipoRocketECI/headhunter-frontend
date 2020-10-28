@@ -50,9 +50,39 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+let idea = {};
+
+const startItems = () => {
+   
+  const id = getQueryVariable('id');
+  var path = "http://mysterious-refuge-36454.herokuapp.com/ideas/"+id;
+
+  fetch(path)
+    .then(response => response.json())
+    .then(newidea => {
+      idea=newidea;
+    }).catch(error => console.error('Error:', error));
+}
+
+function getQueryVariable(variable)
+  {
+        var query = window.location.search.substring(1);
+        console.log(query)
+        var vars = query.split("&");
+        console.log(vars) 
+        for (var i=0;i<vars.length;i++) {
+                    var pair = vars[i].split("=");
+                    console.log(pair)
+        if(pair[0] == variable){return pair[1];}
+         }
+         return(false);
+  }
+
 export default function TabPanelInteractuar() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+
+  startItems();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -69,14 +99,33 @@ export default function TabPanelInteractuar() {
       </AppBar>
 
       <TabPanel value={value} index={0}>
-        <Comentar idea="1" tipo={value}/>
+        <Comentar idea={getQueryVariable('id')}  tipo={value}/>
       </TabPanel>
-      <TabPanel value={value} index={1}>
-        <Donar idea="1" tipo={value}/>
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <Invertir idea="1" tipo={value}/>
-      </TabPanel>
+
+      <div style={{display: idea.pequenasdonaciones ? 'block' : 'none' }}>
+        <TabPanel value={value} index={1}>
+          <Donar idea={getQueryVariable('id')} tipo={value}/>
+        </TabPanel>
+      </div>
+
+      <div style={{display: !idea.pequenasdonaciones ? 'block' : 'none' }}>
+        <TabPanel value={value} index={1}>
+          Este proyecto no solicita Donaciones
+        </TabPanel>
+      </div>
+
+      <div style={{display: idea.grandesinversiones ? 'block' : 'none' }}>
+        <TabPanel value={value} index={2}>
+          <Invertir idea={getQueryVariable('id')} tipo={value}/>
+        </TabPanel>
+      </div>
+
+      <div style={{display: !idea.grandesinversiones ? 'block' : 'none' }}>
+        <TabPanel value={value} index={2}>
+          Este proyecto no solicita Inversiones
+        </TabPanel>
+      </div>
+
     </div>
   );
 }
