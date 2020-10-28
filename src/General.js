@@ -234,8 +234,8 @@ export default function PersistentDrawerLeft() {
         <div>
             <SignIn />
             <Button className="sing"
-                onClick={() => { setCurrentLoginView("Login") }}>
-                Inscribirse
+                onClick={()=>{setCurrentLoginView("Login")}}>
+                Iniciar Sesion
             </Button>
         </div>
     );
@@ -245,7 +245,7 @@ export default function PersistentDrawerLeft() {
             <Logueado />
             <Button className="sing"
                 onClick={() => { setCurrentLoginView("Login") }}>
-
+                location.reload();
             </Button>
         </div>
     );
