@@ -24,7 +24,7 @@ export class Item extends React.Component {
 
                 </CardContent>
                 <CardActions>
-                    <Button href="/idea">VER MÁS</Button>
+                    <Button href={"/idea?id="+this.props.id}>VER MÁS</Button>
                 </CardActions>
             </Card>
 
