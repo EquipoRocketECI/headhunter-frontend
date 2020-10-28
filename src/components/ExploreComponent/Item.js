@@ -13,7 +13,7 @@ export class Item extends React.Component {
         const img = require.context('./img', true);
         return (
             <Card color="primary" className="cardRoot">
-                <CardMedia className="cardMedia" image={img(`./${this.props.image}`)} title="placeholder" />
+                <CardMedia className="cardMedia" image={img(`./${"PLACEHOLDERTHUMBNAIL.jpg"/* this.props.image */}`)} title="placeholder" />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
                         {this.props.name}

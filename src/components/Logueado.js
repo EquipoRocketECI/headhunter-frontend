@@ -12,8 +12,8 @@ import ListItemText from "@material-ui/core/ListItemText";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import List from '@material-ui/core/List';
-
-
+import MailIcon from '@material-ui/icons/Mail';
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
 
 
 export class Logueado extends React.Component {
@@ -50,12 +50,35 @@ export class Logueado extends React.Component {
                                 <ListItemText primary={this.state.username.nombrecompleto}/>
                             </ListItem>
                             <ListItem>
-                                <AccountCircleIcon />
+                                <MailIcon />
                                 <ListItemText primary={localStorage.getItem('username')} />
                             </ListItem>
                         </List>
 
                         <div>
+                            <Button 
+                                    href="/perfil"
+                                    type="submit"
+                                    fullWidth
+                                    variant="contained"
+                                    className="blue"
+                                >
+                                    <AccountCircleIcon />
+                                Mi perfil
+
+                            </Button>
+
+                            <Button 
+                                    href="/editarPerfil"
+                                    type="submit"
+                                    fullWidth
+                                    variant="contained"
+                                    className="blue"
+                                >
+                                    <VpnKeyIcon />
+                                Cambiar Contraseña
+
+                            </Button>
 
                             <Button className="logout"
                                 href="/"

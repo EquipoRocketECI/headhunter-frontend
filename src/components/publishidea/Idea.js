@@ -10,7 +10,7 @@ import { yellow } from '@material-ui/core/colors';
 
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import moment from 'moment'
+import moment from 'moment';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
