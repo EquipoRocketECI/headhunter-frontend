@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import CardContent from '@material-ui/core/CardContent';
 import Card from '@material-ui/core/Card';
-import {  Stepper, Step, StepLabel, StepConnector} from '@material-ui/core';
+import {  Stepper, Step, StepLabel, StepConnector, CardActions, Button} from '@material-ui/core';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -137,7 +137,8 @@ export class IdeasDestacadas extends React.Component {
             "calificacion":idea.calificacion,
             "propietario":idea.propietario,
             "fase":idea.fase,
-            "activeStep":this.activeStep
+            "activeStep":this.activeStep,
+            "id": idea.id
           })
         });
         this.setState({ ideas: ideaList });
@@ -182,6 +183,10 @@ export class IdeasDestacadas extends React.Component {
                 <h4 className="propietario">
                   De: {idea.propietario}
                 </h4>
+
+                <CardActions>
+                    <Button href={"/idea?id="+idea.id}>VER MÁS</Button>
+                </CardActions>
 
               </CardContent>
             </div> 

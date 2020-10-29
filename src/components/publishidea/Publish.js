@@ -22,6 +22,8 @@ import DateFnsUtils from '@date-io/date-fns';
 
 import { orange } from '@material-ui/core/colors';
 
+import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff';
+
 import {
     MuiPickersUtilsProvider,
     KeyboardDatePicker
@@ -307,7 +309,7 @@ export class Publish extends React.Component{
                                     <MenuItem value={'Gastronomia'}>Gastronomia</MenuItem>
                                     <MenuItem value={'Moda'}>Moda</MenuItem>
                                     <MenuItem value={'Tecnología'}>Tecnología</MenuItem>
-                                </Select>
+                                </Select><br/><br/><br/>
     
                 
                             </FormControl>
@@ -323,7 +325,7 @@ export class Publish extends React.Component{
                                         selected={this.state.idea.nombre}
                                     />
                             </FormControl>
-                            <br/>
+                            <br/><br/><br/><br/>
                             <Typography variant="h5">Descríbela:  </Typography>
                             <FormControl margin="dense" required fullWidth>
                                 <InputLabel htmlFor="descripcion">Descripción</InputLabel>
@@ -333,7 +335,7 @@ export class Publish extends React.Component{
                                         onChange={this.handleDescription}
                                         selected={this.state.idea.descripcion}
                                     />
-                            </FormControl>
+                            </FormControl><br/><br/><br/><br/>
 
                             <Typography variant="h5">¿Tienes alguna imagen o logo que represente tu idea? ¡Súbela!  </Typography>
                             <FormControl margin="dense" required fullWidth>
@@ -358,7 +360,7 @@ export class Publish extends React.Component{
                                         </IconButton>
                                     </label>
                                 </div>
-                            </FormControl>
+                            </FormControl><br/><br/><br/>
                             
                             <FormControl component="fieldset" >
                             <Typography variant="h5">¿Qué estas buscando para tu proyecto?</Typography>
@@ -420,6 +422,7 @@ export class Publish extends React.Component{
                             </FormControl>
                         
                         <div style={{display: this.state.idea.pequenasdonaciones? 'block' : 'none' }}>
+                            <br/><br/><br/>
                             <Typography variant="h5">¿Qué incentivos le quieres dar a las personas que te donen? </Typography>
                             <FormControl  component="fieldset"> 
                                 <FormGroup>
@@ -459,6 +462,7 @@ export class Publish extends React.Component{
                         </div> 
                         
                         <div style={{display: this.state.idea.expertospersonal ? 'block' : 'none' }}>
+                            <br/><br/><br/>
                             <Typography variant="h5" >¿En que áreas necesitas expertos o personal?</Typography>
                                 <FormControl  margin="dense" required fullWidth>                                                               
                                     <FormGroup row>
@@ -509,6 +513,7 @@ export class Publish extends React.Component{
                         </div> 
 
                         <div style={{display: this.state.idea.pequenasdonaciones || this.state.idea.grandesinversiones ? 'block' : 'none' }}>
+                            <br/><br/><br/>
                             <Typography variant="h5">Define un monto limite: </Typography>
                             <FormControl margin="dense" required fullWidth>
                             
@@ -523,7 +528,7 @@ export class Publish extends React.Component{
                                     }}
                                 />
                             </FormControl>
-                        </div> 
+                        </div><br/><br/><br/>
 
                             <Typography variant="h5">Define una fecha limite para reunir lo que necesitas:</Typography>
                             <FormControl margin="dense" required fullWidth>
@@ -544,7 +549,7 @@ export class Publish extends React.Component{
                                             }}
                                             />
                                 </MuiPickersUtilsProvider>
-                            </FormControl>
+                            </FormControl><br/><br/><br/>
                             <Button
                             type="submit"
                             fullWidth
@@ -553,7 +558,8 @@ export class Publish extends React.Component{
                             className="submit"
                             onClick={this.handleSubmit}
                             >
-                                Publicar Idea
+                            <FlightTakeoffIcon/>
+                                HAZ VOLAR TU IDEA
                             </Button>
                     </form> 
             </Paper>      

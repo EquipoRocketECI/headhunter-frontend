@@ -14,6 +14,8 @@ import ChildFriendlyIcon from '@material-ui/icons/ChildFriendly';
 import { yellow } from '@material-ui/core/colors';
 import clsx from 'clsx';
 
+import InteractionListByUser from './InteractionListByUser'
+
 function getSteps() {
     return ['En Gestación', 'Destacada', 'Consolidada'];
   }
@@ -219,9 +221,35 @@ export class Perfil extends React.Component {
 
 
     starInteracciones(){
-             /*
-                FETCH PARA GET-INTERACCIONES-POR-USUARIO
-            */ 
+
+        var path = "http://mysterious-refuge-36454.herokuapp.com/interaccion/byUser/" + localStorage.getItem('username');
+
+        let interactionList = [];
+
+        fetch(path)
+          .then(response => response.json())
+          .then(data => {
+
+            data.map((interaction) => {
+
+              var ideaNombre = "";
+
+              fetch("http://mysterious-refuge-36454.herokuapp.com/ideas/"+interaction.idea)
+              .then(response => response.json())
+              .then(data => {
+                ideaNombre = data.nombre;
+
+                interactionList.push({
+                  "comentario": interaction.comentario,
+                  "ideaNombre": ideaNombre,
+                  "calificacion": interaction.calificacion,
+                  "monto": interaction.monto,
+                  "tipo": interaction.tipo
+                });
+              });
+            });
+            this.setState({ interacciones : interactionList}) 
+          });
 
     }
 
@@ -290,47 +318,18 @@ export class Perfil extends React.Component {
                     )
                     )}
                 </TabPanel>
+
+                <div style={{display: (localStorage.getItem('username') != "" ) ? 'block' : 'none' }}>
+                  <TabPanel value={this.state.value} index={1}>
+                    <InteractionListByUser interactionList={this.state.interacciones}/>
+                  </TabPanel>
+                </div>
+
+                <div style={{display: (localStorage.getItem('username') == "" ) ? 'block' : 'none' }}>
                 <TabPanel value={this.state.value} index={1}>
-                {this.state.interacciones.map((interaccion)=>(
-                        <Card className={classes.root}>
-                        <div className={classes.details}>
-                            <CardContent className={classes.content}>
-                                <Typography component="h5" variant="h5">
-                                    <Grid container alignItems="center">
-                                        <Grid item xs>        
-                                            {interaccion.comentario}
-                                        </Grid>
-                                        <Grid item >
-                                            
-                                                {interaccion.calificacion==0?"(Sin calificaciones)":interaccion.calificacion.toFixed(1)}
-                                                    <StarIcon  style={{ color: yellow[500] }} />
-
-                                        </Grid>
-                                    </Grid>
-                                </Typography>
-                                <Typography variant="subtitle1" color="textSecondary">
-                                    {interaccion.tipo}
-                                </Typography>
-
-                                <div style={{display: interaccion.tipo==="donacion" || interaccion.tipo==="inversion" ? 'block' : 'none' }}>
-                                    <Typography component="h5" variant="h5">                                    
-                                        Monto: ${interaccion.monto}
-                                     </Typography>
-                                </div> 
-                        
-
-                            </CardContent>
-                            <CardActions>
-                                <Button size="small" color="primary" href={"/idea?id="+interaccion.idea}>
-                                    Ir a la idea
-                                </Button>
-                            </CardActions>
-                        </div>
-                        
-                      </Card>
-                    )
-                    )}
-                </TabPanel>
+                  Inicie sesion para ver sus interacciones
+                  </TabPanel>
+                </div>
               
           </div>
   
