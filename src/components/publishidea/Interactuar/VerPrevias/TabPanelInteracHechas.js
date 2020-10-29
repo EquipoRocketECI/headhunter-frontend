@@ -109,7 +109,10 @@ export default function TabPanelInteracHechas() {
             "comentario":interaction.comentario,
             "usuario":interaction.usuario,
             "calificacion": interaction.calificacion,
-            "monto": interaction.monto
+            "monto": interaction.monto,
+            "tipo": interaction.tipo,
+            "usuario": interaction.usuario,
+            "interaccionId": interaction.id
           })
         });
         setInterac(usersList)

@@ -248,7 +248,9 @@ export class Perfil extends React.Component {
                   "ideaNombre": ideaNombre,
                   "calificacion": interaction.calificacion,
                   "monto": interaction.monto,
-                  "tipo": interaction.tipo
+                  "tipo": interaction.tipo,
+                  "usuario": interaction.usuario,
+                  "interaccionId": interaction.id
                 });
               });
             });
