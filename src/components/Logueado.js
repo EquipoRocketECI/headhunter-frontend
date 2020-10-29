@@ -76,7 +76,7 @@ export class Logueado extends React.Component {
                                     className="blue"
                                 >
                                     <VpnKeyIcon />
-                                Cambiar Contraseña
+                                Editar perfil
 
                             </Button>
 

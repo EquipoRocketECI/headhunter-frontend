@@ -3,7 +3,8 @@
     "",
     "\\src",
     "\\src\\components",
-    "\\src\\components\\publishidea"
+    "\\src\\components\\publishidea",
+    "\\src\\components\\publishidea\\Interactuar"
   ],
   "SelectedNode": "\\src\\components\\Login.js",
   "PreviewInSolutionExplorer": false
