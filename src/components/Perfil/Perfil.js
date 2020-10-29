@@ -16,6 +16,10 @@ import clsx from 'clsx';
 
 import InteractionListByUser from './InteractionListByUser'
 
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+
+import { orange } from '@material-ui/core/colors';
+
 function getSteps() {
     return ['En Gestación', 'Destacada', 'Consolidada'];
   }
@@ -262,6 +266,13 @@ export class Perfil extends React.Component {
  
         return (
           <div className="paperPerfil">
+
+            <div className="center">
+              <AccountCircleIcon style={{ color: orange[900],  fontSize: 60}} />
+              <h4 className="titulo">
+                MI PERFIL
+              </h4>
+            </div><br/>
                
                 <AppBar position="static">
                     <Tabs value={this.state.value} onChange={this.handleChange} aria-label="simple tabs example" variant="fullWidth">

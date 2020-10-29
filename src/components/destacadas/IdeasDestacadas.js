@@ -202,7 +202,7 @@ export class IdeasDestacadas extends React.Component {
       <div>
         <EmojiEventsIcon style={{ color: orange[900],  fontSize: 60}} />
         <h4 className="titulo">
-          LAS MEJORES IDEAS
+          IDEAS DESTACADAS
         </h4>
         <br/><br/> 
         {ideasList}
