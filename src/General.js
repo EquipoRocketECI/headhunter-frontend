@@ -163,7 +163,7 @@ export default function PersistentDrawerLeft() {
 
     //gets filter component state and calls search methods accordingly
     const getSelectedFilters = (selectedFilters) => {
-        fetch('http://localhost:8080/ideas/filtered', {
+        fetch('https://mysterious-refuge-36454.herokuapp.com/ideas/filtered', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
