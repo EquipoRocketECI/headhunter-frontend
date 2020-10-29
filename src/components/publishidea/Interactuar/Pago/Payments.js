@@ -22,6 +22,22 @@ const GreenCheckbox = withStyles({
     },
     checked: {},
 })((props) => <Checkbox color="default" {...props} />);
+
+
+function getQueryVariable(variable)
+  {
+        var query = window.location.search.substring(1);
+        console.log(query)
+        var vars = query.split("&");
+        console.log(vars) 
+        for (var i=0;i<vars.length;i++) {
+                    var pair = vars[i].split("=");
+                    console.log(pair)
+        if(pair[0] == variable){return pair[1];}
+         }
+         return(false);
+  }
+
 export class Payments extends React.Component {
 
     constructor(props) {
@@ -43,10 +59,26 @@ export class Payments extends React.Component {
 
     }
 
+    
+
 
     handleSubmit(e){
         e.preventDefault();
-        window.location.href = "/idea";
+        const requestOptions = {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' }
+
+        };
+        var path = "https://mysterious-refuge-36454.herokuapp.com/ideas/"+getQueryVariable('id')+"/donacion/"+getQueryVariable('monto') ;     
+
+            fetch(path, requestOptions)
+                .then(usuario => {
+                    alert("Transaccion realizada correctamente")
+                    window.location.href = "/idea?id="+getQueryVariable('id');
+
+                }).catch(error => console.error('Error:', error));
+
+        
     }
 
     render() {

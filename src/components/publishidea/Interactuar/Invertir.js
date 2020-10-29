@@ -40,7 +40,7 @@ export class Invertir extends React.Component {
 
     handleChange(event) {
         event.preventDefault();
-        window.location.href = "/payment";
+        window.location.href = "/payment?id="+this.props.idea+"&monto="+this.state.monto;
     }
 
     handleChangeCalificacion(event) {
