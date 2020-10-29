@@ -25,7 +25,7 @@ export class EditarPerfil extends React.Component {
             headers: { 'Content-Type': 'application/json' }
 
         };
-        var path = "https://mysterious-refuge-36454.herokuapp.com/usuario" + localStorage.getItem('username') + "/nombrecompleto/" + this.state.nombres;     
+        var path = "https://mysterious-refuge-36454.herokuapp.com/usuario/" + localStorage.getItem('username') + "/nombrecompleto/" + this.state.nombres;     
 
 
             fetch(path, requestOptions)
@@ -56,7 +56,7 @@ export class EditarPerfil extends React.Component {
             headers: { 'Content-Type': 'application/json' }
             
         };
-        var path = "https://mysterious-refuge-36454.herokuapp.com/usuario" + localStorage.getItem('username') + "/contrasena/" + hash;
+        var path = "https://mysterious-refuge-36454.herokuapp.com/usuario/" + localStorage.getItem('username') + "/contrasena/" + hash;
 
         
         if (this.state.username.contrasena == hash) {
