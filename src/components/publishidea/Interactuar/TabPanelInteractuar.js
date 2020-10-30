@@ -55,7 +55,7 @@ let idea = {};
 const startItems = () => {
    
   const id = getQueryVariable('id');
-  var path = "http://mysterious-refuge-36454.herokuapp.com/ideas/"+id;
+  var path = "https://mysterious-refuge-36454.herokuapp.com/ideas/"+id;
 
   fetch(path)
     .then(response => response.json())

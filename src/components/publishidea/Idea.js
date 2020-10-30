@@ -210,7 +210,7 @@ export class Idea extends React.Component {
     startItems() {
    
       const id = getQueryVariable('id');
-      var path = "http://mysterious-refuge-36454.herokuapp.com/ideas/"+id;
+      var path = "https://mysterious-refuge-36454.herokuapp.com/ideas/"+id;
       if (!id){
           this.setState({ error: true });
          
@@ -250,7 +250,7 @@ export class Idea extends React.Component {
           this.setState({ error: true });
           
       }else{
-        var path = "http://mysterious-refuge-36454.herokuapp.com/ideas/"+id+"/expertos";
+        var path = "https://mysterious-refuge-36454.herokuapp.com/ideas/"+id+"/expertos";
     
         fetch(path)
           .then(response => response.json())

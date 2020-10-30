@@ -235,7 +235,7 @@ export class Publish extends React.Component{
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(this.state.idea)
             };
-            fetch('http://mysterious-refuge-36454.herokuapp.com/ideas', requestOptions)
+            fetch('https://mysterious-refuge-36454.herokuapp.com/ideas', requestOptions)
                 .then(response => response.json())
                 .then(newIdea=>{
                     let experto;        
@@ -276,7 +276,7 @@ export class Publish extends React.Component{
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(experto)
         };
-        fetch('http://mysterious-refuge-36454.herokuapp.com/ideas/expertos', requestOptions)
+        fetch('https://mysterious-refuge-36454.herokuapp.com/ideas/expertos', requestOptions)
         .then(response => response.json())
         .catch(error => console.error('Error:', error))
         .then(response => console.log('Success:', response));;

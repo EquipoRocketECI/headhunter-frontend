@@ -226,7 +226,7 @@ export class Perfil extends React.Component {
 
     starInteracciones(){
 
-        var path = "http://mysterious-refuge-36454.herokuapp.com/interaccion/byUser/" + localStorage.getItem('username');
+        var path = "https://mysterious-refuge-36454.herokuapp.com/interaccion/byUser/" + localStorage.getItem('username');
 
         let interactionList = [];
 
@@ -238,7 +238,7 @@ export class Perfil extends React.Component {
 
               var ideaNombre = "";
 
-              fetch("http://mysterious-refuge-36454.herokuapp.com/ideas/"+interaction.idea)
+              fetch("https://mysterious-refuge-36454.herokuapp.com/ideas/"+interaction.idea)
               .then(response => response.json())
               .then(data => {
                 ideaNombre = data.nombre;

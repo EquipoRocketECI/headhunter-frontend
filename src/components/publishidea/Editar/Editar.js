@@ -238,7 +238,7 @@ export class Editar extends React.Component{
     startItems() {
    
         const id = getQueryVariable('id');
-        var path = "http://mysterious-refuge-36454.herokuapp.com/ideas/"+id;
+        var path = "https://mysterious-refuge-36454.herokuapp.com/ideas/"+id;
     
         fetch(path)
           .then(response => response.json())
@@ -258,7 +258,7 @@ export class Editar extends React.Component{
 
       startAreas(){
         const id = getQueryVariable('id');
-        var path = "http://mysterious-refuge-36454.herokuapp.com/ideas/"+id+"/expertos";
+        var path = "https://mysterious-refuge-36454.herokuapp.com/ideas/"+id+"/expertos";
     
         fetch(path)
           .then(response => response.json())
@@ -303,7 +303,7 @@ export class Editar extends React.Component{
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(this.state.idea)
             };
-            fetch('http://mysterious-refuge-36454.herokuapp.com/ideas/'+id, requestOptions)
+            fetch('https://mysterious-refuge-36454.herokuapp.com/ideas/'+id, requestOptions)
                 .then(response => response.json())
                 .catch(error => console.error('Error:', error))
                 .then(response => {
@@ -343,7 +343,7 @@ export class Editar extends React.Component{
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(experto)
         };
-        fetch('http://mysterious-refuge-36454.herokuapp.com/ideas/expertos', requestOptions)
+        fetch('https://mysterious-refuge-36454.herokuapp.com/ideas/expertos', requestOptions)
         .then(response => response.json())
         .catch(error => console.error('Error:', error))
         .then(response => console.log('Success:', response));;
