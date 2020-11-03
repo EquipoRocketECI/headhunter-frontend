@@ -37,14 +37,6 @@ export class Explore extends React.Component {
     }
 
     getPageData() {
-        //mirar que filtros están seleccionados
-        //de acuerdo con eso invocar métodos adecuados para buscar en el backend -->ahora se hace en general.js
-        //armar arreglo de items con la info obtenida.
-        //fijar estado --> como aparece abajo.
-
-
-
-        //Eventualmente cargará datos del backend
         this.setState({
             items: this.state.allItems[this.state.page - 1],
             totalPages: this.state.allItems.length
