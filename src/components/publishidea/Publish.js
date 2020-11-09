@@ -31,6 +31,8 @@ import {
  
 import PublishIcon from '@material-ui/icons/Publish';
 
+import axios from 'axios';
+
 
   const classes = makeStyles((theme) => ({
     root: {
@@ -109,7 +111,8 @@ export class Publish extends React.Component{
                             montoLimite:0,montoRecolectado:0,categoria:"",calificacion:0,adquisiciontemprana:false,
                             descuento:false,versionpremium:false,pequenasdonaciones:false,grandesinversiones:false,
                             expertospersonal:false,fechapublicacion:"",imagen:"",propietario:localStorage.getItem("username")},
-                        expertos:{derecho: false, ingenieria: false, manufactura:false, economia:false}
+                        expertos:{derecho: false, ingenieria: false, manufactura:false, economia:false}, 
+                        file:''
                     } ;
 
                         
@@ -137,6 +140,8 @@ export class Publish extends React.Component{
 
         this.handleSubmit = this.handleSubmit.bind(this);  
         this.handleSubmitAreas = this.handleSubmitAreas.bind(this);  
+
+        this.handleInputChange = this.handleInputChange.bind(this);
     }
 
     handleName(e) {
@@ -263,6 +268,18 @@ export class Publish extends React.Component{
                 .then(response => console.log('Success:', response));;
 
             /*window.location.href = "/idea";*/
+
+            let data = new FormData();
+            data.append('file', this.state.file);
+
+            axios.post('https://quiet-savannah-87752.herokuapp.com', data)
+                .then(function (response) {
+                    console.log("file uploaded!", response.data);
+                })
+                .catch(function (error) {
+                    console.log("failed file upload", error);
+                });
+
         }
         else {
             alert('Debe estar logueado para poder publicar')
@@ -282,6 +299,16 @@ export class Publish extends React.Component{
         .then(response => console.log('Success:', response));;
     }
 
+    handleInputChange(e) {
+
+        const newIdea = { ...this.state.idea, imagen : "https://quiet-savannah-87752.herokuapp.com/"+e.target.files[0].name};
+        this.setState({ idea : newIdea });
+
+        this.setState({
+            file: e.target.files[0]
+        });
+
+    }
 
     render(){
         return (
@@ -338,29 +365,12 @@ export class Publish extends React.Component{
                             </FormControl><br/><br/><br/><br/>
 
                             <Typography variant="h5">¿Tienes alguna imagen o logo que represente tu idea? ¡Súbela!  </Typography>
-                            <FormControl margin="dense" required fullWidth>
-                                <div className={classes.root}>
-                                    <input
-                                        accept="image/*"
-                                        className={classes.input}
-                                        id="contained-button-file"
-                                        multiple
-                                        type="file"
-                                        style={{display:'none'}}
-                                    />
-                                    <label htmlFor="contained-button-file">
-                                        <Button variant="contained" color="primary" component="span">
-                                            Subir Imagen
-                                        </Button>
-                                    </label>
-                                    <input accept="image/*" className={classes.input} id="icon-button-file" type="file" style={{display:'none'}}/>
-                                    <label htmlFor="icon-button-file">
-                                        <IconButton color="primary" aria-label="upload picture" component="span">
-                                        <PhotoCamera />
-                                        </IconButton>
-                                    </label>
-                                </div>
-                            </FormControl><br/><br/><br/>
+                            
+                            <PhotoCamera /><br/><br/>
+
+                            <input type="file" id="file" onChange={this.handleInputChange}/><br/><br/>
+
+                            <br/><br/><br/>
                             
                             <FormControl component="fieldset" >
                             <Typography variant="h5">¿Qué estas buscando para tu proyecto?</Typography>

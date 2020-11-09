@@ -331,13 +331,7 @@ export class Idea extends React.Component {
                           ))}
                       </Stepper>
 
-                      <CardMedia
-                          component="img"
-                          alt="Contemplative Reptile"
-                          height="280"
-                          image={img}
-                          title="img"
-                          />
+                      {this.state.idea.imagen === "" ? <div/> : <img className="images" src={this.state.idea.imagen} />}
 
                       <br/>
 

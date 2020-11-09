@@ -17,3 +17,7 @@ h1 {
 h1.blue {
     color: rgb(2, 68, 192);
 }
+
+img.images {
+    width: 100%;
+}

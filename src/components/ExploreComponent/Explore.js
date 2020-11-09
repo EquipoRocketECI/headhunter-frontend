@@ -51,6 +51,7 @@ export class Explore extends React.Component {
                 name={item.nombre}
                 description={item.descripcion}
                 id={item.id}
+                imagen={item.imagen}
             />);
 
         });

@@ -138,7 +138,8 @@ export class IdeasDestacadas extends React.Component {
             "propietario":idea.propietario,
             "fase":idea.fase,
             "activeStep":this.activeStep,
-            "id": idea.id
+            "id": idea.id,
+            "imagen" : idea.imagen
           })
         });
         this.setState({ ideas: ideaList });
@@ -156,6 +157,8 @@ export class IdeasDestacadas extends React.Component {
             
             <div className="colorr">
               <CardContent>
+
+                {idea.imagen === "" ? <div/> : <img className="imagen" src={idea.imagen} />}
 
                 <h4 className="propietario">Descripción</h4>
            

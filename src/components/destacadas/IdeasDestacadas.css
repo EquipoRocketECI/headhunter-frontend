@@ -61,3 +61,8 @@ h4.titulo{
     font-size: 40px;
 
 }
+
+img.imagen {
+    width: 550px;
+    height: 350px;
+}
