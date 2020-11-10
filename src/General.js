@@ -6,8 +6,8 @@ import { SignIn } from './components/SignIn';
 import { Publish } from './components/publishidea/Publish';
 import { Idea } from './components/publishidea/Idea';
 import { Editar } from './components/publishidea/Editar/Editar';
-import { Perfil} from './components/Perfil/Perfil';
-import { EditarPerfil} from './components/Perfil/EditarPerfil';
+import { Perfil } from './components/Perfil/Perfil';
+import { EditarPerfil } from './components/Perfil/EditarPerfil';
 
 import { Button, Paper, Typography } from '@material-ui/core';
 
@@ -96,14 +96,14 @@ const useStyles = makeStyles((theme) => ({
 export default function PersistentDrawerLeft() {
 
     const exploreRef = useRef(null);
-    
+
     const classes = useStyles();
     const theme = useTheme();
 
     const [open, setOpen] = React.useState(false);
 
     const [currentLoginView, setCurrentLoginView] = React.useState(localStorage.getItem('currentLoginView'));
-    
+
     const [ideas, setIdeas] = React.useState([
         {
             "comentario": "Cambien el color de producto",
@@ -116,7 +116,7 @@ export default function PersistentDrawerLeft() {
     // SERVICE ACCESS
     //---------------------------------------------------------------------------------------
 
-    //gets filter component state and calls search methods accordingly
+    //maybe move this to explore???
     const getSelectedFilters = (selectedFilters) => {
         fetch('https://mysterious-refuge-36454.herokuapp.com/ideas/filtered', {
             method: 'POST',
@@ -128,17 +128,17 @@ export default function PersistentDrawerLeft() {
         })
             .then(response => response.json())
             .then(data => {
-            const size=10;
-            var R = [];
-            for (var i = 0; i < data.length; i += size)
-              R.push(data.slice(i, i + size));
+                const size = 10;
+                var items = [];
+                for (var i = 0; i < data.length; i += size)
+                    items.push(data.slice(i, i + size));
 
-                if(exploreRef.current!=null){
-                    if(R.length===0)
-                        R.push([]);
-                    exploreRef.current.loadItems(R);
+                if (exploreRef.current != null) {
+                    if (items.length === 0)
+                        items.push([]);
+                    exploreRef.current.loadItems(items);
                 }
-                     
+
             });
     }
 
@@ -185,7 +185,7 @@ export default function PersistentDrawerLeft() {
         <div>
             <SignIn />
             <Button className="sing"
-                onClick={()=>{setCurrentLoginView("Login")}}>
+                onClick={() => { setCurrentLoginView("Login") }}>
                 Iniciar Sesion
             </Button>
         </div>
@@ -208,10 +208,10 @@ export default function PersistentDrawerLeft() {
     );
 
     const ExploreView = () => (
-        <Explore ref={exploreRef}/>
+        <Explore ref={exploreRef} />
     );
 
-    const FilterView =() => (
+    const FilterView = () => (
         <Filters getSelectedFilters={getSelectedFilters} />
     );
 
@@ -311,7 +311,7 @@ export default function PersistentDrawerLeft() {
                             </ListItemIcon>
                                 Publicar
                         </Button>
-                        
+
                         {FilterView()}
                     </List>
                 </Drawer>
@@ -345,7 +345,7 @@ export default function PersistentDrawerLeft() {
                             <Route path="/editar" component={EditarView} />
                             <Route path="/perfil" component={PerfilView} />
                             <Route path="/editarPerfil" component={EditarPerfilView} />
-                            
+
                         </div>
                     </div>
 

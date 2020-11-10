@@ -10,7 +10,7 @@ export class Explore extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            allItems:[[]],
+            allItems: [[]],
             items: [],
             page: 1,
             currentSearch: "",
@@ -20,6 +20,21 @@ export class Explore extends React.Component {
         this.handlePageChange = this.handlePageChange.bind(this);
     }
 
+    componentDidMount() {
+        fetch("https://mysterious-refuge-36454.herokuapp.com/ideas")
+            .then(response => response.json())
+            .then(data => {
+                const size = 10;
+                var items = [];
+                for (var i = 0; i < data.length; i += size)
+                    items.push(data.slice(i, i + size));
+
+                if (items.length === 0)
+                    items.push([]);
+                this.loadItems(items);
+            })
+    }
+
     handlePageChange(event, newPage) {
         this.setState({
             page: newPage
@@ -27,12 +42,11 @@ export class Explore extends React.Component {
 
     }
 
-    loadItems(items){
-        console.log(items);
+    loadItems(items) {
         this.setState({
-            allItems:items,
-            items:items[0],
-            page:1
+            allItems: items,
+            items: items[0],
+            page: 1
         })
     }
 

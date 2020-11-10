@@ -14,12 +14,11 @@ export class Filters extends React.Component {
         this.state = {
             rangeRadioValue: "none",
             selectedCategories: {
-                Moda: true,
+                Moda: false,
                 Tecnología: false,
                 Entretenimiento: false,
                 Educación: false,
-                Cultura: false,
-                Salúd: false
+                Cultura: false
             },
             investmentRange: {
                 lowBound: 0,
