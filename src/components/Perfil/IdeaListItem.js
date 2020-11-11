@@ -149,9 +149,25 @@ const BorderLinearProgress = withStyles((theme) => ({
 export default class IdeaListItem extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            porcentaje:this.props.montoRecolectado/this.props.montoLimite,
+            activeStep:this.getActiveStep()
+        }
 
         this.steps = getSteps();
+    }
+
+    getActiveStep(){
+        if(this.props.fase === "consolidada"){
+            return 2;
+        }else if(this.props.fase === "destacada"){
+            return 1;
+        }else if(this.props.fase === "gestacion"){
+            return 0;
+        }else{
+            return 0;
+        }
+        
     }
 
     render() {
@@ -175,7 +191,7 @@ export default class IdeaListItem extends React.Component {
                         <Typography variant="subtitle1" color="textSecondary">
                             {this.props.categoria}
                         </Typography>
-                        <Stepper alternativeLabel activeStep={this.props.activeStep} connector={<ColorlibConnector />}>
+                        <Stepper alternativeLabel activeStep={this.state.activeStep} connector={<ColorlibConnector />}>
                             {this.steps.map((label) => (
                                 <Step key={label}>
                                     <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>
@@ -185,11 +201,11 @@ export default class IdeaListItem extends React.Component {
 
                         <div style={{ display: this.props.pequenasdonaciones || this.props.grandesinversiones ? 'block' : 'none' }}>
                             <Typography variant="body2" gutterBottom>
-                                Recaudado ${this.props.montoRecolectado} de  ${this.props.montoLimite} ({this.props.porcentaje.toFixed(2)}%)
+                                Recaudado ${this.props.montoRecolectado} de  ${this.props.montoLimite} ({this.state.porcentaje.toFixed(2)}%)
                                         <br />
 
                             </Typography>
-                            <BorderLinearProgress variant="determinate" value={this.props.porcentaje} />
+                            <BorderLinearProgress variant="determinate" value={this.state.porcentaje} />
                         </div>
 
                     </CardContent>

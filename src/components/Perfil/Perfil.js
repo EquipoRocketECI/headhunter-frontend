@@ -1,20 +1,9 @@
 import React from 'react';
 import {
-  Paper, AppBar, Tabs, Tab, Typography, Box, Card,
-  CardContent, CardActions, Button, Grid,
-  Stepper, Step, StepLabel, StepConnector, LinearProgress
+  AppBar, Tabs, Tab, Typography, Box
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
 import './Perfil.css';
-
-import StarIcon from '@material-ui/icons/Star';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import ImportantDevicesIcon from '@material-ui/icons/ImportantDevices';
-import ChildFriendlyIcon from '@material-ui/icons/ChildFriendly';
-
-import { yellow } from '@material-ui/core/colors';
-import clsx from 'clsx';
 
 import InteractionListByUser from './InteractionListByUser'
 
@@ -65,22 +54,9 @@ export class Perfil extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ideas: [{
-        id: "8", nombre: "Una Idea", descripcion: "Descripcion de una idea",
-        montoLimite: 100000, montoRecolectado: 200, categoria: "Tecnología", calificacion: 4.0,
-        fechapublicacion: "", imagen: "", propietario: "", fase: "Destacada",
-        pequenasdonaciones: true, grandesinversiones: true, activeStep: 1,
-        porcentaje: (100 / 100000) * 200
-      },
-      {
-        id: "9", nombre: "Una Idea", descripcion: "Descripcion de una idea",
-        montoLimite: 100000, montoRecolectado: 40000, categoria: "Tecnología", calificacion: 3.0,
-        fechapublicacion: "", fase: "Consolidada", imagen: "", propietario: "",
-        pequenasdonaciones: true, grandesinversiones: true, activeStep: 2,
-        porcentaje: (100 / 100000) * 40000
-      }
-      ]
-      , interacciones: [{
+      ideas: []
+      ,
+      interacciones: [{
         "id": 6, "tipo": "comentario", "monto": 0, "comentario": "we",
         "calificacion": 4.0, "idea": 1, "usuario": "diego.com"
       },
@@ -94,21 +70,19 @@ export class Perfil extends React.Component {
       }],
       value: 0
     };
-
-    this.startIdeas();
     this.starInteracciones();
 
     this.steps = getSteps();
     this.handleChange = this.handleChange.bind(this);
   }
 
-  startIdeas() {
-    /*
-        FETCH PARA GET-IDEAS-POR-USUARIO
-    */
-
+  componentDidMount() {
+    fetch("http://localhost:8080/ideas?user=" + localStorage.getItem('username'))
+      .then(response => response.json())
+      .then(data => {
+        this.setState({ ideas: data })//falta transformar las fechas y los numeros, hay muchos undefined
+      });
   }
-
 
   starInteracciones() {
 
@@ -170,7 +144,7 @@ export class Perfil extends React.Component {
         </AppBar>
         <div style={{ display: (localStorage.getItem('username') != "") ? 'block' : 'none' }}>
           <TabPanel value={this.state.value} index={0}>
-            <IdeaListByUser ideaList={this.state.ideas}/>
+            <IdeaListByUser ideaList={this.state.ideas} />
           </TabPanel>
         </div>
 
