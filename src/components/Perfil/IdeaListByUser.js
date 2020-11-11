@@ -8,20 +8,21 @@ export default class IdeaListByUser extends React.Component {
     }
 
     render() {
+        console.log(this.props.ideaList);
         const list =this.props.ideaList.map((idea) => (
             <IdeaListItem
                 id={idea.id}
                 nombre={idea.nombre}
                 descripcion={idea.descripcion}
-                montoLinite={idea.montoLinite}
+                montoLimite={idea.montoLimite}
                 montoRecolectado={idea.montoRecolectado}
                 categoria={idea.categoria}
                 calificacion={idea.calificacion}
-                fechaPublicacion={idea.fechaPublicacion}
+                fechaPublicacion={idea.fechapublicacion}
                 imagen={idea.imagen}
                 fase={idea.fase}
-                pequenasDonaciones={idea.pequenasDonaciones}
-                grandesInversiones={idea.grandesInversiones}
+                pequenasDonaciones={idea.pequenasdonaciones}
+                grandesInversiones={idea.grandesinversiones}
             />
         )
         )

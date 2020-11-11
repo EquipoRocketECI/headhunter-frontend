@@ -80,7 +80,7 @@ export class Perfil extends React.Component {
     fetch("http://localhost:8080/ideas?user=" + localStorage.getItem('username'))
       .then(response => response.json())
       .then(data => {
-        this.setState({ ideas: data })//falta transformar las fechas y los numeros, hay muchos undefined
+        this.setState({ ideas: data })
       });
   }
 

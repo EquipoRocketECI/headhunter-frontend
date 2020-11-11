@@ -199,7 +199,7 @@ export default class IdeaListItem extends React.Component {
                             ))}
                         </Stepper>
 
-                        <div style={{ display: this.props.pequenasdonaciones || this.props.grandesinversiones ? 'block' : 'none' }}>
+                        <div style={{ display: this.props.pequenasDonaciones || this.props.grandesInversiones ? 'block' : 'none' }}>
                             <Typography variant="body2" gutterBottom>
                                 Recaudado ${this.props.montoRecolectado} de  ${this.props.montoLimite} ({this.state.porcentaje.toFixed(2)}%)
                                         <br />
