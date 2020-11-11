@@ -77,7 +77,7 @@ export class Perfil extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:8080/ideas?user=" + localStorage.getItem('username'))
+    fetch("https://mysterious-refuge-36454.herokuapp.com/ideas?user=" + localStorage.getItem('username'))
       .then(response => response.json())
       .then(data => {
         this.setState({ ideas: data })
