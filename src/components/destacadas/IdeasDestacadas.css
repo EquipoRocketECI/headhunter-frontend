@@ -1,0 +1,68 @@
+div.colorr{
+    background-color: rgba(255, 255, 255, 0);
+    border-style: solid;
+    border-color: rgb(63, 81, 181);
+    
+}
+
+h3.ee {
+    color: rgb(255, 255, 255);
+    background-color: rgb(63, 81, 181);
+    font-size: 32px;
+}
+
+h4.comentarioo{
+
+    text-align: left;
+    font-weight: lighter;
+    padding: 3px 10px;
+    border: rgb(0, 0, 0) 1px solid;
+    border-color: rgb(63, 81, 181);
+    border-radius: 5px;
+    font-size: 26px;
+    
+}
+
+h4.categoria{
+
+    text-align: right;
+    font-weight: lighter;
+    font-size: 26px;
+
+}
+
+h4.cali{
+
+    text-align: right;
+    font-weight: lighter;
+    font-size: 30px;
+
+}
+
+h4.propietario{
+
+    text-align: left;
+    font-weight: lighter;
+    font-size: 20px;
+
+}
+
+h4.fase{
+
+    text-align: left;
+    font-weight: lighter;
+    font-size: 20px;
+
+}
+
+h4.titulo{
+
+    color:rgb(224, 93, 33);
+    font-size: 40px;
+
+}
+
+img.imagen {
+    width: 550px;
+    height: 350px;
+}

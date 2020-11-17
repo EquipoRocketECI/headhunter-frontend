@@ -6,3 +6,8 @@
 .cardMedia{
     height: 100px;
 }
+
+img.image {
+    width: 300px;
+    height: 150px;
+}

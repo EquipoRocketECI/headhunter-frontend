@@ -1,0 +1,23 @@
+Button.person {
+    width: 33.4%;
+}
+.root {
+    flex-grow: 1;
+}
+
+.paperIdea{
+    margin-right: 0%;
+    margin-left: 0%;
+}
+
+h1 {
+    color: rgb(223, 68, 7);
+}
+
+h1.blue {
+    color: rgb(2, 68, 192);
+}
+
+img.images {
+    width: 100%;
+}

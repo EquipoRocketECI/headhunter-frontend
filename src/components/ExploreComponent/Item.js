@@ -12,8 +12,8 @@ export class Item extends React.Component {
 
         const img = require.context('./img', true);
         return (
-            <Card className="cardRoot">
-                <CardMedia className="cardMedia" image={img(`./${this.props.image}`)} title="placeholder" />
+            <Card color="primary" className="cardRoot">
+                {this.props.imagen === "" ? <div/> : <img className="image" src={this.props.imagen} />}
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
                         {this.props.name}
@@ -24,7 +24,7 @@ export class Item extends React.Component {
 
                 </CardContent>
                 <CardActions>
-                    <Button>VER MÁS</Button>
+                    <Button href={"/idea?id="+this.props.id}>VER MÁS</Button>
                 </CardActions>
             </Card>
 

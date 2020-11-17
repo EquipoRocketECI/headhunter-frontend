@@ -1,103 +1,134 @@
 import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-import LockIcon from '@material-ui/icons/LockOutlined';
-import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
 import './SingIn.css'
 
 
 
 export class SignIn extends React.Component {
 
+
     constructor(props) {
         super(props);
-        this.state = { username: "", password: "", recordar: false };
-        localStorage.setItem('username', "Mateo");
-        localStorage.setItem('password', "IETI1234");
+        this.state = { username: "", password: "", recordar: false, nombres:"", apellidos:"" };
+        
         localStorage.setItem('recordar', false);
         this.handleUsername = this.handleUsername.bind(this);
         this.handlePassword = this.handlePassword.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleNombres = this.handleNombres.bind(this);
+        this.handleApellidos = this.handleApellidos.bind(this);
+        this.sendJSON = this.sendJSON.bind(this);
+        
+    }
+
+    sendJSON(event) {
+
+        event.preventDefault();
+        var sha256 = require('js-sha256');
+        var hash = sha256(this.state.password);
+        var data = {
+            "correo": this.state.username,
+            "contrasena": hash.toString(),
+            "nombrecompleto": this.state.nombres + " " + this.state.apellidos
+        };
+
+        fetch('https://mysterious-refuge-36454.herokuapp.com/usuario', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+
+            .then(function (response) {
+                if (response.ok) {
+                    alert("Usuario creado correctamemnte")
+                    window.location.reload();
+                } else {
+                    alert("Nombre de usuario ya existente")
+                    window.location.reload();
+                }
+            })
     }
 
     render() {
+        
         return (
-            <React.Fragment>
-                <CssBaseline />
-                <main className="layout">
-                    <Paper className="paper">
-                        <Avatar className="avatar">
-                            <LockIcon />
-                        </Avatar>
-                        <Typography variant="h2">Sign in</Typography>
-                        <form className="form">
-                            <FormControl margin="normal" required fullWidth>
-                                <InputLabel htmlFor="nombres">Nombres</InputLabel>
-                                <Input id="nombres" name="nombres" autoComplete="nombres" autoFocus  />
-                            </FormControl>
+            <Paper className="paper" elevation={20}>
+                <div>
+                    <Typography variant="h4">Registrarse</Typography>
+                    <form className="form" >
+                        <FormControl margin="normal" required fullWidth>
+                            <InputLabel htmlFor="nombres">Nombres</InputLabel>
+                            <Input id="nombres" name="nombres" autoComplete="nombres" value={this.state.nombres}
+                                onChange={this.handleNombres} autoFocus />
+                        </FormControl>
 
-                            <FormControl margin="normal" required fullWidth>
-                                <InputLabel htmlFor="apellidos">Apellidos</InputLabel>
-                                <Input id="apellidos" name="apellidos" autoComplete="apellidos" autoFocus />
-                            </FormControl>
+                        <FormControl margin="normal" required fullWidth>
+                            <InputLabel htmlFor="apellidos">Apellidos</InputLabel>
+                            <Input id="apellidos" name="apellidos" autoComplete="apellidos" value={this.state.apellidos}
+                                onChange={this.handleApellidos} autoFocus />
+                        </FormControl>
 
-                            
+                        <FormControl margin="normal" required fullWidth>
+                            <InputLabel htmlFor="email">Correo Electrónico</InputLabel>
+                            <Input id="email" name="email" autoComplete="email" value={this.state.username}
+                                onChange={this.handleUsername} autoFocus />
+                        </FormControl>
 
-                            <FormControl margin="normal" required fullWidth>
-                                <InputLabel htmlFor="email">Email</InputLabel>
-                                <Input id="email" name="email" autoComplete="email" autoFocus />
-                            </FormControl>
+                        <FormControl margin="normal" required fullWidth>
+                            <InputLabel htmlFor="password">Contraseña</InputLabel>
+                            <Input
+                                name="password"
+                                type="password"
+                                id="password"
+                                value={this.state.password}
+                                onChange={this.handlePassword}
+                                autoComplete="current-password" />
+                                
+                        </FormControl>
+                                
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            className="blue"
+                            onClick={this.sendJSON}>
+                            Registrarse
+                        </Button>
 
-                            <FormControl margin="normal" required fullWidth>
-                                <InputLabel htmlFor="password">Password</InputLabel>
-                                <Input
-                                    name="password"
-                                    type="password"
-                                    id="password"
-                                    autoComplete="current-password"
-                    
-                                />
-                            </FormControl>
-                            
+                        <br />
+                        <br />
 
-                            
-                            <Button
-                                type="submit"
-                                fullWidth
-                                variant="contained"
-                                color="primary"
-                                className="submit"
-                                onClick={this.handleSubmit}
-                            >
-                                Sign in
-                            </Button>
-
-                            <br />
-                            <br />
-
-                        </form>
-                    </Paper>
-                </main>
-            </React.Fragment>
+                    </form>
+                </div>
+            </Paper>
         );
-
     }
 
     handleUsername(e) {
         this.setState({ username: e.target.value });
+        
     }
 
     handlePassword(e) {
         this.setState({ password: e.target.value })
     }
 
-    handleSubmit(e) {
+    handleNombres(e) {
+        this.setState({ nombres: e.target.value });
+    }
 
+    handleApellidos(e) {
+        this.setState({ apellidos: e.target.value });
+    }
+
+    handleSubmit(e) {
+        this.setState({ nombres: e.target.value });
+        this.setState({ apellidos: e.target.value });
     }
 
 }

@@ -1,0 +1,32 @@
+.filters{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.investmentFilter{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+.investmentFilter .customRangeForm{
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+}
+
+.customRangeForm .customRangeInput{
+    width: 110px;
+    padding: 0 5px;
+}
+
+.areaFilterForm{
+    margin-top: 20px;
+}
+
+.areaFilter {
+    justify-content: center !important;
+    display: flex;
+    flex-direction: column;
+}
+

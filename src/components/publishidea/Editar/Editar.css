@@ -1,0 +1,21 @@
+.paperPublish {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 15px;
+    margin-right: 0%;
+    margin-left: 0%;
+}
+
+.paperIdea {
+    display: flex;
+    flex-direction: column;
+    
+    padding: 3% 3%;
+    margin-right: 0%;
+    margin-left: 0%;
+}
+
+.formCon{
+    margin-bottom:20px;
+}
