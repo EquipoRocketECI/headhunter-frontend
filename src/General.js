@@ -128,33 +128,18 @@ export default function PersistentDrawerLeft() {
         })
             .then(response => response.json())
             .then(data => {
-            const size=10;
+            /* const size=10;
             var R = [];
             for (var i = 0; i < data.length; i += size)
-              R.push(data.slice(i, i + size));
+              R.push(data.slice(i, i + size)); */
 
                 if(exploreRef.current!=null){
-                    if(R.length===0)
-                        R.push([]);
-                    exploreRef.current.loadItems(R);
+                    /* if(R.length===0)
+                        R.push([]); */
+                    exploreRef.current.loadItems(data);
                 }
                      
             });
-    }
-
-    const searchByTitle = (title) => {
-        return (<h1>IN CONSTRUCTION</h1>); //crear servicios en backend -> debe mapear a un arreglo en json de la forma [[<conjunto de ideas1>],[<conjunto de ideas2>],...,[<conjunto de ideas n>]].
-        //Cada idea debe ir de la forma name: <nombre>, description: <desc>, image:<ruta imagen>}
-    }
-
-    const searchByInvestmentRange = (lowRange, highRange) => {
-        return (<h1>IN CONSTRUCTION</h1>); //crear servicios en backend -> debe mapear a un arreglo en json de la forma [[<conjunto de ideas1>],[<conjunto de ideas2>],...,[<conjunto de ideas n>]].
-        //Cada idea debe ir de la forma name: <nombre>, description: <desc>, image:<ruta imagen>}
-    }
-
-    const searchByInvestor = (investorName) => {
-        return (<h1>IN CONSTRUCTION</h1>); //crear servicios en backend -> debe mapear a un arreglo en json de la forma [[<conjunto de ideas1>],[<conjunto de ideas2>],...,[<conjunto de ideas n>]].
-        //Cada idea debe ir de la forma name: <nombre>, description: <desc>, image:<ruta imagen>}
     }
 
     //---------------------------------------------------------------------------------------
