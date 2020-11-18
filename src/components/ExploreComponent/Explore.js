@@ -23,10 +23,9 @@ export class Explore extends React.Component {
     }
 
     search(ideaName) {
-        fetch("http://localhost:8080/ideas?q=" + ideaName)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
+        fetch("https://mysterious-refuge-36454.herokuapp.com/ideas?q=" + ideaName)
+            .then((response) => response.json())
+            .then((data) => {
                 this.loadItems(data);
             });
     }
@@ -39,13 +38,13 @@ export class Explore extends React.Component {
     }
 
     loadItems(items) {
-        const size=10;
-            var pagedItems = [];
-            for (var i = 0; i < items.length; i += size)
-              pagedItems.push(items.slice(i, i + size));
+        const size = 10;
+        var pagedItems = [];
+        for (var i = 0; i < items.length; i += size)
+            pagedItems.push(items.slice(i, i + size));
 
-                    if(pagedItems.length===0)
-                        pagedItems.push([]);
+        if (pagedItems.length === 0)
+            pagedItems.push([]);
 
         this.setState({
             allItems: pagedItems,
@@ -77,10 +76,11 @@ export class Explore extends React.Component {
 
         return (
             <div className="mainView">
-                {/* <FormControl variant=>
-                    <Input/> USE FORM AND PLACE SUBMIT BUTTON ON CLICK IS ON THE FORM
-                </FormControl> */}
-                <TextField className="searchBar" fullWidth="true" variant="filled" placeholder="Buscar" margin="normal" InputProps={{ disableUnderline: true}} onKeyPress={(e)=>{if(e.key === "Enter") this.search(e.target.value)}}/>
+                <TextField className="searchBar" fullWidth="true" variant="filled" placeholder="Buscar" margin="normal" InputProps={{ disableUnderline: true }} onKeyPress={(e) => {
+                    if (e.key === "Enter") {
+                        this.search(e.target.value);
+                    }
+                }} />
                 <div className="searchResults">
                     <div className="itemArea">
                         {itemList}
